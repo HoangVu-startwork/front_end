@@ -1,0 +1,73 @@
+.slick-slide.slick-active.slick-center.slick-current {
+    font-weight: 400;
+    font-size: 12px;
+    border-bottom: 2.5px solid #ff0505;
+    color: #000000;
+  }
+.slick-slide.slick-activess.slick-center{
+    font-size: 12px;
+    font-weight: 400;
+    border-bottom: 2.5px solid #ff0000;
+    color: #0b0505;
+}
+.slick-slide.slick-activess{
+    font-size: 12px;
+    font-weight: 400;
+    border-bottom: 2.5px solid #ff0000;
+    color: #181010;
+}
+
+.Canter_menu_css{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 0 0;
+}
+.Canter_menu_css .Canter_menu_css_img{
+    width: 100%;
+    height: 305px;
+    border-radius: 0px 0px 0 0;
+  }
+.Canter_menu_css .Canter_menu_css_img .img{
+    width: 715px;
+    height: 305px;
+    border-radius: 5px 5px 0 0;
+  }
+.Canter_menu_css .Canter_menu_css_label{
+    margin-left: -9px;
+    margin-right: -9px;
+  }
+.Canter_menu_css .Canter_menu_css_label .label_css{
+    text-align: center;
+    margin: 35px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border-radius: 0;
+    color: #000;
+    font-size: 12px;
+    line-height: 23px;
+    height: 66px;
+  }
+.Canter_menu_css .Canter_menu_css_label .label_css:hover{
+    background: #e1dfdf;
+    height: 66px;
+    font-weight: 600;
+    border-radius: 0 0 5px 5px ;
+  }
+
+.right-banner .right-banner__item {
+    height: 375px;
+    width: 100%;
+    border-radius: 10px;
+}
+.right-banner .right-banner__item .right-banner__img {
+    float: left;
+    width: 100%;
+    display: flex;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}

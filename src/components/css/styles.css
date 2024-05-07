@@ -1,0 +1,475 @@
+.danhmuc_menu{
+    width: 100%;
+    padding-bottom: 2px;
+    z-index: 1;
+}
+.danhmuc_menu ul{
+    height: auto;
+    margin-top: 3px;
+    list-style: none;
+}
+.danhmuc_menu> ul> li{
+    height: 39px; 
+    margin-left: 2px;
+    position: relative;  
+    margin-top: 2px;
+    font-size: 20px;
+    display: block;
+    z-index: 1;
+}
+.danhmuc_menu ul li a{
+    padding: 1px 2px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+.danhmuc_menu ul .post-auto-menu{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    left: 100.5%;
+    top: -13%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu ul li .post-auto-menu li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    padding-left: 10px;
+    float: left;
+    font-size: 14px;
+    width: 190px;
+}
+.danhmuc_menu ul li .post-auto-menu li .sub-menu-tap li{
+    padding: 5px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu li .fron-ul{
+    font-weight: bold;
+}
+.danhmuc_menu ul li .post-auto-menu li .sub-menu-tap li a:hover{
+    color: #f30000;
+}
+/*  */
+.danhmuc_menu ul .post-auto-menu1{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    left: 100.5%;
+    top: -118%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu ul li .post-auto-menu1 li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    padding-left: 10px;
+    float: left;
+    font-size: 14px;
+    width: 210px;
+}
+.danhmuc_menu ul li .post-auto-menu1 li .sub-menu-tap1 li{
+    padding: 3px 6px;
+    float: none;
+    margin-left: 2px;
+}
+.danhmuc_menu ul li .post-auto-menu1 li .fron-ul{
+    font-weight: bold;
+    font-size: 14px;
+}
+.danhmuc_menu ul li .post-auto-menu1 li .sub-menu-tap1 li a:hover{
+    color: #f30000;
+}
+/*  */
+.danhmuc_menu ul .post-auto-menu2{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    margin-bottom: 10px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -225%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu ul li .post-auto-menu2 li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    float: left;
+    font-size: 14px;
+    width: 185px;
+    padding-left: 10px;
+}
+.danhmuc_menu ul li .post-auto-menu2 li .sub-menu-tap2 li{
+    padding: 3px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu2 li .fron-ul{
+    font-weight: bold;
+    font-size: 13px;
+}
+.danhmuc_menu ul li .post-auto-menu2 li .sub-menu-tap2 li a:hover{
+    color: #f30000;
+}
+/*  */
+.danhmuc_menu ul .post-auto-menu3{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    margin-bottom: 10px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -330%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu ul li .post-auto-menu3> li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    float: left;
+    font-size: 14px;
+    width: 185px;
+    padding-left: 10px;
+}
+.danhmuc_menu ul li .post-auto-menu3 li .sub-menu-tap3 li{
+    padding: 3px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu3 li .fron-ul{
+    font-weight: bold;
+}
+.danhmuc_menu ul li .post-auto-menu3 li .sub-menu-tap3 li a:hover{
+    color: #f30000;
+}
+/*  */
+.danhmuc_menu ul .post-auto-menu4{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    margin-bottom: 10px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -435%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu ul li .post-auto-menu4 li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    float: left;
+    font-size: 14px;
+    width: 170px;
+    padding-left: 10px;
+}
+.danhmuc_menu ul li .post-auto-menu4 li .sub-menu-tap4 li{
+    padding: 2px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu4 li .fron-ul{
+    font-weight: bold;
+}
+.danhmuc_menu ul li .post-auto-menu4 li .sub-menu-tap4 li a:hover{
+    color: #f30000;
+}
+/* 5 */
+.danhmuc_menu ul .post-auto-menu5{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -540%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu> ul> li> .post-auto-menu5> li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    padding-left: 10px;
+    float: left;
+    font-size: 14px;
+    width: 185px;
+}
+.danhmuc_menu ul li .post-auto-menu5 li .sub-menu-tap5 li{
+    padding: 2px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu5 li .fron-ul{
+    font-weight: bold;
+}
+.danhmuc_menu ul li .post-auto-menu5 li .sub-menu-tap5 li a:hover{
+    color: #f30000;
+}
+/*  */
+.danhmuc_menu ul .post-auto-menu6{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -645%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+
+}
+.danhmuc_menu> ul> li> .post-auto-menu6> li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    float: left;
+    font-size: 14px;
+    width: 190px;
+    padding-left: 10px;
+}
+.danhmuc_menu ul li .post-auto-menu6 li .sub-menu-tap6 li{
+    padding: 2px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu6 li .fron-ul{
+    font-weight: bold;
+}
+.danhmuc_menu ul li .post-auto-menu6 li .sub-menu-tap6 li a:hover{
+    color: #f30000;
+}
+/*  */
+.danhmuc_menu ul .post-auto-menu7{
+    width: 970px;
+    height: auto;
+    min-height: 390px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -750%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu> ul> li> .post-auto-menu7> li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    float: left;
+    font-size: 14px;
+    width: 185px;
+}
+.danhmuc_menu ul li .post-auto-menu7 li .sub-menu-tap7 li{
+    padding: 2px 6px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu7 li .fron-ul{
+    font-weight: bold;
+    font-size: 13px;
+}
+.danhmuc_menu ul li .post-auto-menu7 li .sub-menu-tap7 li a:hover{
+    color: #f30000;
+}
+.danhmuc_menu ul .post-auto-menu8{
+    width: 970px;
+    min-height: 390px;
+    height: auto;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.9;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    left: 100.5%;
+    top: -855%;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.danhmuc_menu> ul> li> .post-auto-menu8> li{
+    padding: 2px 3px;
+    padding-top: 13px;
+    float: left;
+    font-size: 14px;
+    width: 185px;
+
+}
+.danhmuc_menu ul li .post-auto-menu8 li .sub-menu-tap8 li{
+    padding: 5px 15px;
+    float: none;
+    margin-left: -2px;
+}
+.danhmuc_menu ul li .post-auto-menu8 li .fron-ul{
+    font-weight: bold;
+}
+.danhmuc_menu ul li .post-auto-menu8 li .sub-menu-tap8 li a:hover{
+    color: #f30000;
+}
+.danhmuc_menu ul li:hover > .sub{
+    opacity: 1;
+    visibility: visible;
+}
+.danhmuc_menu ul li:hover > .post-auto-menu{
+    opacity: 1;
+    visibility: visible;
+}
+.danhmuc_menu > ul > li > a{
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 40px;
+}
+
+.danhmuc_menu > ul> li:hover > a{
+    width: 210px;
+    z-index: 2;
+    position: absolute;
+    color: #ffffff;
+    background: #ee1919;
+    border-radius: 5px 25px 25px 5px;
+}
+.danhmuc_menu ul li:hover .fast {
+    color: #ffffff;
+}
+.danhmuc_menu ul li:hover .menu_span{
+    color: #ffffff;
+}
+
+.danhmuc_menu ul li:hover a .material-symbols-rounded{
+    color: #ffffff;
+}
+.danhmuc_menu > ul > li{
+    display: block;  
+}
+.danhmuc_menu ul li span {
+    margin-right: 2px;
+    color: rgb(0, 0, 0);
+    margin-top: 11px;
+    margin-left: 1px;
+}
+.danhmuc_menu ul li .fa{
+    margin-left: 5px;
+    text-align: center;
+}
+.danhmuc_menu ul li .fa-mobile{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-laptop{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-tablet{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-headphones{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-clock{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-laptop-house{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-keyboard{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-tv{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li .fa-desktop{
+    width: 30px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
+    color: #000;
+}
+.danhmuc_menu ul li a .material-symbols-rounded {
+    margin-top: 3.7px;
+    float: right;
+    color: #000000;
+}
+.danhmuc_menu ul li .menu_span {
+    font-size: 14px;
+    position: absolute;
+    margin-top: 10px;
+}
+.danhmuc_menu ul li a .material-symbols-rounded{
+    font-size: 15px;
+    line-height: 24px;
+    margin-top: 8px;
+}

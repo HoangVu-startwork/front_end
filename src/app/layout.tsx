@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from 'next/link';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+
+import image from "../../public/img/l1.webp"; 
+import img from ".././img/r1.webp"; 
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body suppressHydrationWarning={true} className={inter.className}>
+        <div className="">
+          {children}
+        </div>
+      </body>
     </html>
+
   );
 }

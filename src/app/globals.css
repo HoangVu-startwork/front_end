@@ -16,18 +16,202 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between; /* căn cách ra 2 bên */
+  align-items: center; /* căn giữa theo chiều dọc */
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 10em;
+  box-sizing: border-box;
+  height: auto;
+}
+
+#page_loader #left{    
+  position: fixed;                     
+  top: 120px;
+  left: calc(50% - 920px);
+  right: unset;
+  margin: 0 auto;
+  animation: shakeBannerLeft 7s ease-in-out infinite;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: shakeBannerLeft;
+}
+@keyframes shakeBannerLeft {
+  33% {
+      transform: rotate(4deg);
+  }
+  60% {
+      transform: rotate(-4deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
+
+#center {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  margin: 0 auto;
+  margin: 10px;
+  width: 1200px;
+  height: 1200px;
+  margin-top: -90px;
+  border-radius: 3px;
+  position: relative; 
+}
+
+
+#page_loader #right {
+  position: fixed;
+  top: 120px;
+  left: unset;
+  margin: 0 auto;
+  right: calc(50% - 920px);
+  animation: shakeBannerLeft 7s ease-in-out infinite;
+  animation-duration: 7s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: shakeBannerLeft;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Rubik', sans-serif;
+  /* margin: 0px;
+  padding: 0px; */ /*Cho menu cố định 1 vị trí với top và left*/
+  top: 0; /*Nằm trên cùng*/
+  left: 0; /*Nằm sát bên trái*/
+  background: #ff3030;
+
+  padding-left: unset!important;
+  height: auto;
+  width: 100%;
+
+}
+
+
+@keyframes shakeBannerLeft {
+  33% {
+      transform: rotate(3deg);
+  }
+  60% {
+      transform: rotate(-3deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
+a{
+  text-decoration: none;
+  display: inline-block;
+}
+
+@media (min-width: 1750px) and (max-width: 2800px) {
+  .content #center{
+    width: 1200px;
+  }
+  #page_loader #left{
+    margin: 0 auto;
+    left: calc(50% - 820px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 820px);
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1750px) {
+  body{
+    width: 100%;
+  }
+  .content #center{
+    width: 1200px;
+  }
+  #page_loader #left{
+    margin: 0 auto;
+    left: calc(50% - 810px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 810px);
+  }
+}
+
+@media (min-width: 1350px) and (max-width: 1500px) {
+  body{
+    width: 100%;
+  }
+  .content #center{
+    margin-top: -90px;
+    width: 1200px;
+  }
+  #page_loader #left{
+    margin: 0 auto;
+    left: calc(50% - 780px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 780px);
+  }
+}
+
+@media (min-width: 1250px) and (max-width: 1350px) {
+  body{
+    width: 100%;
+  }
+  .content #center{
+    margin-top: -90px;
+    width: 1200px;
+  }
+  #page_loader #left{
+    position: fixed;
+    margin: 0 auto;
+    left: calc(50% - 785px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 785px);
+  }
+}
+
+@media (min-width: 1210px) and (max-width: 1250px) {
+  body{
+    width: 100%;
+  }
+  .content #center{
+
+    margin-top: -90px;
+    width: 1200px;
+  }
+  #page_loader #left{
+    margin: 0 auto;
+    left: calc(50% - 785px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 785px);
   }
 }
