@@ -9,9 +9,10 @@ import Menu from "@/components/menu/Menu"
 export default function Home() {
   return (
     <div>
+    
       <section className="content">
         <div id="page_loader">
-          <div id="left" style={{ height: 800, width: 170 }}>
+          <div id="left" style={{ height: 800, width: 140 }}>
             <Image className="image" src={image} alt="Left Image" layout="responsive" width={180} height={800} />
           </div>
         </div>
@@ -19,7 +20,7 @@ export default function Home() {
         <Menu/>
         </div>
         <div id="page_loader">
-          <div id="right" style={{ height: 800, width: 170 }}>
+          <div id="right" style={{ height: 800, width: 140 }}>
             <Image className="img" src={img} alt="Right Image" layout="responsive" width={180} height={800} />
           </div>
         </div>

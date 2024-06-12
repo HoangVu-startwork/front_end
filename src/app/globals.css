@@ -67,7 +67,7 @@
   display: flex;
   margin: 0 auto;
   margin: 10px;
-  width: 1200px;
+  width: 1180px;
   height: 1200px;
   margin-top: -90px;
   border-radius: 3px;
@@ -115,10 +115,10 @@ body{
 
 @keyframes shakeBannerLeft {
   33% {
-      transform: rotate(3deg);
+      transform: rotate(2deg);
   }
   60% {
-      transform: rotate(-3deg);
+      transform: rotate(-2deg);
   }
   100% {
       transform: rotate(0deg);
@@ -131,7 +131,7 @@ a{
 
 @media (min-width: 1750px) and (max-width: 2800px) {
   .content #center{
-    width: 1200px;
+    width: 1180px;
   }
   #page_loader #left{
     margin: 0 auto;
@@ -148,15 +148,15 @@ a{
     width: 100%;
   }
   .content #center{
-    width: 1200px;
+    width: 1180px;
   }
   #page_loader #left{
     margin: 0 auto;
-    left: calc(50% - 810px);
+    left: calc(50% - 740px);
   }
   #page_loader #right{
     margin: 0 auto;
-    right: calc(50% - 810px);
+    right: calc(50% - 740px);
   }
 }
 
@@ -166,15 +166,15 @@ a{
   }
   .content #center{
     margin-top: -90px;
-    width: 1200px;
+    width: 1180px;
   }
   #page_loader #left{
     margin: 0 auto;
-    left: calc(50% - 780px);
+    left: calc(50% - 740px);
   }
   #page_loader #right{
     margin: 0 auto;
-    right: calc(50% - 780px);
+    right: calc(50% - 740px);
   }
 }
 
@@ -184,16 +184,16 @@ a{
   }
   .content #center{
     margin-top: -90px;
-    width: 1200px;
+    width: 1180px;
   }
   #page_loader #left{
     position: fixed;
     margin: 0 auto;
-    left: calc(50% - 785px);
+    left: calc(50% - 737px);
   }
   #page_loader #right{
     margin: 0 auto;
-    right: calc(50% - 785px);
+    right: calc(50% - 737px);
   }
 }
 
@@ -204,14 +204,49 @@ a{
   .content #center{
 
     margin-top: -90px;
-    width: 1200px;
+    width: 1180px;
   }
   #page_loader #left{
     margin: 0 auto;
-    left: calc(50% - 785px);
+    left: calc(50% - 740px);
   }
   #page_loader #right{
     margin: 0 auto;
-    right: calc(50% - 785px);
+    right: calc(50% - 740px);
   }
+}
+
+@media (max-width: 1209px) {
+  body{
+    width: 100%;
+  }
+  .content #center{
+    margin-top: -90px;
+    width: 1180px;
+  }
+  #page_loader #left{
+    margin: 0 auto;
+    left: calc(50% - 747px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 747px);
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 5px; /* Độ rộng của thanh trượt */
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Màu nền của track */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888; /* Màu của thanh cuộn */
+  border-radius: 6px; /* Bo tròn các góc của thanh cuộn */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu của thanh cuộn khi hover */
 }

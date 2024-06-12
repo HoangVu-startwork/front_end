@@ -6,8 +6,7 @@ import '@/components/css/Post_menu_dienthoai.css'
 import Center from './components/Center_menu'
 import Sidebar from './components/Sidebar_menu'
 import Head from "@/components/head_menu/Head_menu"
-import Navbar from "@/components/navbar/Navbar";
-
+import Navbar from "../navbar/Navbar";
 function Menu() {
   return (
     <div>

@@ -50,17 +50,6 @@ const Post_menu = () => {
                                         <li><Link href="">Sạc không dây</Link></li>
                                     </ul>
                                 </li>
-                                <li className='fron-hotsp tests'><span className="fron-ul fron-hot">Điện thoại hot</span>
-                                    <ul className="sub-menu-tap fron-hotsp-tap">
-                                        <li><Link href="">Galaxy Z Fold4</Link></li>
-                                        <li><Link href="">Galaxy Z Folp4</Link></li>
-                                        <li><Link href="">iPhone 13</Link></li>
-                                        <li><Link href="">iPhone 12</Link></li>
-                                        <li><Link href="">iPhone 11</Link></li>
-                                        <li><Link href="">SamSum S22 Ultra</Link></li>
-                                        <li><Link href="">Xlaomi Redmi Note 11</Link></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                         <li><Link href=""><Laptop className="fa fast fa-laptop"/><span className="menu_span">Laptop</span><ChevronRight className="material-symbols-rounded"/></Link>
@@ -151,15 +140,6 @@ const Post_menu = () => {
                                         <li><Link href="">12 inch (kích thước lớn)</Link></li>
                                     </ul>
                                 </li>
-                                <li className='fron-hotsp test'><span className="fron-ul fron-hots">Điện thoại hot</span>
-                                    <ul className="sub-menu-tap2">
-                                        <li><Link href="">Samsung Tab S8 Ultra</Link></li>
-                                        <li><Link href="">iPad Gen 9</Link></li>
-                                        <li><Link href="">iPad Air 5(2022)</Link></li>
-                                        <li><Link href="">Xlaomi Pad 5</Link></li>
-                                        <li><Link href="">Lenovo Tab P11 Pro</Link></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                         <li><Link href=""><Headphones className="fa fast fa-headphones"/><span className="menu_span">Âm thanh</span><ChevronRight className="material-symbols-rounded"/></Link>
@@ -209,13 +189,6 @@ const Post_menu = () => {
                                         <li><Link href="">Bose</Link></li>
                                     </ul>
                                 </li>
-                                <li className='fron-hotsp'><span className="fron-ul fron-hots">Sản phẩm nổi bật</span>
-                                    <ul className="sub-menu-tap3">
-                                        <li><Link href="">Galaxy Buds 2 Pro</Link></li>
-                                        <li><Link href="">Airpods Pro</Link></li>
-                                        <li><Link href="">JBL Live Pro 2</Link></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                         <li><Link href=""><Watch className="fa fast fa-clock"/><span className="menu_span">Đồng hồ</span><ChevronRight className="material-symbols-rounded"/></Link>
@@ -255,16 +228,6 @@ const Post_menu = () => {
                                         <li><Link href="">Đo oxy trong máu SpO2</Link></li>
                                     </ul>
                                 </li>
-                                <li className='fron-hotsp'><span className="fron-ul">Sản phẩm nổi bật</span>
-                                    <ul className="sub-menu-tap4">
-                                        <li><Link href="">Galaxy Watch5</Link></li>
-                                        <li><Link href="">Galaxy Watch5 Pro</Link></li>
-                                        <li><Link href="">Apple Watch Series 7</Link></li>
-                                        <li><Link href="">Apple Watch Series 6</Link></li>
-                                        <li><Link href="">Appe Watch SE</Link></li>
-                                        <li><Link href="">Huawel Watch Fit 2</Link></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                         <li><Link href=""><Home className="fa fast fa-laptop-house"/><span className="menu_span">Nhà thông minh</span><ChevronRight className="material-symbols-rounded"/></Link>
@@ -296,14 +259,6 @@ const Post_menu = () => {
                                     <ul className="sub-menu-tap5">
                                         <li><Link href="">Khoá thông minh</Link></li>
                                         <li><Link href="">Cảm biến</Link></li>
-                                    </ul>
-                                </li>
-                                <li className='fron-hotsp'><span className="fron-ul">Sản phẩm hot</span>
-                                    <ul className="sub-menu-tap5">
-                                        <li><Link href="">Roborock S7 Maxv Ultra</Link></li>
-                                        <li><Link href="">Ecovacs Deebot X1 OMNI</Link></li>
-                                        <li><Link href="">Xiaomi Vaccum Mop 2 Lite</Link></li>
-                                        <li><Link href="">Xiaomi Mi Purifier 4 Lite</Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -447,14 +402,6 @@ const Post_menu = () => {
                                         <li><Link href="">55 inch</Link></li>
                                         <li><Link href="">65 inch</Link></li>
                                         <li><Link href="">85 inch</Link></li>
-                                    </ul>
-                                </li>
-                                <li className='fron-hotsp'><span className="fron-ul">Thiết bị văn phòng</span>
-                                    <ul className="sub-menu-tap8 text-full">
-                                        <li><Link href="">Tivi Xiaomi A2 55 inch</Link></li>
-                                        <li><Link href="">Tivi Xiaomi P1 55 inch</Link></li>
-                                        <li><Link href="">LG StambyMe</Link></li>
-                                        <li><Link href="">Khung treo tivi</Link></li>
                                     </ul>
                                 </li>
                             </ul>
