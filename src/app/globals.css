@@ -74,7 +74,6 @@
   position: relative; 
 }
 
-
 #page_loader #right {
   position: fixed;
   top: 120px;
@@ -104,14 +103,14 @@ body{
   padding: 0px; */ /*Cho menu cố định 1 vị trí với top và left*/
   top: 0; /*Nằm trên cùng*/
   left: 0; /*Nằm sát bên trái*/
-  background: #ff3030;
-
   padding-left: unset!important;
   height: auto;
   width: 100%;
-
+  background: #f1f1f1;
 }
-
+.Home{
+  background: #ff0000;
+}
 
 @keyframes shakeBannerLeft {
   33% {
@@ -128,6 +127,19 @@ a{
   text-decoration: none;
   display: inline-block;
 }
+@media (min-width: 2801px) and (max-width: 5000px) {
+  .content #center{
+    width: 1180px;
+  }
+  #page_loader #left{
+    margin: 0 auto;
+    left: calc(50% - 740px);
+  }
+  #page_loader #right{
+    margin: 0 auto;
+    right: calc(50% - 740px);
+  }
+}
 
 @media (min-width: 1750px) and (max-width: 2800px) {
   .content #center{
@@ -135,11 +147,11 @@ a{
   }
   #page_loader #left{
     margin: 0 auto;
-    left: calc(50% - 820px);
+    left: calc(50% - 740px);
   }
   #page_loader #right{
     margin: 0 auto;
-    right: calc(50% - 820px);
+    right: calc(50% - 740px);
   }
 }
 

@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.singup{
+    background: #ffffff;
+    position: relative;
+}
+
+.Home{
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+
+  body{
+    font-family: 'Rubik', sans-serif;
+    /* margin: 0px;
+    padding: 0px; */ /*Cho menu cố định 1 vị trí với top và left*/
+    top: 0; /*Nằm trên cùng*/
+    left: 0; /*Nằm sát bên trái*/
+    padding-left: unset!important;
+    height: auto;
+    width: 100%;
+    height: 100%;
+    background: #f1f1f1;
+  }

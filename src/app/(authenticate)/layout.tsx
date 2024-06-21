@@ -1,11 +1,10 @@
 import React from 'react'
-import Navbar from "@/components/navbar/Navbar";
-
-export default function AuthenticateLayout({ children,}: Readonly<{ children: React.ReactNode; }>) {
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import './css/style.css'
+export default function Singup({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
-    <div>
-      <Navbar></Navbar>
-      {children}
+    <div className='Home'>
+          {children}
     </div>
   )
 }
