@@ -1,0 +1,301 @@
+.content_danhmuc_dienthoai{
+    display: flex;
+    justify-content: space-between; /* căn cách ra 2 bên */
+    align-items: center; /* căn giữa theo chiều dọc */
+    width: 1180px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: auto;
+}
+#center_danhmuc_dienthoai {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    background: #4800ff;
+}
+.center_quancao_dienthoai{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+    display: flex;
+    position: relative;
+    justify-content: space-between; /* căn cách ra 2 bên */
+    align-items: center; /* căn giữa theo chiều dọc */
+}
+
+.center_quancao_dienthoai_quan{
+    width: 584px;
+    height: 110px;
+    margin-right: 6px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+.center_quancao_dienthoai_quan img{
+    width: 584px;
+    height: 110px;
+    border-radius: 10px;
+}
+.center_quancao_dienthoai_quan02{
+    width: 584px;
+    height: 110px;
+    margin-left: 6px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+.center_quancao_dienthoai_quan02 img{
+    width: 584px;
+    height: 110px;
+    border-radius: 10px;
+}
+.slick-next {
+    position: absolute;
+    display: block;
+    color: #0d6efd;
+    margin-right: 20px;
+}
+.slick-prev{
+    position: absolute;
+    z-index: 2;
+    display: block;
+    color: #0d6efd;
+    margin-left: 20px;
+
+}
+.slick-prev, .slick-next:hover{
+    color: aqua;
+}
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    display: none;
+    color: #dcdbdb;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots1{
+    position: absolute;
+    bottom: -25px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    bottom: 0px;
+}
+.slick-dots1 li{
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 3px;
+    padding: 0;
+    cursor: pointer;
+}
+.slick-dots1 li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.slick-dots1 li button:hover,
+.slick-dots1 li button:focus{
+    outline: node;
+}
+.slick-dots1 li button:hover:before,
+.slick-dots1 li button:focus:before{
+    opacity: 1;
+}
+.slick-dots1 li button::before{
+    font-family: 'slick';
+    font-size: 8px;
+    line-height: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 8px;
+    content: '.';
+    text-align: center;
+    border-radius: 5px;
+    background-color: #5f6061;
+    color: #000000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots1 li.slick-active button::before{
+    color: #2183E2;
+    background-color: #e14e40;
+    border-radius: 5px;
+    width: 20px;
+}
+/* .danhmuc_dienthoai{
+    width: 1100px;
+    background: #970d0d;
+    margin: 0 auto;
+    margin-top: 5px;
+    display: flex;
+    position: relative;
+} */
+
+@media (max-width: 1200px) {
+    .content_danhmuc_dienthoai{
+        width: 1180px;
+    }
+    .center_quancao_dienthoai{
+        background: #dfd7d7;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 582px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 582px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 582px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 582px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .content_danhmuc_dienthoai{
+        width: 1177px;
+    }
+    .center_quancao_dienthoai{
+        background: #d7a8a8;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 580px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 580px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 581px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 581px;
+    }
+}
+
+@media (max-width: 1198px) {
+    .center_quancao_dienthoai{
+        background: #000000;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 581px;
+        margin-right: 6px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 581px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 581px;
+        margin-left: 6px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 581px;
+    }
+}
+
+@media (max-width: 1197px) {
+    .center_quancao_dienthoai{
+        background: #12be34;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 580px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 580px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 580px;
+        margin-left: 6px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 580px;
+    }
+}
+
+@media (max-width: 1196px) {
+    .center_quancao_dienthoai{
+        background: #ffffff;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 579px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 579px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 579px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 579px;
+    }
+}
+
+@media (max-width: 1195px) {
+    .center_quancao_dienthoai{
+        background: #110909;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 577px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 577px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 577px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 577px;
+    }
+}
+
+@media (max-width: 1194px) {
+    .center_quancao_dienthoai{
+        background: #791515;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 576px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 576px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 576px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 576px;
+    }
+}
+
+@media (max-width: 1193px) {
+    .center_quancao_dienthoai{
+        background: #000000;
+    }
+    .center_quancao_dienthoai_quan{
+        width: 575px;
+    }
+    .center_quancao_dienthoai_quan img{
+        width: 575px;
+    }
+    .center_quancao_dienthoai_quan02{
+        width: 575px;
+    }
+    .center_quancao_dienthoai_quan02 img{
+        width: 575px;
+    }
+}

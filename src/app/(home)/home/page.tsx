@@ -1,32 +1,43 @@
-import React from 'react'
-import Image from "next/image";
-import Navbar from "@/components/navbar/Navbar";
-import image from "../../../../public/img/l1.webp";
-import img from "../../../../public/img/r1.webp";
+'use client'
+import { useState, useEffect } from 'react';
 import Menu from "@/components/menu/Menu"
+import Head from "@/components/head/Headmenu";
+import Menuphone from "@/components/menuphone/Menuphone"
+import Dienthoai from "@/components/dienthoai/Quancaothuonghieu"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import Auth from "../../../service/auth"
 
 function page() {
+
+  const fetchTokenInfo = async () => {
+    try {
+      const data = await Auth.gettoken();
+      console.log("User info:", data);
+    } catch (error) {
+      console.error("Error fetching token info:", error);
+    }
+  };
+  
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem("token");
+  //   console.log("token - api eee 00000000 -- " + token);
+  
+  //   if (token && token.trim() !== "") {
+  //     fetchTokenInfo();
+  //   }
+  // }, []);
+
+
   return (
     <div>
-        <div className='mt-5'>
-            <Menu/>
+        <div>
+            <Menuphone/>
         </div>
-        <>Hoang</>
-      {/* <section className="content">
-        <div id="page_loader">
-          <div id="left" style={{ height: 800, width: 170 }}>
-            <Image className="image" src={image} alt="Left Image" layout="responsive" width={180} height={800} />
-          </div>
+        <div>
+            <Dienthoai/>
         </div>
-        <div id="center" className='mt-5'>
-            <Menu/>
-        </div>
-        <div id="page_loader">
-          <div id="right" style={{ height: 800, width: 170 }}>
-            <Image className="img" src={img} alt="Right Image" layout="responsive" width={180} height={800} />
-          </div>
-        </div>
-      </section> */}
     </div>
   )
 }

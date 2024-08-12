@@ -3,9 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from 'next/link';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-
-import image from "../../public/img/l1.webp"; 
-import img from ".././img/r1.webp"; 
+import Image from "next/image";
+import Menu from "@/components/menu/Menu";
+import Headt from "@/components/head/Headmenu";
+import Menuphone from "@/components/menuphone/Menuphone"
+import Dienthoai from "@/components/dienthoai/Dienthoai"
+import image from "../../public/img/l1.webp";
+import img from "../../public/img/r1.webp";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -28,8 +32,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
-        <div className="">
-          {children}
+        <div className='Home'>
+          <Navbar></Navbar>
+          <section className="content">
+            <div id="page_loader">
+              <div id="left" style={{ height: 800, width: 140 }}>
+                <Image className="image" src={image} alt="Left Image" layout="responsive" width={180} height={800} />
+              </div>
+            </div>
+            <div id="center">
+              {children}
+            </div>
+            <div id="page_loader">
+              <div id="right" style={{ height: 800, width: 140 }}>
+                <Image className="img" src={img} alt="Right Image" layout="responsive" width={180} height={800} />
+              </div>
+            </div>
+          </section>
         </div>
       </body>
     </html>
