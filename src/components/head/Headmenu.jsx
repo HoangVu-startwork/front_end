@@ -5,8 +5,8 @@ import Image from "next/image";
 
 function Head_menu() {
   return (
-    <div className='horizontal-banner'>
-        <p className='horizontal-banner__item'>
+    <div className='horizontal-banner1'>
+        <p className='horizontal-banner__item1'>
           <Image src={img} className="logo" alt=''/>
         </p>
     </div>

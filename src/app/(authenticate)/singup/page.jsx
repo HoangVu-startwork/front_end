@@ -1,12 +1,14 @@
 'use client'
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Image from "next/image";
 import '../css/style.css'
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import Auth from "../../../service/auth"
 export default function page() {
   const [password, setPassword] = useState("");
+  const [generalError, setGeneralError] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
@@ -45,6 +47,10 @@ export default function page() {
     }
     return "";
   };
+
+  useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_API_HOST);
+  }, []);
 
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
@@ -174,51 +180,77 @@ export default function page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Reset all errors
+    setusernameError("");
+    setEmailError("");
+    setphoneError("");
+    setCompanyDateError("");
+    setPasswordError("");
+    setRepeatPasswordError("");
+  
     // Validate all fields before submission
-    if (username.trim() === "") setusernameError("Vui lòng không bỏ trống.");
-    if (email.trim() === "") setEmailError("Please enter your email.");
-    if (phone.trim() === "") setphoneError("Vui lòng không bỏ trống.");
-    if (ngaysinh.trim() === "") setCompanyDateError("Please select a date.");
-    if (password.trim() === "") setPasswordError("Password cannot be empty.");
-    if (repeatPassword.trim() === "") setRepeatPasswordError("Confirm password cannot be empty.");
-
-    if (
-      usernameError || emailError || phoneError || companyDateError || passwordError || repeatPasswordError
-    ) {
+    let hasError = false;
+    
+    if (username.trim() === "") {
+      setusernameError("Vui lòng không bỏ trống.");
+      hasError = true;
+    }
+    
+    if (email.trim() === "") {
+      setEmailError("Please enter your email.");
+      hasError = true;
+    }
+    
+    if (phone.trim() === "") {
+      setphoneError("Vui lòng không bỏ trống.");
+      hasError = true;
+    }
+    
+    if (ngaysinh.trim() === "") {
+      setCompanyDateError("Please select a date.");
+      hasError = true;
+    }
+    
+    if (password.trim() === "") {
+      setPasswordError("Password cannot be empty.");
+      hasError = true;
+    }
+    
+    if (repeatPassword.trim() === "") {
+      setRepeatPasswordError("Confirm password cannot be empty.");
+      hasError = true;
+    }
+    
+    if (password !== repeatPassword) {
+      setRepeatPasswordError("Confirm password must match with password.");
+      hasError = true;
+    }
+  
+    if (hasError) {
       return;
     }
-
-    // Create request body
-    const requestBody = {
-      username,
-      email,
-      password,
-      phone,
-      ngaysinh
-    };
-
+  
     // Send POST request to backend API
     try {
-      const response = await fetch('http://localhost:8090/identity/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (response.ok) {
-        // console.log("User created successfully");
-        // console.log(requestBody)
+      const response = await Auth.singup(username, email, password, phone, ngaysinh);
+      if (response) {
+        setGeneralError("Đa");
       } else {
-        // console.error("Failed to create user");
-        // console.log(requestBody)
+        console.error("Failed to create user");
       }
     } catch (error) {
-      console.error("Error:", error);
+      if (error.code && error.message) {
+        console.error(`Error ${error.code}: ${error.message}`);
+        // Hiển thị lỗi trên giao diện
+        setGeneralError(error.message); // Cập nhật trạng thái lỗi chung của form
+      } else {
+        console.error("An unknown error occurred.");
+        setGeneralError("An unknown error occurred."); // Cập nhật trạng thái lỗi chung của form
+      }
     }
   };
+  
 
   return (
     <div className="singup">
@@ -235,9 +267,10 @@ export default function page() {
             </svg>
             <span>Sign up with Google</span>
           </a>
-
         </div>
+    
         <div className="mt-10">
+        {generalError && <p className="text-red-500 text-center font-bold leading-9 tracking-tight text-sm max-w-md mx-auto">{generalError}</p>}
           <div className="max-w-[60%] mx-auto scroll-mx-0.5 max-800:max-w-[90%]">
             <div className="relative z-0 w-full mb-5 group">
               <input type="email" id="floating_email" className={`block py-2.5 px-0 w-full text-base bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 peer 
@@ -247,7 +280,6 @@ export default function page() {
             peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 `}>Họ và Tên</label>
               {usernameError && (<p className="text-red-500 text-sm mt-2">{usernameError}</p>)}
             </div>
-
             <div className="relative z-0 w-full mb-5 group">
               <input type="email" id="floating_email" className={`block py-2.5 px-0 w-full text-base bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 peer 
                 ${emailError ? "border-red-500 text-red-600" : "border-gray-300 text-gray-900 dark:text-white dark:border-gray-600 focus:border-blue-600 dark:focus:border-blue-500"}`}

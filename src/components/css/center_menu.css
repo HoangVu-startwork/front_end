@@ -49,13 +49,18 @@
     font-size: 12px;
     line-height: 23px;
     height: 66px;
+    font-weight: 300;
   }
 .Canter_menu_css .Canter_menu_css_label .label_css:hover{
     background: #e1dfdf;
     height: 66px;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 0 0 5px 5px ;
   }
+
+  .slick-slide.slick-active.slick-center .label_css {
+    font-weight: 500;
+}
 
 .right-banner .right-banner__item {
     height: 375px;

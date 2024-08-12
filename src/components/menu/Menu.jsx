@@ -5,6 +5,8 @@ import '@/components/css/menu.css'
 import '@/components/css/Post_menu_dienthoai.css'
 import Center from './components/Center_menu'
 import Sidebar from './components/Sidebar_menu'
+import Menuphone from "@/components/menuphone/Menuphone"
+import Dienthoai from "@/components/dienthoai/Dienthoai"
 import Navbar from "../navbar/Navbar";
 function Menu() {
   return (
@@ -14,6 +16,12 @@ function Menu() {
           <div className="center_menu"><Center /></div>
           <div className="sidebar_menu"><Sidebar /></div>
         </div>
+        <div>
+            <Menuphone />
+          </div>
+          <div>
+            <Dienthoai />
+          </div>
     </div>
   )
 }

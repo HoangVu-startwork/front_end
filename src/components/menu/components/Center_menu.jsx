@@ -7,6 +7,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import Link from 'next/link';
 import _debounce from 'lodash/debounce';
+import ServiceDienthoai from "../../../service/dienthoai"
 
 import anh1 from '../../../../public/img/s24-sliding-pha-gia.webp';
 import anh2 from '../../../../public/img/rog6-batman-sliding.webp';
@@ -25,7 +26,20 @@ const Center_menu = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
 
+  const [slidesData, setData] = useState([]);
+  const [lastImage, setLastImage] = useState([]);
+
+  const fetchdienthoai = async () => {
+      try {
+          const data = await ServiceDienthoai.getThuonghieumenu();
+          setData(data)
+      } catch (error) {
+          console.error("Error fetching token info:", error);
+      }
+  };
+
   useEffect(() => {
+    fetchdienthoai();
     const handleResize = _debounce(() => {
       setWindowWidth(window.innerWidth);
     }, 100); // 100ms là thời gian chờ sau khi kích thước cửa sổ thay đổi
@@ -38,42 +52,49 @@ const Center_menu = () => {
     // Clean up event listener on unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   
   
 
-  const slidesData = [
-    {
-      id: 1,
-      img: anh1,
-      label: 'Z FLIP4|FOLD4',
-      text: 'Hot sale giá sốc'
+  // const slidesData = [
+  //   {
+  //     id: 1,
+  //     img: anh1,
+  //     label: 'Z FLIP4|FOLD4',
+  //     text: 'Hot sale giá sốc'
 
-    },
-    {
-      id: 2,
-      img: anh2,
-      label: 'IPHONE 14 PRO MAX',
-      text: 'Đủ màu giá tốt'
-    },
-    {
-      id: 3,
-      img: anh3,
-      label: 'WATCH GT3 PRO',
-      text: 'Siêu sale đón tết'
-    },
-    {
-      id: 4,
-      img: anh4,
-      label: 'MÁY CHIẾU BEECUBE',
-      text: 'Hàng xịn giá tốt'
-    },
-    {
-      id: 5,
-      img: anh5,
-      label: 'ROG 6 BATMAN',
-      text: 'Hàng xịn giá hời',
-    },
-  ];
+  //   },
+  //   {
+  //     id: 2,
+  //     img: anh2,
+  //     label: 'IPHONE 14 PRO MAX',
+  //     text: 'Đủ màu giá tốt'
+  //   },
+  //   {
+  //     id: 3,
+  //     img: anh3,
+  //     label: 'WATCH GT3 PRO',
+  //     text: 'Siêu sale đón tết'
+  //   },
+  //   {
+  //     id: 4,
+  //     img: anh4,
+  //     label: 'MÁY CHIẾU BEECUBE',
+  //     text: 'Hàng xịn giá tốt'
+  //   },
+  //   {
+  //     id: 5,
+  //     img: anh5,
+  //     label: 'ROG 6 BATMAN',
+  //     text: 'Hàng xịn giá hời',
+  //   },
+  //   {
+  //     id: 6,
+  //     img: anh5,
+  //     label: 'ROG 6 BATMAN 2',
+  //     text: 'Hàng xịn giá hời',
+  //   },
+  // ];
 
 
   const handleSlideChange = current => {
@@ -224,7 +245,8 @@ const Center_menu = () => {
         {slidesData.filter((slide) => slide.id <= (windowWidth <= 540 ? 5 : windowWidth <= 720 ? 3 : 5)).map((slide) => (
           <div key={slide.id}>
             <Link href="#">
-              <Image className='img' src={slide.img} alt='' />
+        
+              <img className='img' src={`${slide.hinhanh}`} alt='' />
             </Link>
           </div>
         ))}
