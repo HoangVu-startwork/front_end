@@ -24,6 +24,7 @@ const config: Config = {
       screens: {
         'max-800': { 'max': '850px' },
         'custom-900': '900px',
+        lg: '1180px',
       },
     },
   },

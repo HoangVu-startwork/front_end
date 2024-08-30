@@ -2652,14 +2652,12 @@
         width: 100%;
         height: 305px;
         border-radius: 5px 5px 0 0;
-        display: flex;
         text-align: center; 
     }
 
     .container_menu .center_menu .Canter_menu_css .Canter_menu_css_img .img {
         max-width: 99.5%;
         height: 305px;
-        display: inline-block;  /* Đảm bảo hình ảnh hiển thị như một block element */
         margin: 0 auto; 
         border-radius: 0 0 0 0;
     }

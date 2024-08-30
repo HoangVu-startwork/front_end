@@ -34,12 +34,12 @@ const Auth = {
   gettoken: async () => {
     try {
       const token = window.localStorage.getItem("token");
-      console.log("token - api " + token);
       const config = {};
       if (token) {
         config.headers = { 'Authorization': `Bearer ${token}` };
       }
       const response = await api.get(`/users/myInfo`, config);
+      window.localStorage.setItem("userId", response.data.result?.id); 
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {

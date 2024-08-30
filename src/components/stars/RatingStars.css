@@ -1,0 +1,21 @@
+.star-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .full-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .partial-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    direction: rtl; /* Để hiển thị từ phải qua trái */
+  }
+  
