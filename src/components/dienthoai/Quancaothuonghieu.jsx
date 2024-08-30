@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import ServiceDienthoai from "../../service/dienthoai"
 import '../css/thuonghieudienthoai.css'
+import '../css/menu.css'
 import Link from 'next/link'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -73,28 +74,27 @@ export default function Quancaothuonghieu() {
         speed: 500,
     };
     return (
-        <div className='danhmuc_dienthoai'>
-            {/* <section className="content_danhmuc_dienthoai">
+        <div className='danhmuc_dienthoai container_menu'>
+            <section className="content_danhmuc_dienthoai">
                 <div id="center_danhmuc_dienthoai">
                     <div className='center_quancao_dienthoai'>
                         <div className='center_quancao_dienthoai_quan'>
                             <Slider {...sliderSettings_dienthoai}>
                                 {data.map((slide) =>
-                                    <Link href={'home'}><img src={`${slide.hinhanh}`} alt='' /></Link>
+                                    <Link href={'home'} key={slide.id}><img src={`${slide.hinhanh}`} alt='' /></Link>
                                 )}
                             </Slider>
                         </div>
                         <div className='center_quancao_dienthoai_quan02'>
                             <Slider {...sliderSettings_quancao}>
                                 {lastImage.map((slide) =>
-                                    <Link href={'home'}><img src={`${slide.hinhanh}`} alt='' /></Link>
+                                    <Link href={'home'} key={slide.id}><img src={`${slide.hinhanh}`} alt='' /></Link>
                                 )}
                             </Slider>
                         </div>
                     </div>
                 </div>
-            </section> */}
-     
+            </section>
         </div>
     )
 }

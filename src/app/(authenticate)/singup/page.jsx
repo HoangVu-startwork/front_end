@@ -1,6 +1,7 @@
 'use client'
 import React from "react";
 import { useState, useEffect } from 'react';
+import SingupLayout from '../layout';
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Image from "next/image";
 import '../css/style.css'
@@ -326,10 +327,12 @@ export default function page() {
           </div>
 
           <p className="mt-10 text-center text-sm text-gray-400">
-            <a href="#" className="font-semibold leading-6 text-red-500 hover:text-red-400">Bạn đã có tài khoản? Đăng nhập ngay</a>
+            <a href="/signin" className="font-semibold leading-6 text-red-500 hover:text-red-400">Bạn đã có tài khoản? Đăng nhập ngay</a>
           </p>
         </div>
       </div>
     </div>
   )
 }
+
+page.Layout = SingupLayout;

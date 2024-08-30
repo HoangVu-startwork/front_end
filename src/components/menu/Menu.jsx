@@ -7,6 +7,7 @@ import Center from './components/Center_menu'
 import Sidebar from './components/Sidebar_menu'
 import Menuphone from "@/components/menuphone/Menuphone"
 import Dienthoai from "@/components/dienthoai/Dienthoai"
+import Head from "@/components/head/Headmenu";
 import Navbar from "../navbar/Navbar";
 function Menu() {
   return (
@@ -20,8 +21,12 @@ function Menu() {
             <Menuphone />
           </div>
           <div>
+            <Head/>
+          </div>
+          <div>
             <Dienthoai />
           </div>
+          
     </div>
   )
 }

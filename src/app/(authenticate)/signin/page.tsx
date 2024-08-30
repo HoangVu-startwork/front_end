@@ -108,7 +108,8 @@ export default function page() {
       const response = await Auth.signin(email, password);
       if (response) {
         window.localStorage.setItem("token", response.result?.token); 
-        window.location.href = "/home";
+        // window.localStorage.setItem("userId", response.result?.id); 
+        window.location.href = "/";
       } else {
         console.error("Failed to create user");
       }
@@ -168,7 +169,7 @@ export default function page() {
           </div>
 
           <p className="mt-10 text-center text-sm text-gray-400">
-            <a href="#" className="font-semibold leading-6 text-red-500 hover:text-red-400">Bạn đã có tài khoản? Đăng nhập ngay</a>
+            <a href="/singup" className="font-semibold leading-6 text-red-500 hover:text-red-400">Bạn đã có tài khoản? Đăng ký ngay</a>
           </p>
         </div>
       </div>

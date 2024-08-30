@@ -1,0 +1,18 @@
+/* sile */
+.siledienthoai {
+    width: 710px;
+    height: 490px;
+    display: block;
+    border-radius: 15px;
+    /* overflow: auto; */
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    /*  */
+}
+
+.thongtingia {
+    /* width: calc(100% - 470px); */
+    width: 460px;
+    height: 775px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}

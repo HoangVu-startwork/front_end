@@ -7,20 +7,26 @@ import Dienthoai from "@/components/dienthoai/Quancaothuonghieu"
 import Danhmucdienthoai from "@/components/dienthoai/Danhmucdienthoai"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useParams } from "next/navigation";
+import '@/components/css/menu.css'
+import '@/components/css/chitietdienthoai.css'
 import Slider from "react-slick";
-import Auth from "../../../service/auth"
+import ServiceDienthoai from "@/service/dienthoai";
+import Sile from "@/components/sanpham/Silesanpham"
+type Params = {
+    id: string;
+    mausacId: string;
+};
+
 
 function page() {
+    const params = useParams() as Params;
 
-  const fetchTokenInfo = async () => {
-    try {
-      const data = await Auth.gettoken();
-      console.log("User info:", data);
-    } catch (error) {
-      console.error("Error fetching token info:", error);
-    }
-  };
-  
+    useEffect(() => {
+        console.log('ID:', params.id);
+        console.log('Màu sắc ID:', params.mausacId);
+    }, [params.id, params.mausacId]);
+
   // useEffect(() => {
   //   const token = window.localStorage.getItem("token");
   //   console.log("token - api eee 00000000 -- " + token);
@@ -33,7 +39,11 @@ function page() {
 
   return (
     <div>
-        <div>
+        <div id="content" className="container_menu">
+        <div className="siledienthoai"><Sile/></div>
+          <div className="thongtingia">hOANG</div>
+        </div>
+        {/* <div>
             <Menuphone/>
         </div>
         <div>
@@ -41,9 +51,11 @@ function page() {
         </div>
         <div>
           <Danhmucdienthoai />
-        </div>
+        </div> */}
+        {/* <h1>Điện thoại ID: {params.id}</h1>
+            <h2>Màu sắc ID: {params.mausacId}</h2> */}
     </div>
   )
 }
 
-export default page
+export default page;
