@@ -103,23 +103,24 @@ export default function page() {
     if (hasError) {
       return;
     }
+    
 
     try {
       const response = await Auth.signin(email, password);
       if (response) {
-        window.localStorage.setItem("token", response.result?.token); 
-        // window.localStorage.setItem("userId", response.result?.id); 
+        window.localStorage.setItem("token", response.result?.token);
+        window.localStorage.setItem("exp", response.result?.exp); 
         window.location.href = "/";
       } else {
         console.error("Failed to create user");
       }
     } catch (error) {
-      if (error instanceof Error) {
-        console.error("An error occurred:", error.message);
-        setGeneralError(error.message);
-      } else if (typeof error === 'object' && error !== null && 'code' in error && 'message' in error) {
-        const err = error as { code: number; message: string };
-        setGeneralError(err.message);
+      if (typeof error === "object" && error !== null) {
+        if ('code' in error && 'message' in error) {
+          setGeneralError(`${error.message}`); // Hiển thị thông báo lỗi cho người dùng
+        } else if (error instanceof Error) {
+          setGeneralError(error.message);
+        }
       } else {
         console.error("An unknown error occurred.");
         setGeneralError("An unknown error occurred.");

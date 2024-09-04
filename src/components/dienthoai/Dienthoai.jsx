@@ -1,8 +1,9 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ServiceDienthoai from "../../service/dienthoai"
 import Auth from "../../service/auth"
 import Yeuthich from "../../service/yeuthich"
+import Danhgia from "../../service/danhgia"
 import Slider from 'react-slick'
 import '../css/sanphamdienthoai.css'
 import '../css/menu.css'
@@ -15,9 +16,9 @@ import RatingStars from '../../components/stars/RatingStars'
 import { Heart } from 'lucide-react';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-// import Left_dienthoai from "https://res.cloudinary.com/du6ybb3by/image/upload/v1724195905/xeex3nyll0le9ohzr4tx.png"
-// import Right_dienthoai from "https://res.cloudinary.com/du6ybb3by/image/upload/v1724195905/rspyb5qcjgdjtnzr0mbm.png"
-// import img from "https://res.cloudinary.com/du6ybb3by/image/upload/v1724251968/ngvixu1bdkmncuq7dfuu.svg"; 
+import Loading from '@/components/loading/loading';
+import Dangnhap from '@/components/loading/kiemtradn';
+
 
 export default function Dienthoai() {
     const router = useRouter()
@@ -26,8 +27,14 @@ export default function Dienthoai() {
     var img = "https://res.cloudinary.com/du6ybb3by/image/upload/v1724251968/ngvixu1bdkmncuq7dfuu.svg";
 
     const [data, setData] = useState([]);
+    const [datacode, setDatacode] = useState([])
     const [hover, setHover] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
+    const [yeuthich, setYeuthich] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingDangnhap, setLoadingDangnhap] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [danhgiasao, setDanhgiasao] = useState([]);
 
     const fetchdienthoai = async () => {
         try {
@@ -48,87 +55,142 @@ export default function Dienthoai() {
 
     const fetchTokenInfo = async () => {
         try {
-          const data = await Auth.gettoken();
-          console.log("User info:", data);
+            const data = await Auth.gettoken();
+            setDatacode(data.code);
         } catch (error) {
-          console.error("Error fetching token info:", error);
+            console.error("Error fetching token info:", error);
         }
-      };
+    };
 
-    const fetchYeuthich = async () => {
-        try{
-            const yeuthich = await Yeuthich.getYeuthich();
-        } catch (error){
-
-            
+    const getDanhgia = async () => {
+        try {
+            const getdanhgia = await Danhgia.getAlldanhgia();
+            setDanhgiasao(getdanhgia)
+        } catch (error) {
+            console.error("Error fetching token info:", error);
         }
     }
-      
-      // useEffect(() => {
-      //   const token = window.localStorage.getItem("token");
-      //   console.log("token - api eee 00000000 -- " + token);
-      
-      //   if (token && token.trim() !== "") {
-      //     fetchTokenInfo();
-      //   }
-      // }, []);
 
-
+    // const fetchPostYeuthich = async (dienthoaiId, mausacId) => {
+    //     try {
+    //         const postyeuthich = await Yeuthich.post(dienthoaiId, mausacId);
+    //         console.log(postyeuthich)
+    //     } catch (error) {
+    //         console.error("Error fetching token info:", error);
+    //     }
+    // }
     
+    const fetchPostYeuthich = async (dienthoaiId, mausacId) => {
+        try {
+            if (datacode !== 1000) {
+                console.log("Chưa đăng nhập")
+                setLoadingDangnhap(true)
+            } else {
+                setIsLoading(true);
+                const postyeuthich = await Yeuthich.post(dienthoaiId, mausacId);
+                setTimeout(() => {
+                    setSuccessMessage('Đã thêm vào danh sách yêu thích thành công!'); // Hiển thị thông báo
+                    setIsLoading(false); // Kết thúc hiệu ứng loading sau 1 phút
+                    fetchYeuthich()
+                }, 5000);
+            }
+        } catch (error) {
+            console.error("Error fetching token info:", error);
+            setIsLoading(false);
+        }
+    }
+
+    const deleteYeuthich = async (dienthoaiId, mausacId) => {
+        try {
+            setIsLoading(true);
+            const itemToRemove = yeuthich.find(item => item.dienthoaiId === dienthoaiId && item.mausacId === mausacId);
+            const deleteyeuthich = await Yeuthich.delete(itemToRemove.id);
+            setTimeout(() => {
+                setSuccessMessage('Đã xoá khỏi danh sách yêu thích thành công!'); // Hiển thị thông báo
+                setIsLoading(false); // Kết thúc hiệu ứng loading sau 1 phút
+                fetchYeuthich()
+            }, 5000);
+        } catch (error) {
+            console.error("Error fetching token info:", error);
+        }
+    }
+
+
+    const fetchYeuthich = async () => {
+        try {
+            const yeuthich = await Yeuthich.getYeuthich();
+            setYeuthich(yeuthich);
+            setTimeout(() => {
+                setSuccessMessage(''); // Tắt thông báo sau 5 giây
+            }, 5000);
+            // yeuthich.forEach(item => {
+            //     console.log(item.id);
+            // });
+        } catch (error) {
+            console.error("Error fetching token info:", error);
+        }
+    }
+
+    //   useEffect(() => {
+    //     const token = window.localStorage.getItem("token");
+    //     if (datacode == 1000) {
+    //       fetchTokenInfo();
+    //       fetchYeuthich();
+    //     }
+    //   }, []);
+
+
 
     useEffect(() => {
-        fetchdienthoai();
-        fetchThuonghieu();
-        fetchTokenInfo()
+        const timestampStr = window.localStorage.getItem("exp");
+        if (timestampStr) {
+            const timestamp = parseInt(timestampStr, 10);
+            const date = new Date(timestamp * 1000);
+            const currentDate = new Date();
+            if (date >= currentDate) {
+                fetchTokenInfo();
+            } else {
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("exp");
+            }
+
+            // Định dạng ngày giờ
+            // const formattedDate = date.toLocaleString("vi-VN", {
+            //     timeZone: "Asia/Ho_Chi_Minh",
+            //     year: "numeric",
+            //     month: "2-digit",
+            //     day: "2-digit",
+            //     hour: "2-digit",
+            //     minute: "2-digit",
+            //     second: "2-digit",
+            // });
+            // // Định dạng ngày giờ theo giờ Việt Nam
+            // const formattedDatet = currentDate.toLocaleString("vi-VN", {
+            //     timeZone: "Asia/Ho_Chi_Minh",
+            //     year: "numeric",
+            //     month: "2-digit",
+            //     day: "2-digit",
+            //     hour: "2-digit",
+            //     minute: "2-digit",
+            //     second: "2-digit",
+            // });
+        } else {
+            window.localStorage.removeItem("token");
+            window.localStorage.removeItem("exp");
+        }
     }, []);
 
-    const ok = [
-        {
-            id_danhmuc: 1,
-            id_tensanpham: '1',
-            danhmuc: 'Apple',
-        },
-        {
-            id_danhmuc: 2,
-            id_tensanpham: '1',
-            danhmuc: 'Samsung',
-        },
-        {
-            id_danhmuc: 3,
-            id_tensanpham: '1',
-            danhmuc: 'Xiaomi',
-        },
-        {
-            id_danhmuc: 4,
-            id_tensanpham: '1',
-            danhmuc: 'OPPO',
-        },
-        {
-            id_danhmuc: 5,
-            id_tensanpham: '1',
-            danhmuc: 'Vivo',
-        },
-        {
-            id_danhmuc: 6,
-            id_tensanpham: '1',
-            danhmuc: 'realme',
-        },
-        {
-            id_danhmuc: 7,
-            id_tensanpham: '1',
-            danhmuc: 'Nokia',
-        },
-        {
-            id_danhmuc: 8,
-            id_tensanpham: '1',
-            danhmuc: 'ASUS',
-        },
-        {
-            id_danhmuc: 9,
-            id_tensanpham: '1',
-            danhmuc: 'Tecno',
+
+
+    useEffect(() => {
+        if (datacode === 1000) {
+            fetchYeuthich();
         }
-    ]
+        getDanhgia();
+        fetchThuonghieu();
+        fetchdienthoai();
+    }, [datacode]);
+
     const SlickArrowLeftdienthoai = ({ currentSlide, slideCount, ...props }) => (
         <img src={Left_dienthoai} alt="prevArrow" {...props} className="SlickArrowLeft" />
     );
@@ -156,27 +218,35 @@ export default function Dienthoai() {
         nextArrow: <SlickArrowRightdienthoai />,
         responsive: [
             {
-              breakpoint: 1135.5,
-              settings: {
-                slidesToShow: 4,
-              }
+                breakpoint: 1135.5,
+                settings: {
+                    slidesToShow: 4,
+                }
             },
             {
-              breakpoint: 980.5,
-              settings: {
-                slidesToShow: 3,
-              }
+                breakpoint: 980.5,
+                settings: {
+                    slidesToShow: 3,
+                }
             },
             {
-              breakpoint: 540,
-              settings: {
-                slidesToShow: 2,          
-              }
+                breakpoint: 540,
+                settings: {
+                    slidesToShow: 2,
+                }
             },
-          ]
+        ]
     };
+
+    const handleCloseDangnhap = () => {
+        setLoadingDangnhap(false);
+    };
+
     return (
         <div>
+            {isLoading && <div className="loading-overlay"><Loading /></div>}
+            {isLoadingDangnhap && <div className="loading-overlay"><Dangnhap nurfelse={handleCloseDangnhap} /></div>}
+            {successMessage && <div className="success-message">{successMessage}</div>}
             <div className='container_menu'>
                 <div className='sanpham_danhmuc_tensanpham text-2xl' >ĐIỆN THOẠI</div>
                 <div className='block_featured_product'>
@@ -196,8 +266,18 @@ export default function Dienthoai() {
                             currency: 'VND',
                             minimumFractionDigits: 0
                         })
-                        return (
 
+                        const isFavorite = yeuthich.some(item =>
+                            item.dienthoaiId === card.id && item.mausacId === card.mausac_id
+                        );
+                        
+
+                        const danhGiaSaoItem = danhgiasao.find(item => item.dienthoaiId === card.id);
+                        const rating = danhGiaSaoItem ? danhGiaSaoItem.tongsao : 0; // Nếu không tìm thấy thì giá trị mặc định là 0
+            
+                        const giadagiamgia = card.giaban - (card.giaban * (card.phantramkhuyenmai / 100))
+
+                        return (
                             <div key="{index}" className="block-featured-product">
                                 <Link href={`/dienthoai/${card.id}/mausac/${card.mausac_id}`}>
                                     {card.phantramkhuyenmai != null && (
@@ -216,8 +296,8 @@ export default function Dienthoai() {
                                     <img className="img01" alt={card.title} src={`${card.hinhanh}`} />
                                     <div className="block-featured-product-body">
                                         <div className="block-featured-title"><h3>{card.tensanpham}</h3></div>
-                                        <div className="block-featured-text">{formatter.format(card.giaban)}</div>
-                                        <div><RatingStars rating={4.7} /></div>
+                                        <div className="block-featured-text">{formatter.format(giadagiamgia)} {card.phantramkhuyenmai != null && (<span className='giachinh'>{formatter.format(card.giaban)}</span>)}</div>
+                                        <div>{rating != 0 && ( <RatingStars rating={rating} />)}</div>
                                         <div className='uudai'>
                                             {card.baohanh != null && (
                                                 <div className='uudai'>
@@ -227,7 +307,10 @@ export default function Dienthoai() {
                                         </div>
                                     </div>
                                 </Link>
-                                <div className='yeuthich'><YeuThichItem /></div>
+                                <div className='yeuthich'><YeuThichItem isFavorite={isFavorite}
+                                    onClickAdd={() => fetchPostYeuthich(card.id, card.mausac_id)}
+                                    onClickRemove={() => deleteYeuthich(card.id, card.mausac_id)}
+                                /></div>
                             </div>
 
                         )
@@ -238,19 +321,23 @@ export default function Dienthoai() {
     )
 }
 
-function YeuThichItem() {
+function YeuThichItem({ isFavorite, onClickAdd, onClickRemove, isLoading }) {
     const [hover, setHover] = useState(false);
-  
+
     return (
-      <div
-        className="yeuthich-item"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
-        <p>
-          Yêu thích
-          {hover ? <FavoriteRoundedIcon className="fa-heart-o"/> : <FavoriteBorderRoundedIcon className="fa-heart-o"/>}
-        </p>
-      </div>
+        <div
+            className={`yeuthich-item ${isLoading ? 'disabled' : ''}`}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            onClick={isLoading ? null : (isFavorite ? onClickRemove : onClickAdd)} // Vô hiệu hóa click khi đang loading
+        >
+            <p>
+                {isLoading ? 'Đang xử lý...' : 'Yêu thích'}
+                {hover
+                    ? <FavoriteRoundedIcon className="fa-heart-o" />
+                    : (isFavorite ? <FavoriteRoundedIcon className="fa-heart-o" /> : <FavoriteBorderRoundedIcon className="fa-heart-o" />)
+                }
+            </p>
+        </div>
     );
-  }
+}
