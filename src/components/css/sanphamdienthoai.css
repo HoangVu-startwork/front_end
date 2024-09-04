@@ -1,3 +1,41 @@
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+}
+.giachinh{
+    color: #393737;
+    font-size: 13.5px;
+    margin-left: 3px;
+    text-decoration: line-through;
+}
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 10000;
+}
+
+.yeuthich-item.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
 .sanpham_danhmuc{
     height: 40px;
     margin-top: 10px;
