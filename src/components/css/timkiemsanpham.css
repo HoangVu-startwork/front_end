@@ -1,0 +1,431 @@
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+}
+
+.giachinh {
+    color: #393737;
+    font-size: 13px;
+    margin-left: 2px;
+    text-decoration: line-through;
+}
+
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 10000;
+}
+
+.yeuthich-item.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+.sanpham_danhmuc {
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 4px;
+    color: rgb(58, 57, 57);
+    display: flex;
+    transition: 0.3s;
+    text-decoration: none;
+    margin-left: auto;
+}
+
+.block_featured_product {
+    float: right;
+    position: relative;
+    margin-right: 5px;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-bottom: unset;
+}
+
+.sanpham_danhmuc_loaidanhmuc {
+    float: right;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #444;
+    margin-left: 5px;
+    padding: 6px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+    height: 34px;
+    margin-top: 3px;
+}
+
+.sanpham_danhmuc_tensanpham {
+    display: block;
+    line-height: 40px;
+    white-space: nowrap;
+    margin-right: 20px;
+    color: #000;
+    margin-left: 5px;
+    margin-bottom: unset;
+    font-weight: 700;
+}
+
+.sanpham-timkiem {
+    padding: 3px;
+}
+
+.sanpham-featured-product {
+    border-radius: 5px;
+    background: #ffffff;
+    color: #666;
+    height: 375px;
+    overflow: hidden;
+    /* box-shadow: 0 2px 4px 0 rgba(37, 34, 34, 0.2); */
+    transition: 0.5s;
+    text-decoration: none;
+    box-shadow: 0 1px 1px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.sanpham-featured-product a:hover {
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+    text-decoration: none;
+}
+
+.sanpham-featured-product .img_sanpham {
+    width: 75%;
+    height: 90%;
+    margin-top: 25px;
+    margin-bottom: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sanpham-featured-product-body {
+    margin-right: 6px;
+    margin-left: 6px;
+}
+
+.sanpham-featured-product-body .block-featured-title h3 {
+    color: #000;
+    margin-top: 8px;
+    font-size: 14px;
+    height: 47px;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-bottom: 1rem;
+    margin-top: 5px;
+}
+
+.sanpham-featured-product-body .block-featured-text {
+    color: rgb(255, 0, 0);
+    height: 35px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.uudai {
+    margin-top: 5px;
+}
+
+
+.sanpham-featured-product-body .block-featured-text_uudai {
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+    border: 0.5px solid #f0f0f0;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 3px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-bottom: 1rem;
+
+}
+
+/* .block-featured-product-body .block-featured-text_uudai_phong{
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+    border: 0.5px solid #f0f0f0;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 3px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding-bottom: 1rem;
+    margin-top: 5px;	
+} */
+
+
+.slick-slide *:focus {
+    outline: none;
+}
+
+#wishListBtn {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_price--percent {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    display: right;
+    margin-top: 1px;
+    height: 31px;
+    margin-left: -2px;
+}
+
+.product_price--percent p {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 3px;
+    color: rgb(255, 255, 255);
+}
+
+.sanpham-featured-product {
+    position: relative;
+}
+
+.yeuthich-sanpham {
+    height: 25px;
+    position: absolute;
+    bottom: 1px;
+    /* Cách đáy khung 1px */
+    right: 1px;
+    margin-left: auto;
+    display: block;
+    width: 105px;
+}
+
+.yeuthich-sanpham p {
+    display: flex;
+    padding-top: 2px;
+    font-weight: 600;
+}
+
+.fa-heart-o {
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-right: 4px;
+    font-size: 25px;
+    display: inline-block;
+    color: rgb(255, 0, 0);
+}
+
+.fa-heart-o:hover {
+    color: rgb(255, 0, 0);
+    transform: translate(-1%);
+    animation: heart 1s ease infinite;
+}
+
+@media (max-width: 1123px) {
+    .sanpham-featured-product {
+        height: 370px;
+    }
+}
+
+@media (max-width: 1081px) {
+    .sanpham-featured-product {
+        height: 360px;
+    }
+}
+
+@media (max-width: 1039px) {
+    .sanpham-featured-product {
+        height: 360px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 65%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 899px) {
+    .sanpham-featured-product {
+        height: 360px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 55%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sanpham-featured-product {
+        height: 345px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 55%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 699px) {
+    .sanpham-featured-product {
+        height: 345px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 45%;
+        height: 90%;
+    }
+
+    .sanpham-featured-product-body .block-featured-title h3 {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        overflow: hidden;
+        margin-top: -3px;
+    }
+
+    .sanpham-featured-product-body .block-featured-text {
+        color: rgb(255, 0, 0);
+        height: 25px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 600px) {
+    .sanpham-featured-product {
+        height: 325px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 45%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 490px) {
+    .sanpham-featured-product {
+        height: 315px;
+    }
+
+    .sanpham-featured-product-body .block-featured-title h3 {
+        margin-top: 1px;
+    }
+}
+
+@media (max-width: 450px) {
+    .sanpham-featured-product {
+        height: 315px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 55%;
+        height: 90%;
+    }
+
+    .sanpham-featured-product-body .block-featured-text {
+        color: rgb(255, 0, 0);
+        height: 35px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 427px) {
+    .sanpham-featured-product {
+        height: 315px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 60%;
+        height: 90%;
+    }
+
+    .sanpham-featured-product-body .block-featured-text {
+        color: rgb(255, 0, 0);
+        height: 35px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 395px) {
+    .sanpham-featured-product {
+        height: 315px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 65%;
+        height: 90%;
+    }
+
+    .sanpham-featured-product-body .block-featured-text {
+        color: rgb(255, 0, 0);
+        height: 35px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 320px) {
+    .sanpham-featured-product {
+        height: 315px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 70%;
+        height: 90%;
+    }
+
+    .yeuthich-sanpham {
+        height: 25px;
+        position: absolute;
+        bottom: 1px;
+        /* Cách đáy khung 1px */
+        right: 1px;
+        margin-left: auto;
+        display: block;
+        width: 105px;
+    }
+
+    .yeuthich-sanpham p span {
+        display: none;
+    }
+
+    .yeuthich-sanpham p {
+        display: flex;
+        padding-top: 2px;
+        font-weight: 600;
+        margin-left: 70px;
+    }
+}

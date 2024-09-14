@@ -65,10 +65,11 @@
 #center {
   background-color: rgb(255, 255, 255);
   display: flex;
+  height: auto;
+  bottom: 50px;
   margin: 0 auto;
   margin: 10px;
   width: 1180px;
-  height: 100%;
   margin-top: -90px;
   border-radius: 3px;
   position: relative; 

@@ -1,30 +1,61 @@
 /* Sanphamdienthoai.css */
 
 .container_menu {
-    max-width: 100%;
-  }
-  
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* Căn chỉnh các phần tử về bên trái */
+  gap: 0.5rem;
+  /* Khoảng cách giữa các phần tử */
+}
+
+.section .logo-item {
+  flex: 1 1 10%;
+  /* Chiếm tối thiểu 10% bề rộng, có thể điều chỉnh tùy theo yêu cầu */
+  max-width: 110px;
+  /* Kích thước tối đa của các logo */
+  min-width: 110px;
+  /* Kích thước tối thiểu của các logo */
+  height: 45px;
+  /* Để đảm bảo kích thước chiều cao của logo tự động */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #d1d5db;
+  /* Màu xám sáng */
+  padding: 1px;
+  /* Khoảng cách giữa khung và hình ảnh */
+  border-radius: 8px;
+  /* Bo góc nếu bạn muốn */
+}
+
+.section img {
+  max-height: 100%;
+}
+
+@media (max-width: 700px) {
   .section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* Căn chỉnh các phần tử về bên trái */
-    gap: 0.5rem; /* Khoảng cách giữa các phần tử */
+    flex-wrap: nowrap;
+    /* Prevents wrapping, keeping items in a single row */
+    overflow-x: auto;
+    /* Enables horizontal scrolling */
+    min-width: 600px;
+    /* Adjust this value based on your content width */
   }
-  
+
+  .container_menu::-webkit-scrollbar {
+    display: none;
+    /* Ẩn thanh cuộn ngang trên Chrome, Safari và các trình duyệt Webkit */
+
+  }
+
   .section .logo-item {
-    flex: 1 1 10%; /* Chiếm tối thiểu 10% bề rộng, có thể điều chỉnh tùy theo yêu cầu */
-    max-width: 110px; /* Kích thước tối đa của các logo */
-    min-width: 110px; /* Kích thước tối thiểu của các logo */
-    height: 45px; /* Để đảm bảo kích thước chiều cao của logo tự động */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #d1d5db; /* Màu xám sáng */
-    padding: 1px; /* Khoảng cách giữa khung và hình ảnh */
-    border-radius: 8px; /* Bo góc nếu bạn muốn */
+    flex: 0 0 auto;
+    /* Keeps each item the same size */
   }
-  
-  .section img {
-    max-height: 100%;
-  }
-  
+}

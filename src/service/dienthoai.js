@@ -51,6 +51,18 @@ const Dienthoai = {
     }
   },
 
+  getTimkiemdienthoai: async () => {
+    try {
+      const response = await api.get(`dienthoai/${id}/mausac/${mausacId}`);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
 }
 
 export default Dienthoai;

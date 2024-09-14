@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import ServiceDienthoai from "../../service/dienthoai"
 import '../css/thuonghieudienthoai.css'
-import '../css/menu.css'
 import Link from 'next/link'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -74,7 +73,7 @@ export default function Quancaothuonghieu() {
         speed: 500,
     };
     return (
-        <div className='danhmuc_dienthoai container_menu'>
+        <div className='danhmuc_dienthoai'>
             <section className="content_danhmuc_dienthoai">
                 <div id="center_danhmuc_dienthoai">
                     <div className='center_quancao_dienthoai'>
