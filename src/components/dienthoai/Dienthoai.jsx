@@ -79,7 +79,7 @@ export default function Dienthoai() {
     //         console.error("Error fetching token info:", error);
     //     }
     // }
-    
+
     const fetchPostYeuthich = async (dienthoaiId, mausacId) => {
         try {
             if (datacode !== 1000) {
@@ -143,12 +143,18 @@ export default function Dienthoai() {
 
     useEffect(() => {
         const timestampStr = window.localStorage.getItem("exp");
+        const token = window.localStorage.getItem("token");
         if (timestampStr) {
             const timestamp = parseInt(timestampStr, 10);
             const date = new Date(timestamp * 1000);
             const currentDate = new Date();
             if (date >= currentDate) {
-                fetchTokenInfo();
+                if (token && token.trim() !== "") {
+                    fetchTokenInfo();
+                } else{
+                    window.localStorage.removeItem("token");
+                    window.localStorage.removeItem("exp");
+                }
             } else {
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("exp");
@@ -270,11 +276,11 @@ export default function Dienthoai() {
                         const isFavorite = yeuthich.some(item =>
                             item.dienthoaiId === card.id && item.mausacId === card.mausac_id
                         );
-                        
+
 
                         const danhGiaSaoItem = danhgiasao.find(item => item.dienthoaiId === card.id);
                         const rating = danhGiaSaoItem ? danhGiaSaoItem.tongsao : 0; // Nếu không tìm thấy thì giá trị mặc định là 0
-            
+
                         const giadagiamgia = card.giaban - (card.giaban * (card.phantramkhuyenmai / 100))
 
                         return (
@@ -297,7 +303,7 @@ export default function Dienthoai() {
                                     <div className="block-featured-product-body">
                                         <div className="block-featured-title"><h3>{card.tensanpham}</h3></div>
                                         <div className="block-featured-text">{formatter.format(giadagiamgia)} {card.phantramkhuyenmai != null && (<span className='giachinh'>{formatter.format(card.giaban)}</span>)}</div>
-                                        <div>{rating != 0 && ( <RatingStars rating={rating} />)}</div>
+                                        <div>{rating != 0 && (<RatingStars rating={rating} />)}</div>
                                         <div className='uudai'>
                                             {card.baohanh != null && (
                                                 <div className='uudai'>

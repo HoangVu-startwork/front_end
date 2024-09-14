@@ -1,10 +1,28 @@
 'use client'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link';
 import '@/components/css/styles.css';
 import '@/components/css/Post_menu_dienthoai.css'
+import Danhmuc from "../../../service/danhmuc";
 import { ChevronRight, Smartphone, Laptop, Tablet, Headphones, Watch, Home, Unplug, PcCase, Airplay } from 'lucide-react';
 const Post_menu = () => {
+
+    const [danhmuc, setdanhmuc] = useState([])
+
+    const fetchgetdanhmuc = async () => {
+        try {
+          const data = await Danhmuc.getAlldanhmuc();
+          setdanhmuc(data);
+          console.log(data)
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
+      useEffect(() => {
+        fetchgetdanhmuc()
+      }, [])
+
   return (
             <div className="war_menu"> 
                 <div className="danhmuc_menu">

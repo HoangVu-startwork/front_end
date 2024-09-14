@@ -6,7 +6,6 @@
     /* căn giữa theo chiều dọc */
     width: 1180px;
     margin: 0 auto;
-    box-sizing: border-box;
     height: auto;
 }
 
@@ -14,7 +13,6 @@
     width: 100%;
     margin: 0 auto;
     height: auto;
-    background: #0d6efd;
 }
 
 .center_quancao_dienthoai {
@@ -29,54 +27,45 @@
     /* căn giữa theo chiều dọc */
 }
 
-.center_quancao_dienthoai_quan {
-    width: 584px;
-    border-radius: 5px;
-}
-
-.center_quancao_dienthoai_quan img {
-    width: 584px;
-    border-radius: 5px;
-}
-
+.center_quancao_dienthoai_quan,
 .center_quancao_dienthoai_quan02 {
-    width: 584px;
+    width: 100%;
+    /* Khung chiếm toàn bộ chiều rộng có thể */
+    max-width: 585px;
+    /* Đặt chiều rộng tối đa */
     border-radius: 5px;
+    overflow: hidden;
+    /* Đảm bảo hình ảnh không vượt ra ngoài khung */
 }
 
+.center_quancao_dienthoai_quan img,
 .center_quancao_dienthoai_quan02 img {
-    width: 584px;
+    width: 100%;
+    /* Hình ảnh sẽ tự động căn chỉnh theo chiều rộng của khung */
+    height: auto;
+    max-width: 585px;
+    /* Giữ tỉ lệ gốc của hình ảnh */
+    object-fit: cover;
+    /* Đảm bảo hình ảnh bao phủ khung mà không bị méo */
     border-radius: 5px;
 }
 
-/* .slick-next {
-    display: block;
-    color: #0d6efd;
-    margin-right: 25px;
-    margin-top: -4px;
-} */
+.center_quancao_dienthoai_quan .slick-slider .slick-prev:before {
+    content: '';
+}
 
-/* .center_quancao_dienthoai_quan .slick-slider .slick-next::after {
-    display: none;
-    color: #0d6efd;
-    list-style: none;
-    margin-top: -2px;
-    border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent;
-    border-left: 14px solid rgb(139, 140, 139);
-} */
-.center_quancao_dienthoai_quan .slick-slider .slick-prev:before{
+.center_quancao_dienthoai_quan .slick-slider .slick-next:before {
     content: '';
 }
-.center_quancao_dienthoai_quan .slick-slider .slick-next:before{
+
+.center_quancao_dienthoai_quan02 .slick-slider .slick-prev:before {
     content: '';
 }
-.center_quancao_dienthoai_quan02 .slick-slider .slick-prev:before{
+
+.center_quancao_dienthoai_quan02 .slick-slider .slick-next:before {
     content: '';
 }
-.center_quancao_dienthoai_quan02 .slick-slider .slick-next:before{
-    content: '';
-}
+
 .center_quancao_dienthoai_quan .slick-slider:hover .slick-next:before {
     display: block;
     margin-left: -23px;
@@ -90,7 +79,7 @@
     border-left: 14px solid rgb(139, 140, 139);
 }
 
-.center_quancao_dienthoai_quan .slick-slider:hover .slick-prev:before{
+.center_quancao_dienthoai_quan .slick-slider:hover .slick-prev:before {
     display: block;
     margin-top: -18px;
     list-style: none;
@@ -98,15 +87,15 @@
     width: 0;
     margin-left: 2px;
     border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent; 
-    border-right:14px solid  rgb(139, 140, 139); 
+    border-bottom: 14px solid transparent;
+    border-right: 14px solid rgb(139, 140, 139);
 }
-.center_quancao_dienthoai_quan .slick-slider .slick-prev
-{
+
+.center_quancao_dienthoai_quan .slick-slider .slick-prev {
     left: 0px;
     z-index: 5;
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
 }
 
 .center_quancao_dienthoai_quan02 .slick-slider:hover .slick-next:before {
@@ -122,7 +111,7 @@
     border-left: 14px solid rgb(139, 140, 139);
 }
 
-.center_quancao_dienthoai_quan02 .slick-slider:hover .slick-prev:before{
+.center_quancao_dienthoai_quan02 .slick-slider:hover .slick-prev:before {
     display: block;
     margin-top: -17px;
     list-style: none;
@@ -130,46 +119,21 @@
     width: 0;
     margin-left: 2px;
     border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent; 
-    border-right:14px solid  rgb(139, 140, 139); 
+    border-bottom: 14px solid transparent;
+    border-right: 14px solid rgb(139, 140, 139);
 }
 
-.center_quancao_dienthoai_quan02 .slick-slider .slick-prev
-{
+.center_quancao_dienthoai_quan02 .slick-slider .slick-prev {
     left: 0px;
     z-index: 5;
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
 }
-/* .center_quancao_dienthoai_quan .slick-arrow .slick-prev::before{
-    background: #bec2c5;
-    content: '←';
-} */
-/* .slick-prev,
-.slick-next {
-    font-size: 0;
-    line-height: 0;
-    position: absolute;
-    top: 50%;
-    left: 0px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    transform: translate(0, -50%);
-    cursor: pointer;
-    color: #5f6061;
-    border: none;
-    outline: none;
-    background: #2183E2;
-} */
 
 .slick-prev,
 .slick-next:hover {
     color: aqua;
 }
-
-
 
 .slick-prev:before,
 .slick-next:before {
@@ -253,22 +217,40 @@
     width: 20px;
 }
 
-/* .danhmuc_dienthoai{
-    width: 1100px;
-    background: #970d0d;
+.danhmuc_dienthoai {
+    width: 100%;
     margin: 0 auto;
     margin-top: 5px;
-    display: flex;
-    position: relative;
-} */
+}
+
+.center_quancao_dienthoai_quan,
+.center_quancao_dienthoai_quan02 {
+    flex: 1;
+    /* Mỗi khối chiếm 50% chiều rộng */
+}
+
+.center_quancao_dienthoai_quan img,
+.center_quancao_dienthoai_quan02 img {
+    width: 99.9%;
+    /* Hình ảnh chiếm toàn bộ chiều rộng của khối */
+    height: auto;
+    /* Giữ tỉ lệ hình ảnh */
+}
+
 
 @media (max-width: 1200px) {
+    .content_danhmuc_dienthoai {
+        width: auto;
+    }
 
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img,
     .center_quancao_dienthoai_quan02,
     .center_quancao_dienthoai_quan02 img {
-        width: 582px;
+        width: 583px;
+    }
+    .center_quancao_dienthoai_quan02{
+        margin-left: 13px;
     }
 }
 
@@ -528,7 +510,7 @@
     .center_quancao_dienthoai_quan img,
     .center_quancao_dienthoai_quan02,
     .center_quancao_dienthoai_quan02 img {
-        width: 572px;
+        width: 562px;
     }
 }
 
@@ -4657,1144 +4639,1308 @@
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 744px;
+        min-width: 744px;
     }
 }
 
 @media (max-width: 764px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 743px;
+        min-width: 743px;
     }
 }
 
 @media (max-width: 763px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 742px;
+        min-width: 742px;
     }
 }
 
 @media (max-width: 762px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 741px;
+        min-width: 741px;
     }
 }
 
 @media (max-width: 761px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 740px;
+        min-width: 740px;
     }
 }
 
 @media (max-width: 760px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 739px;
+        min-width: 739px;
     }
 }
 
 @media (max-width: 759px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 738px;
+        min-width: 738px;
     }
 }
 
 @media (max-width: 758px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 737px;
+        min-width: 737px;
     }
 }
 
 @media (max-width: 757px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 736px;
+        min-width: 736px;
     }
 }
 
 @media (max-width: 756px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 735px;
+        min-width: 735px;
     }
 }
 
 @media (max-width: 755px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 734px;
+        min-width: 734px;
     }
 }
 
 @media (max-width: 754px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 733px;
+        min-width: 733px;
     }
 }
 
 @media (max-width: 753px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 732px;
+        min-width: 732px;
     }
 }
 
 @media (max-width: 752px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 731px;
+        min-width: 731px;
     }
 }
 
 @media (max-width: 751px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 730px;
+        min-width: 730px;
     }
 }
 
 @media (max-width: 750px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 729px;
+        min-width: 729px;
     }
 }
 
 @media (max-width: 749px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 728px;
+        min-width: 728px;
     }
 }
 
 @media (max-width: 748px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 727px;
+        min-width: 727px;
     }
 }
 
 @media (max-width: 747px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 726px;
+        min-width: 726px;
     }
 }
 
 @media (max-width: 746px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 725px;
+        min-width: 725px;
     }
 }
 
 @media (max-width: 745px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 724px;
+        min-width: 724px;
     }
 }
 
 @media (max-width: 744px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 723px;
+        min-width: 723px;
     }
 }
 
 @media (max-width: 743px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 722px;
+        min-width: 722px;
     }
 }
 
 @media (max-width: 742px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 721px;
+        min-width: 721px;
     }
 }
 
 @media (max-width: 741px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 720px;
+        min-width: 720px;
     }
 }
 
 @media (max-width: 740px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 719px;
+        min-width: 719px;
     }
 }
 
 @media (max-width: 739px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 718px;
+        min-width: 718px;
     }
 }
 
 @media (max-width: 738px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 717px;
+        min-width: 717px;
     }
 }
 
 @media (max-width: 737px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 716px;
+        min-width: 716px;
     }
 }
 
 @media (max-width: 736px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 715px;
+        min-width: 715px;
     }
 }
 
 @media (max-width: 735px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 714px;
+        min-width: 714px;
     }
 }
 
 @media (max-width: 734px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 713px;
+        min-width: 713px;
     }
 }
 
 @media (max-width: 733px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 712px;
+        min-width: 712px;
     }
 }
 
 @media (max-width: 732px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 711px;
+        min-width: 711px;
     }
 }
 
 @media (max-width: 731px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 710px;
+        min-width: 710px;
     }
 }
 
 @media (max-width: 730px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 709px;
+        min-width: 709px;
     }
 }
 
 @media (max-width: 729px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 708px;
+        min-width: 708px;
     }
 }
 
 @media (max-width: 728px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 707px;
+        min-width: 707px;
     }
 }
 
 @media (max-width: 727px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 706px;
+        min-width: 706px;
     }
 }
 
 @media (max-width: 726px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 705px;
+        min-width: 705px;
     }
 }
 
 @media (max-width: 725px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 704px;
+        min-width: 704px;
     }
 }
 
 @media (max-width: 724px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 703px;
+        min-width: 703px;
     }
 }
 
 @media (max-width: 723px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 702px;
+        min-width: 702px;
     }
 }
 
 @media (max-width: 722px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 701px;
+        min-width: 701px;
     }
 }
 
 @media (max-width: 721px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 700px;
+        min-width: 700px;
     }
 }
 
 @media (max-width: 720px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 699px;
+        min-width: 699px;
     }
 }
 
 @media (max-width: 719px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 698px;
+        min-width: 698px;
     }
 }
 
 @media (max-width: 718px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 697px;
+        min-width: 697px;
     }
 }
 
 @media (max-width: 717px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 696px;
+        min-width: 696px;
     }
 }
 
 @media (max-width: 716px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 695px;
+        min-width: 695px;
     }
 }
 
 @media (max-width: 715px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 694px;
+        min-width: 694px;
     }
 }
 
 @media (max-width: 714px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 693px;
+        min-width: 693px;
     }
 }
 
 @media (max-width: 713px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 692px;
+        min-width: 692px;
     }
 }
 
 @media (max-width: 712px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 691px;
+        min-width: 691px;
     }
 }
 
 @media (max-width: 711px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 690px;
+        min-width: 690px;
     }
 }
 
 @media (max-width: 710px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 689px;
+        min-width: 689px;
     }
 }
 
 @media (max-width: 709px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 688px;
+        min-width: 688px;
     }
 }
 
 @media (max-width: 708px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 687px;
+        min-width: 687px;
     }
 }
 
 @media (max-width: 707px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 686px;
+        min-width: 686px;
     }
 }
 
 @media (max-width: 706px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 685px;
+        min-width: 685px;
     }
 }
 
 @media (max-width: 705px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 684px;
+        min-width: 684px;
     }
 }
 
 @media (max-width: 704px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 683px;
+        min-width: 683px;
     }
 }
 
 @media (max-width: 703px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 682px;
+        min-width: 682px;
     }
 }
 
 @media (max-width: 702px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 681px;
+        min-width: 681px;
     }
 }
 
 @media (max-width: 701px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 680px;
+        min-width: 680px;
     }
 }
 
 @media (max-width: 700px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 679px;
+        min-width: 679px;
     }
 }
 
 @media (max-width: 699px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 678px;
+        min-width: 678px;
     }
 }
 
 @media (max-width: 698px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 677px;
+        min-width: 677px;
     }
 }
 
 @media (max-width: 697px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 676px;
+        min-width: 676px;
     }
 }
 
 @media (max-width: 696px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 675px;
+        min-width: 675px;
     }
 }
 
 @media (max-width: 695px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 674px;
+        min-width: 674px;
     }
 }
 
 @media (max-width: 694px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 673px;
+        min-width: 673px;
     }
 }
 
 @media (max-width: 693px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 672px;
+        min-width: 672px;
     }
 }
 
 @media (max-width: 692px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 671px;
+        min-width: 671px;
     }
 }
 
 @media (max-width: 691px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 670px;
+        min-width: 670px;
     }
 }
 
 @media (max-width: 690px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 669px;
+        min-width: 669px;
     }
 }
 
 @media (max-width: 689px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 668px;
+        min-width: 668px;
     }
 }
 
 @media (max-width: 688px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 667px;
+        min-width: 667px;
     }
 }
 
 @media (max-width: 687px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 666px;
+        min-width: 666px;
     }
 }
 
 @media (max-width: 686px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 665px;
+        min-width: 665px;
     }
 }
 
 @media (max-width: 685px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 664px;
+        min-width: 664px;
     }
 }
 
 @media (max-width: 684px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 663px;
+        min-width: 663px;
     }
 }
 
 @media (max-width: 683px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 662px;
+        min-width: 662px;
     }
 }
 
 @media (max-width: 682px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 661px;
+        min-width: 661px;
     }
 }
 
 @media (max-width: 681px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 660px;
+        min-width: 660px;
     }
 }
 
 @media (max-width: 680px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 659px;
+        min-width: 659px;
     }
 }
 
 @media (max-width: 679px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 658px;
+        min-width: 658px;
     }
 }
 
 @media (max-width: 678px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 657px;
+        min-width: 657px;
     }
 }
 
 @media (max-width: 677px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 656px;
+        min-width: 656px;
     }
 }
 
 @media (max-width: 676px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 655px;
+        min-width: 655px;
     }
 }
 
 @media (max-width: 675px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 654px;
+        min-width: 654px;
     }
 }
 
 @media (max-width: 674px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 653px;
+        min-width: 653px;
     }
 }
 
 @media (max-width: 673px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 652px;
+        min-width: 652px;
     }
 }
 
 @media (max-width: 672px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 651px;
+        min-width: 651px;
     }
 }
 
 @media (max-width: 671px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 650px;
+        min-width: 650px;
     }
 }
 
 @media (max-width: 670px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 649px;
+        min-width: 649px;
     }
 }
 
 @media (max-width: 669px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 648px;
+        min-width: 648px;
     }
 }
 
 @media (max-width: 668px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 647px;
+        min-width: 647px;
     }
 }
 
 @media (max-width: 667px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 646px;
+        min-width: 646px;
     }
 }
 
 @media (max-width: 666px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 645px;
+        min-width: 645px;
     }
 }
 
 @media (max-width: 665px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 644px;
+        min-width: 644px;
     }
 }
 
 @media (max-width: 664px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 643px;
+        min-width: 643px;
     }
 }
 
 @media (max-width: 663px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 642px;
+        min-width: 642px;
     }
 }
 
 @media (max-width: 662px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 641px;
+        min-width: 641px;
     }
 }
 
 @media (max-width: 661px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 640px;
+        min-width: 640px;
     }
 }
 
 @media (max-width: 660px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 639px;
+        min-width: 639px;
     }
 }
 
 @media (max-width: 659px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 638px;
+        min-width: 638px;
     }
 }
 
 @media (max-width: 658px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 637px;
+        min-width: 637px;
     }
 }
 
 @media (max-width: 657px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 636px;
+        min-width: 636px;
     }
 }
 
 @media (max-width: 656px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 635px;
+        min-width: 635px;
     }
 }
 
 @media (max-width: 655px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 634px;
+        min-width: 634px;
     }
 }
 
 @media (max-width: 654px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 633px;
+        min-width: 633px;
     }
 }
 
 @media (max-width: 653px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 632px;
+        min-width: 632px;
     }
 }
 
 @media (max-width: 652px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 631px;
+        min-width: 631px;
     }
 }
 
 @media (max-width: 651px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 630px;
+        min-width: 630px;
     }
 }
 
 @media (max-width: 650px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 629px;
+        min-width: 629px;
     }
 }
 
 @media (max-width: 649px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 628px;
+        min-width: 628px;
     }
 }
 
 @media (max-width: 648px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 627px;
+        min-width: 627px;
     }
 }
 
 @media (max-width: 647px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 626px;
+        min-width: 626px;
     }
 }
 
 @media (max-width: 646px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 625px;
+        min-width: 625px;
     }
 }
 
 @media (max-width: 645px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 624px;
+        min-width: 624px;
     }
 }
 
 @media (max-width: 644px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 623px;
+        min-width: 623px;
     }
 }
 
 @media (max-width: 643px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 622px;
+        min-width: 622px;
     }
 }
 
 @media (max-width: 642px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 621px;
+        min-width: 621px;
     }
 }
 
 @media (max-width: 641px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 620px;
+        min-width: 620px;
     }
 }
 
 @media (max-width: 640px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 619px;
+        min-width: 619px;
     }
 }
 
 @media (max-width: 639px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 618px;
+        min-width: 618px;
     }
 }
 
 @media (max-width: 638px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 617px;
+        min-width: 617px;
     }
 }
 
 @media (max-width: 637px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 616px;
+        min-width: 616px;
     }
 }
 
 @media (max-width: 636px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 615px;
+        min-width: 615px;
     }
 }
 
 @media (max-width: 635px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 614px;
+        min-width: 614px;
     }
 }
 
 @media (max-width: 634px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 613px;
+        min-width: 613px;
     }
 }
 
 @media (max-width: 633px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 612px;
+        min-width: 612px;
     }
 }
 
 @media (max-width: 632px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 611px;
+        min-width: 611px;
     }
 }
 
 @media (max-width: 631px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 610px;
+        min-width: 610px;
     }
 }
 
 @media (max-width: 630px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 609px;
+        min-width: 609px;
     }
 }
 
 @media (max-width: 629px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 608px;
+        min-width: 608px;
     }
 }
 
 @media (max-width: 628px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 607px;
+        min-width: 607px;
     }
 }
 
 @media (max-width: 627px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 606px;
+        min-width: 606px;
     }
 }
 
 @media (max-width: 626px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 605px;
+        min-width: 605px;
     }
 }
 
 @media (max-width: 625px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 604px;
+        min-width: 604px;
     }
 }
 
 @media (max-width: 624px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 603px;
+        min-width: 603px;
     }
 }
 
 @media (max-width: 623px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 602px;
+        min-width: 602px;
     }
 }
 
 @media (max-width: 622px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 601px;
+        min-width: 601px;
     }
 }
 
 @media (max-width: 621px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 600px;
+        min-width: 600px;
     }
 }
 
 @media (max-width: 620px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 599px;
+        min-width: 599px;
     }
 }
 
 @media (max-width: 619px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 598px;
+        min-width: 598px;
     }
 }
 
 @media (max-width: 618px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 597px;
+        min-width: 597px;
     }
 }
 
 @media (max-width: 617px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 596px;
+        min-width: 596px;
     }
 }
 
 @media (max-width: 616px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 595px;
+        min-width: 595px;
     }
 }
 
 @media (max-width: 615px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 594px;
+        min-width: 594px;
     }
 }
 
 @media (max-width: 614px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 593px;
+        min-width: 593px;
     }
 }
 
 @media (max-width: 613px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 592px;
+        min-width: 592px;
     }
 }
 
 @media (max-width: 612px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 591px;
+        min-width: 591px;
     }
 }
 
 @media (max-width: 611px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 590px;
+        min-width: 590px;
     }
 }
 
 @media (max-width: 610px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 589px;
+        min-width: 589px;
     }
 }
 
 @media (max-width: 609px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 588px;
+        min-width: 588px;
     }
 }
 
 @media (max-width: 608px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 587px;
+        min-width: 587px;
     }
 }
 
 @media (max-width: 607px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 586px;
+        min-width: 586px;
     }
 }
 
 @media (max-width: 606px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 585px;
+        min-width: 585px;
     }
 }
 
 @media (max-width: 605px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 584px;
+        min-width: 584px;
     }
 }
 
 @media (max-width: 604px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 583px;
+        min-width: 583px;
     }
 }
 
 @media (max-width: 603px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 582px;
+        min-width: 582px;
     }
 }
 
 @media (max-width: 602px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 581px;
@@ -5802,6 +5948,7 @@
 }
 
 @media (max-width: 601px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 580px;
@@ -5809,13 +5956,15 @@
 }
 
 @media (max-width: 600px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 579px;
+        min-width: 579px;
     }
 }
 
 @media (max-width: 599px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 578px;
@@ -5823,6 +5972,7 @@
 }
 
 @media (max-width: 598px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 577px;
@@ -5830,6 +5980,7 @@
 }
 
 @media (max-width: 597px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 576px;
@@ -5837,27 +5988,31 @@
 }
 
 @media (max-width: 596px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 575px;
+        min-width: 575px;
     }
 }
 
 @media (max-width: 595px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 574px;
+        min-width: 574px;
     }
 }
 
 @media (max-width: 594px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 573px;
+        min-width: 573px;
     }
 }
 
 @media (max-width: 593px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 572px;
@@ -5865,13 +6020,15 @@
 }
 
 @media (max-width: 592px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 571px;
+        min-width: 571px;
     }
 }
 
 @media (max-width: 591px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 570px;
@@ -5879,20 +6036,23 @@
 }
 
 @media (max-width: 590px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 569px;
+        min-width: 569px;
     }
 }
 
 @media (max-width: 589px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 568px;
+        min-width: 568px;
     }
 }
 
 @media (max-width: 588px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 567px;
@@ -5900,6 +6060,7 @@
 }
 
 @media (max-width: 587px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 566px;
@@ -5907,20 +6068,23 @@
 }
 
 @media (max-width: 586px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 565px;
+        min-width: 565px;
     }
 }
 
 @media (max-width: 585px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 564px;
+        min-width: 564px;
     }
 }
 
 @media (max-width: 584px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 563px;
@@ -5928,13 +6092,15 @@
 }
 
 @media (max-width: 583px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 562px;
+        min-width: 562px;
     }
 }
 
 @media (max-width: 582px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 561px;
@@ -5942,13 +6108,15 @@
 }
 
 @media (max-width: 581px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 560px;
+        min-width: 560px;
     }
 }
 
 @media (max-width: 580px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 559px;
@@ -5956,6 +6124,7 @@
 }
 
 @media (max-width: 579px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 558px;
@@ -5963,13 +6132,15 @@
 }
 
 @media (max-width: 578px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 557px;
+        min-width: 557px;
     }
 }
 
 @media (max-width: 577px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 556px;
@@ -5977,13 +6148,15 @@
 }
 
 @media (max-width: 576px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 555px;
+        min-width: 555px;
     }
 }
 
 @media (max-width: 575px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 554px;
@@ -5991,13 +6164,15 @@
 }
 
 @media (max-width: 574px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 553px;
+        min-width: 553px;
     }
 }
 
 @media (max-width: 573px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 552px;
@@ -6005,13 +6180,15 @@
 }
 
 @media (max-width: 572px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 551px;
+        min-width: 551px;
     }
 }
 
 @media (max-width: 571px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 550px;
@@ -6019,13 +6196,15 @@
 }
 
 @media (max-width: 570px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 549px;
+        min-width: 549px;
     }
 }
 
 @media (max-width: 569px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 548px;
@@ -6033,13 +6212,15 @@
 }
 
 @media (max-width: 568px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 547px;
+        min-width: 547px;
     }
 }
 
 @media (max-width: 567px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 546px;
@@ -6047,13 +6228,15 @@
 }
 
 @media (max-width: 566px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 545px;
+        min-width: 545px;
     }
 }
 
 @media (max-width: 565px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 544px;
@@ -6061,13 +6244,15 @@
 }
 
 @media (max-width: 564px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 543px;
+        min-width: 543px;
     }
 }
 
 @media (max-width: 563px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 542px;
@@ -6075,13 +6260,15 @@
 }
 
 @media (max-width: 562px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 541px;
+        min-width: 541px;
     }
 }
 
 @media (max-width: 561px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 540px;
@@ -6089,13 +6276,15 @@
 }
 
 @media (max-width: 560px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 539px;
+        min-width: 539px;
     }
 }
 
 @media (max-width: 559px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 538px;
@@ -6103,13 +6292,15 @@
 }
 
 @media (max-width: 558px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 537px;
+        min-width: 537px;
     }
 }
 
 @media (max-width: 557px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 536px;
@@ -6117,13 +6308,15 @@
 }
 
 @media (max-width: 556px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 535px;
+        min-width: 535px;
     }
 }
 
 @media (max-width: 555px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 534px;
@@ -6131,13 +6324,15 @@
 }
 
 @media (max-width: 554px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 533px;
+        min-width: 533px;
     }
 }
 
 @media (max-width: 553px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 532px;
@@ -6145,13 +6340,15 @@
 }
 
 @media (max-width: 552px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 531px;
+        min-width: 531px;
     }
 }
 
 @media (max-width: 551px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 530px;
@@ -6159,13 +6356,15 @@
 }
 
 @media (max-width: 550px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 529px;
+        min-width: 529px;
     }
 }
 
 @media (max-width: 549px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 528px;
@@ -6173,13 +6372,15 @@
 }
 
 @media (max-width: 548px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 527px;
+        min-width: 527px;
     }
 }
 
 @media (max-width: 547px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 526px;
@@ -6187,13 +6388,15 @@
 }
 
 @media (max-width: 546px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 525px;
+        min-width: 525px;
     }
 }
 
 @media (max-width: 545px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 524px;
@@ -6201,13 +6404,15 @@
 }
 
 @media (max-width: 544px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 523px;
+        min-width: 523px;
     }
 }
 
 @media (max-width: 543px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 522px;
@@ -6215,13 +6420,15 @@
 }
 
 @media (max-width: 542px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 521px;
+        min-width: 521px;
     }
 }
 
 @media (max-width: 541px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 520px;
@@ -6229,13 +6436,15 @@
 }
 
 @media (max-width: 540px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 519px;
+        min-width: 519px;
     }
 }
 
 @media (max-width: 539px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 518px;
@@ -6243,13 +6452,15 @@
 }
 
 @media (max-width: 538px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 517px;
+        min-width: 517px;
     }
 }
 
 @media (max-width: 537px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 516px;
@@ -6257,13 +6468,15 @@
 }
 
 @media (max-width: 536px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 515px;
+        min-width: 515px;
     }
 }
 
 @media (max-width: 535px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 514px;
@@ -6271,13 +6484,15 @@
 }
 
 @media (max-width: 534px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 513px;
+        min-width: 513px;
     }
 }
 
 @media (max-width: 533px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 512px;
@@ -6285,13 +6500,15 @@
 }
 
 @media (max-width: 532px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 511px;
+        min-width: 511px;
     }
 }
 
 @media (max-width: 531px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 510px;
@@ -6299,13 +6516,15 @@
 }
 
 @media (max-width: 530px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 509px;
+        min-width: 509px;
     }
 }
 
 @media (max-width: 529px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 508px;
@@ -6313,13 +6532,15 @@
 }
 
 @media (max-width: 528px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 507px;
+        min-width: 507px;
     }
 }
 
 @media (max-width: 527px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 506px;
@@ -6327,13 +6548,15 @@
 }
 
 @media (max-width: 526px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 505px;
+        min-width: 505px;
     }
 }
 
 @media (max-width: 525px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 504px;
@@ -6341,13 +6564,15 @@
 }
 
 @media (max-width: 524px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 503px;
+        min-width: 503px;
     }
 }
 
 @media (max-width: 523px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 502px;
@@ -6355,13 +6580,15 @@
 }
 
 @media (max-width: 522px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 501px;
+        min-width: 501px;
     }
 }
 
 @media (max-width: 521px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 500px;
@@ -6369,13 +6596,15 @@
 }
 
 @media (max-width: 520px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 499px;
+        min-width: 499px;
     }
 }
 
 @media (max-width: 519px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 498px;
@@ -6383,13 +6612,15 @@
 }
 
 @media (max-width: 518px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 497px;
+        min-width: 497px;
     }
 }
 
 @media (max-width: 517px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 496px;
@@ -6397,13 +6628,15 @@
 }
 
 @media (max-width: 516px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 495px;
+        min-width: 495px;
     }
 }
 
 @media (max-width: 515px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 494px;
@@ -6411,13 +6644,15 @@
 }
 
 @media (max-width: 514px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 493px;
+        min-width: 493px;
     }
 }
 
 @media (max-width: 513px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 492px;
@@ -6425,13 +6660,15 @@
 }
 
 @media (max-width: 512px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 491px;
+        min-width: 491px;
     }
 }
 
 @media (max-width: 511px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 490px;
@@ -6439,13 +6676,15 @@
 }
 
 @media (max-width: 510px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 489px;
+        min-width: 489px;
     }
 }
 
 @media (max-width: 509px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 488px;
@@ -6453,13 +6692,15 @@
 }
 
 @media (max-width: 508px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 487px;
+        min-width: 487px;
     }
 }
 
 @media (max-width: 507px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 486px;
@@ -6467,13 +6708,15 @@
 }
 
 @media (max-width: 506px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 485px;
+        min-width: 485px;
     }
 }
 
 @media (max-width: 505px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 484px;
@@ -6481,13 +6724,15 @@
 }
 
 @media (max-width: 504px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 483px;
+        min-width: 483px;
     }
 }
 
 @media (max-width: 503px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 482px;
@@ -6495,13 +6740,15 @@
 }
 
 @media (max-width: 502px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 481px;
+        min-width: 481px;
     }
 }
 
 @media (max-width: 501px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 480px;
@@ -6509,13 +6756,15 @@
 }
 
 @media (max-width: 500px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 479px;
+        min-width: 479px;
     }
 }
 
 @media (max-width: 499px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 478px;
@@ -6523,13 +6772,15 @@
 }
 
 @media (max-width: 498px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 477px;
+        min-width: 477px;
     }
 }
 
 @media (max-width: 497px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 476px;
@@ -6537,13 +6788,15 @@
 }
 
 @media (max-width: 496px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 475px;
+        min-width: 475px;
     }
 }
 
 @media (max-width: 495px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 474px;
@@ -6551,13 +6804,15 @@
 }
 
 @media (max-width: 494px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 473px;
+        min-width: 473px;
     }
 }
 
 @media (max-width: 493px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 472px;
@@ -6565,13 +6820,15 @@
 }
 
 @media (max-width: 492px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 471px;
+        min-width: 471px;
     }
 }
 
 @media (max-width: 491px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 470px;
@@ -6579,13 +6836,15 @@
 }
 
 @media (max-width: 490px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 469px;
+        min-width: 469px;
     }
 }
 
 @media (max-width: 489px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 468px;
@@ -6593,13 +6852,15 @@
 }
 
 @media (max-width: 488px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 467px;
+        min-width: 467px;
     }
 }
 
 @media (max-width: 487px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 466px;
@@ -6607,13 +6868,15 @@
 }
 
 @media (max-width: 486px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 465px;
+        min-width: 465px;
     }
 }
 
 @media (max-width: 485px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 464px;
@@ -6621,13 +6884,15 @@
 }
 
 @media (max-width: 484px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 463px;
+        min-width: 463px;
     }
 }
 
 @media (max-width: 483px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 462px;
@@ -6635,13 +6900,15 @@
 }
 
 @media (max-width: 482px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 461px;
+        min-width: 461px;
     }
 }
 
 @media (max-width: 481px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 460px;
@@ -6649,13 +6916,15 @@
 }
 
 @media (max-width: 480px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 459px;
+        min-width: 459px;
     }
 }
 
 @media (max-width: 479px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 458px;
@@ -6663,13 +6932,15 @@
 }
 
 @media (max-width: 478px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 457px;
+        min-width: 457px;
     }
 }
 
 @media (max-width: 477px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 456px;
@@ -6677,13 +6948,15 @@
 }
 
 @media (max-width: 476px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 455px;
+        min-width: 455px;
     }
 }
 
 @media (max-width: 475px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 454px;
@@ -6691,13 +6964,15 @@
 }
 
 @media (max-width: 474px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 453px;
+        min-width: 453px;
     }
 }
 
 @media (max-width: 473px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 452px;
@@ -6705,13 +6980,15 @@
 }
 
 @media (max-width: 472px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 451px;
+        min-width: 451px;
     }
 }
 
 @media (max-width: 471px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 450px;
@@ -6719,13 +6996,15 @@
 }
 
 @media (max-width: 470px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 449px;
+        min-width: 449px;
     }
 }
 
 @media (max-width: 469px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 448px;
@@ -6733,13 +7012,15 @@
 }
 
 @media (max-width: 468px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 447px;
+        min-width: 447px;
     }
 }
 
 @media (max-width: 467px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 446px;
@@ -6747,13 +7028,15 @@
 }
 
 @media (max-width: 466px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 445px;
+        min-width: 445px;
     }
 }
 
 @media (max-width: 465px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 444px;
@@ -6761,13 +7044,15 @@
 }
 
 @media (max-width: 464px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 443px;
+        min-width: 443px;
     }
 }
 
 @media (max-width: 463px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 442px;
@@ -6775,13 +7060,15 @@
 }
 
 @media (max-width: 462px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 441px;
+        min-width: 441px;
     }
 }
 
 @media (max-width: 461px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 440px;
@@ -6789,13 +7076,15 @@
 }
 
 @media (max-width: 460px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 439px;
+        min-width: 439px;
     }
 }
 
 @media (max-width: 459px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 438px;
@@ -6803,13 +7092,15 @@
 }
 
 @media (max-width: 458px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 437px;
+        min-width: 437px;
     }
 }
 
 @media (max-width: 457px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 436px;
@@ -6817,13 +7108,15 @@
 }
 
 @media (max-width: 456px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 435px;
+        min-width: 435px;
     }
 }
 
 @media (max-width: 455px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 434px;
@@ -6831,13 +7124,15 @@
 }
 
 @media (max-width: 454px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 433px;
+        min-width: 433px;
     }
 }
 
 @media (max-width: 453px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 432px;
@@ -6845,13 +7140,15 @@
 }
 
 @media (max-width: 452px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 431px;
+        min-width: 431px;
     }
 }
 
 @media (max-width: 451px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 430px;
@@ -6859,13 +7156,15 @@
 }
 
 @media (max-width: 450px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 429px;
+        min-width: 429px;
     }
 }
 
 @media (max-width: 449px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 428px;
@@ -6873,13 +7172,15 @@
 }
 
 @media (max-width: 448px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 427px;
+        min-width: 427px;
     }
 }
 
 @media (max-width: 447px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 426px;
@@ -6887,13 +7188,15 @@
 }
 
 @media (max-width: 446px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 425px;
+        min-width: 425px;
     }
 }
 
 @media (max-width: 445px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 424px;
@@ -6901,13 +7204,15 @@
 }
 
 @media (max-width: 444px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 423px;
+        min-width: 423px;
     }
 }
 
 @media (max-width: 443px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 422px;
@@ -6915,13 +7220,15 @@
 }
 
 @media (max-width: 442px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 421px;
+        min-width: 421px;
     }
 }
 
 @media (max-width: 441px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 420px;
@@ -6929,13 +7236,15 @@
 }
 
 @media (max-width: 440px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 419px;
+        min-width: 419px;
     }
 }
 
 @media (max-width: 439px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 418px;
@@ -6943,13 +7252,15 @@
 }
 
 @media (max-width: 438px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 417px;
+        min-width: 417px;
     }
 }
 
 @media (max-width: 437px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 416px;
@@ -6957,13 +7268,15 @@
 }
 
 @media (max-width: 436px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 415px;
+        min-width: 415px;
     }
 }
 
 @media (max-width: 435px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 414px;
@@ -6971,13 +7284,15 @@
 }
 
 @media (max-width: 434px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 413px;
+        min-width: 413px;
     }
 }
 
 @media (max-width: 433px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 412px;
@@ -6985,13 +7300,15 @@
 }
 
 @media (max-width: 432px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 411px;
+        min-width: 411px;
     }
 }
 
 @media (max-width: 431px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 410px;
@@ -6999,13 +7316,15 @@
 }
 
 @media (max-width: 430px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 409px;
+        min-width: 409px;
     }
 }
 
 @media (max-width: 429px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 408px;
@@ -7013,13 +7332,15 @@
 }
 
 @media (max-width: 428px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 407px;
+        min-width: 407px;
     }
 }
 
 @media (max-width: 427px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 406px;
@@ -7027,13 +7348,15 @@
 }
 
 @media (max-width: 426px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 405px;
+        min-width: 405px;
     }
 }
 
 @media (max-width: 425px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 404px;
@@ -7041,13 +7364,15 @@
 }
 
 @media (max-width: 424px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 403px;
+        min-width: 403px;
     }
 }
 
 @media (max-width: 423px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 402px;
@@ -7055,13 +7380,15 @@
 }
 
 @media (max-width: 422px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 401px;
+        min-width: 401px;
     }
 }
 
 @media (max-width: 421px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 400px;
@@ -7069,13 +7396,15 @@
 }
 
 @media (max-width: 420px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 399px;
+        min-width: 399px;
     }
 }
 
 @media (max-width: 419px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 398px;
@@ -7083,13 +7412,15 @@
 }
 
 @media (max-width: 418px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 397px;
+        min-width: 397px;
     }
 }
 
 @media (max-width: 417px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 396px;
@@ -7097,13 +7428,15 @@
 }
 
 @media (max-width: 416px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 395px;
+        min-width: 395px;
     }
 }
 
 @media (max-width: 415px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 394px;
@@ -7111,13 +7444,15 @@
 }
 
 @media (max-width: 414px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 393px;
+        min-width: 393px;
     }
 }
 
 @media (max-width: 413px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 392px;
@@ -7125,13 +7460,27 @@
 }
 
 @media (max-width: 412px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 391px;
+        min-width: 391px;
+    }
+    .center_quancao_dienthoai{
+        height: 90px;
+    }
+    .center_quancao_dienthoai_quan{
+        height: 90px;
+    }
+    .slick-dots1 {
+        position: absolute;
+        bottom: -20px;
+        display: block;
+        width: 100%;
     }
 }
 
 @media (max-width: 411px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 390px;
@@ -7139,13 +7488,15 @@
 }
 
 @media (max-width: 410px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 389px;
+        min-width: 389px;
     }
 }
 
 @media (max-width: 409px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 388px;
@@ -7153,13 +7504,15 @@
 }
 
 @media (max-width: 408px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 387px;
+        min-width: 387px;
     }
 }
 
 @media (max-width: 407px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 386px;
@@ -7167,13 +7520,15 @@
 }
 
 @media (max-width: 406px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 385px;
+        min-width: 385px;
     }
 }
 
 @media (max-width: 405px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 384px;
@@ -7181,13 +7536,15 @@
 }
 
 @media (max-width: 404px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 383px;
+        min-width: 383px;
     }
 }
 
 @media (max-width: 403px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 382px;
@@ -7195,27 +7552,32 @@
 }
 
 @media (max-width: 402px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 381px;
+        min-width: 381px;
     }
 }
 
 @media (max-width: 401px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 380px;
     }
+
 }
 
 @media (max-width: 400px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 379px;
+        min-width: 379px;
     }
 }
 
 @media (max-width: 399px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 378px;
@@ -7223,13 +7585,15 @@
 }
 
 @media (max-width: 398px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 377px;
+        min-width: 377px;
     }
 }
 
 @media (max-width: 397px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 376px;
@@ -7237,13 +7601,15 @@
 }
 
 @media (max-width: 396px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 375px;
+        min-width: 375px;
     }
 }
 
 @media (max-width: 395px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 374px;
@@ -7251,13 +7617,15 @@
 }
 
 @media (max-width: 394px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 373px;
+        min-width: 373px;
     }
 }
 
 @media (max-width: 393px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 372px;
@@ -7265,13 +7633,15 @@
 }
 
 @media (max-width: 392px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 371px;
+        min-width: 371px;
     }
 }
 
 @media (max-width: 391px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 370px;
@@ -7279,13 +7649,15 @@
 }
 
 @media (max-width: 390px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 369px;
+        min-width: 369px;
     }
 }
 
 @media (max-width: 389px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 368px;
@@ -7293,13 +7665,15 @@
 }
 
 @media (max-width: 388px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 367px;
+        min-width: 367px;
     }
 }
 
 @media (max-width: 387px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 366px;
@@ -7307,13 +7681,15 @@
 }
 
 @media (max-width: 386px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 365px;
+        min-width: 365px;
     }
 }
 
 @media (max-width: 385px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 364px;
@@ -7321,13 +7697,15 @@
 }
 
 @media (max-width: 384px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 363px;
+        min-width: 363px;
     }
 }
 
 @media (max-width: 383px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 362px;
@@ -7335,13 +7713,15 @@
 }
 
 @media (max-width: 382px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 361px;
+        min-width: 361px;
     }
 }
 
 @media (max-width: 381px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 360px;
@@ -7349,13 +7729,15 @@
 }
 
 @media (max-width: 380px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 359px;
+        min-width: 359px;
     }
 }
 
 @media (max-width: 379px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 358px;
@@ -7363,13 +7745,15 @@
 }
 
 @media (max-width: 378px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 357px;
+        min-width: 357px;
     }
 }
 
 @media (max-width: 377px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 356px;
@@ -7377,13 +7761,15 @@
 }
 
 @media (max-width: 376px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 355px;
+        min-width: 355px;
     }
 }
 
 @media (max-width: 375px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 354px;
@@ -7391,13 +7777,15 @@
 }
 
 @media (max-width: 374px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 353px;
+        min-width: 353px;
     }
 }
 
 @media (max-width: 373px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 352px;
@@ -7405,13 +7793,15 @@
 }
 
 @media (max-width: 372px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 351px;
+        min-width: 351px;
     }
 }
 
 @media (max-width: 371px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 350px;
@@ -7419,13 +7809,15 @@
 }
 
 @media (max-width: 370px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 349px;
+        min-width: 349px;
     }
 }
 
 @media (max-width: 369px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 348px;
@@ -7433,13 +7825,15 @@
 }
 
 @media (max-width: 368px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 347px;
+        min-width: 347px;
     }
 }
 
 @media (max-width: 367px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 346px;
@@ -7447,13 +7841,15 @@
 }
 
 @media (max-width: 366px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 345px;
+        min-width: 345px;
     }
 }
 
 @media (max-width: 365px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 344px;
@@ -7461,13 +7857,74 @@
 }
 
 @media (max-width: 364px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 343px;
+        min-width: 343px;
     }
+    .slick-dots1 li {
+        position: relative;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 0 3px;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+    .slick-dots1 li button {
+        font-size: 0;
+        line-height: 0;
+        display: block;
+        width: 10px;
+        height: 10px;
+        padding: 5px;
+        cursor: pointer;
+        color: transparent;
+        border: 0;
+        outline: none;
+        background: transparent;
+    }
+    
+    .slick-dots1 li button:hover,
+    .slick-dots1 li button:focus {
+        outline: node;
+    }
+    
+    .slick-dots1 li button:hover:before,
+    .slick-dots1 li button:focus:before {
+        opacity: 1;
+    }
+    
+    .slick-dots1 li button::before {
+        font-family: 'slick';
+        font-size: 8px;
+        line-height: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 8px;
+        content: '.';
+        text-align: center;
+        border-radius: 5px;
+        background-color: #5f6061;
+        color: #000000;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .slick-dots1 li.slick-active button::before {
+        color: #2183E2;
+        background-color: #e14e40;
+        border-radius: 5px;
+        width: 10px;
+    }
+    
 }
 
 @media (max-width: 363px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 342px;
@@ -7475,13 +7932,15 @@
 }
 
 @media (max-width: 362px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 341px;
+        min-width: 341px;
     }
 }
 
 @media (max-width: 361px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 340px;
@@ -7489,13 +7948,15 @@
 }
 
 @media (max-width: 360px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 339px;
+        min-width: 339px;
     }
 }
 
 @media (max-width: 359px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 338px;
@@ -7503,13 +7964,15 @@
 }
 
 @media (max-width: 358px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 337px;
+        min-width: 337px;
     }
 }
 
 @media (max-width: 357px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 336px;
@@ -7517,13 +7980,15 @@
 }
 
 @media (max-width: 356px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 335px;
+        min-width: 335px;
     }
 }
 
 @media (max-width: 355px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 334px;
@@ -7531,13 +7996,21 @@
 }
 
 @media (max-width: 354px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 333px;
+        min-width: 333px;
+    }
+    .center_quancao_dienthoai{
+        height: 80px;
+    }
+    .center_quancao_dienthoai_quan{
+        height: 80px;
     }
 }
 
 @media (max-width: 353px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 332px;
@@ -7545,13 +8018,15 @@
 }
 
 @media (max-width: 352px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 331px;
+        min-width: 331px;
     }
 }
 
 @media (max-width: 351px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 330px;
@@ -7559,13 +8034,15 @@
 }
 
 @media (max-width: 350px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 329px;
+        min-width: 329px;
     }
 }
 
 @media (max-width: 349px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 328px;
@@ -7573,13 +8050,15 @@
 }
 
 @media (max-width: 348px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 327px;
+        min-width: 327px;
     }
 }
 
 @media (max-width: 347px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 326px;
@@ -7587,13 +8066,15 @@
 }
 
 @media (max-width: 346px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 325px;
+        min-width: 325px;
     }
 }
 
 @media (max-width: 345px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 324px;
@@ -7601,13 +8082,15 @@
 }
 
 @media (max-width: 344px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 323px;
+        min-width: 323px;
     }
 }
 
 @media (max-width: 343px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 322px;
@@ -7615,13 +8098,15 @@
 }
 
 @media (max-width: 342px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 321px;
+        min-width: 321px;
     }
 }
 
 @media (max-width: 341px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 320px;
@@ -7629,13 +8114,15 @@
 }
 
 @media (max-width: 340px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 319px;
+        min-width: 319px;
     }
 }
 
 @media (max-width: 339px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 318px;
@@ -7643,13 +8130,15 @@
 }
 
 @media (max-width: 338px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 317px;
+        min-width: 317px;
     }
 }
 
 @media (max-width: 337px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 316px;
@@ -7657,13 +8146,15 @@
 }
 
 @media (max-width: 336px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 315px;
+        min-width: 315px;
     }
 }
 
 @media (max-width: 335px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 314px;
@@ -7671,13 +8162,15 @@
 }
 
 @media (max-width: 334px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 313px;
+        min-width: 313px;
     }
 }
 
 @media (max-width: 333px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 312px;
@@ -7685,13 +8178,15 @@
 }
 
 @media (max-width: 332px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 311px;
+        min-width: 311px;
     }
 }
 
 @media (max-width: 331px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 310px;
@@ -7699,13 +8194,15 @@
 }
 
 @media (max-width: 330px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 309px;
+        min-width: 309px;
     }
 }
 
 @media (max-width: 329px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 308px;
@@ -7713,13 +8210,15 @@
 }
 
 @media (max-width: 328px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 307px;
+        min-width: 307px;
     }
 }
 
 @media (max-width: 327px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 306px;
@@ -7727,13 +8226,15 @@
 }
 
 @media (max-width: 326px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 305px;
+        min-width: 305px;
     }
 }
 
 @media (max-width: 325px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 304px;
@@ -7741,13 +8242,15 @@
 }
 
 @media (max-width: 324px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 303px;
+        min-width: 303px;
     }
 }
 
 @media (max-width: 323px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 302px;
@@ -7755,13 +8258,15 @@
 }
 
 @media (max-width: 322px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 301px;
+        min-width: 301px;
     }
 }
 
 @media (max-width: 321px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 300px;
@@ -7769,13 +8274,15 @@
 }
 
 @media (max-width: 320px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 299px;
+        min-width: 299px;
     }
 }
 
 @media (max-width: 319px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 298px;
@@ -7783,13 +8290,15 @@
 }
 
 @media (max-width: 318px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 297px;
+        min-width: 297px;
     }
 }
 
 @media (max-width: 317px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 296px;
@@ -7797,13 +8306,15 @@
 }
 
 @media (max-width: 316px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 295px;
+        min-width: 295px;
     }
 }
 
 @media (max-width: 315px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 294px;
@@ -7811,13 +8322,15 @@
 }
 
 @media (max-width: 314px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 293px;
+        min-width: 293px;
     }
 }
 
 @media (max-width: 313px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 292px;
@@ -7825,13 +8338,15 @@
 }
 
 @media (max-width: 312px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 291px;
+        min-width: 291px;
     }
 }
 
 @media (max-width: 311px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 290px;
@@ -7839,13 +8354,15 @@
 }
 
 @media (max-width: 310px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 289px;
+        min-width: 289px;
     }
 }
 
 @media (max-width: 309px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 288px;
@@ -7853,13 +8370,15 @@
 }
 
 @media (max-width: 308px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 287px;
+        min-width: 287px;
     }
 }
 
 @media (max-width: 307px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 286px;
@@ -7867,13 +8386,15 @@
 }
 
 @media (max-width: 306px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 285px;
+        min-width: 285px;
     }
 }
 
 @media (max-width: 305px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 284px;
@@ -7881,13 +8402,15 @@
 }
 
 @media (max-width: 304px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 283px;
+        min-width: 283px;
     }
 }
 
 @media (max-width: 303px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 282px;
@@ -7895,13 +8418,15 @@
 }
 
 @media (max-width: 302px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 281px;
+        min-width: 281px;
     }
 }
 
 @media (max-width: 301px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 280px;
@@ -7909,13 +8434,15 @@
 }
 
 @media (max-width: 300px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 279px;
+        min-width: 279px;
     }
 }
 
 @media (max-width: 299px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 278px;
@@ -7923,27 +8450,37 @@
 }
 
 @media (max-width: 298px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 277px;
+        min-width: 277px;
     }
 }
 
 @media (max-width: 297px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 276px;
     }
+    .center_quancao_dienthoai{
+        height: 70px;
+    }
+    .center_quancao_dienthoai_quan{
+        height: 70px;
+    }
 }
 
 @media (max-width: 296px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 275px;
+        min-width: 275px;
     }
 }
 
 @media (max-width: 295px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 274px;
@@ -7951,13 +8488,15 @@
 }
 
 @media (max-width: 294px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 273px;
+        min-width: 273px;
     }
 }
 
 @media (max-width: 293px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 272px;
@@ -7965,13 +8504,15 @@
 }
 
 @media (max-width: 292px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 271px;
+        min-width: 271px;
     }
 }
 
 @media (max-width: 291px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 270px;
@@ -7979,13 +8520,15 @@
 }
 
 @media (max-width: 290px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 269px;
+        min-width: 269px;
     }
 }
 
 @media (max-width: 289px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 268px;
@@ -7993,13 +8536,15 @@
 }
 
 @media (max-width: 288px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 267px;
+        min-width: 267px;
     }
 }
 
 @media (max-width: 287px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 266px;
@@ -8007,13 +8552,15 @@
 }
 
 @media (max-width: 286px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 265px;
+        min-width: 265px;
     }
 }
 
 @media (max-width: 285px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 264px;
@@ -8021,13 +8568,15 @@
 }
 
 @media (max-width: 284px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 263px;
+        min-width: 263px;
     }
 }
 
 @media (max-width: 283px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 262px;
@@ -8035,13 +8584,15 @@
 }
 
 @media (max-width: 282px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 261px;
+        min-width: 261px;
     }
 }
 
 @media (max-width: 281px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 260px;
@@ -8049,13 +8600,15 @@
 }
 
 @media (max-width: 280px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 259px;
+        min-width: 259px;
     }
 }
 
 @media (max-width: 279px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 258px;
@@ -8063,13 +8616,15 @@
 }
 
 @media (max-width: 278px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 257px;
+        min-width: 257px;
     }
 }
 
 @media (max-width: 277px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 256px;
@@ -8077,13 +8632,15 @@
 }
 
 @media (max-width: 276px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 255px;
+        min-width: 255px;
     }
 }
 
 @media (max-width: 275px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 254px;
@@ -8091,13 +8648,15 @@
 }
 
 @media (max-width: 274px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 253px;
+        min-width: 253px;
     }
 }
 
 @media (max-width: 273px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 252px;
@@ -8105,13 +8664,15 @@
 }
 
 @media (max-width: 272px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 251px;
+        min-width: 251px;
     }
 }
 
 @media (max-width: 271px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 250px;
@@ -8119,13 +8680,15 @@
 }
 
 @media (max-width: 270px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 249px;
+        min-width: 249px;
     }
 }
 
 @media (max-width: 269px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 248px;
@@ -8133,13 +8696,15 @@
 }
 
 @media (max-width: 268px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 247px;
+        min-width: 247px;
     }
 }
 
 @media (max-width: 267px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 246px;
@@ -8147,13 +8712,15 @@
 }
 
 @media (max-width: 266px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 245px;
+        min-width: 245px;
     }
 }
 
 @media (max-width: 265px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 244px;
@@ -8161,13 +8728,15 @@
 }
 
 @media (max-width: 264px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 243px;
+        min-width: 243px;
     }
 }
 
 @media (max-width: 263px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 242px;
@@ -8175,13 +8744,15 @@
 }
 
 @media (max-width: 262px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 241px;
+        min-width: 241px;
     }
 }
 
 @media (max-width: 261px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 240px;
@@ -8189,27 +8760,95 @@
 }
 
 @media (max-width: 260px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 239px;
+        min-width: 239px;
     }
 }
 
 @media (max-width: 259px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 238px;
     }
+    .center_quancao_dienthoai{
+        height: 70px;
+    }
+    .center_quancao_dienthoai_quan{
+        height: 70px;
+    }
+    .slick-dots1 li {
+        position: relative;
+        display: inline-block;
+        width: 5px;
+        height: 10px;
+        margin: 0 3px;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+    .slick-dots1 li button {
+        font-size: 0;
+        line-height: 0;
+        display: block;
+        width: 5px;
+        height: 10px;
+        padding: 5px;
+        cursor: pointer;
+        color: transparent;
+        border: 0;
+        outline: none;
+        background: transparent;
+    }
+    
+    .slick-dots1 li button:hover,
+    .slick-dots1 li button:focus {
+        outline: node;
+    }
+    
+    .slick-dots1 li button:hover:before,
+    .slick-dots1 li button:focus:before {
+        opacity: 1;
+    }
+    
+    .slick-dots1 li button::before {
+        font-family: 'slick';
+        font-size: 8px;
+        line-height: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 8px;
+        content: '.';
+        text-align: center;
+        border-radius: 5px;
+        background-color: #5f6061;
+        color: #000000;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .slick-dots1 li.slick-active button::before {
+        color: #2183E2;
+        background-color: #e14e40;
+        border-radius: 5px;
+        width: 5px;
+    }
 }
 
 @media (max-width: 258px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 237px;
+        min-width: 237px;
     }
 }
 
 @media (max-width: 257px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 236px;
@@ -8217,13 +8856,15 @@
 }
 
 @media (max-width: 256px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 235px;
+        min-width: 235px;
     }
 }
 
 @media (max-width: 255px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 234px;
@@ -8231,13 +8872,15 @@
 }
 
 @media (max-width: 254px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 233px;
+        min-width: 233px;
     }
 }
 
 @media (max-width: 253px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 232px;
@@ -8245,13 +8888,15 @@
 }
 
 @media (max-width: 252px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 231px;
+        min-width: 231px;
     }
 }
 
 @media (max-width: 251px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 230px;
@@ -8259,13 +8904,15 @@
 }
 
 @media (max-width: 250px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 229px;
+        min-width: 229px;
     }
 }
 
 @media (max-width: 249px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 228px;
@@ -8273,13 +8920,15 @@
 }
 
 @media (max-width: 248px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 227px;
+        min-width: 227px;
     }
 }
 
 @media (max-width: 247px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 226px;
@@ -8287,13 +8936,15 @@
 }
 
 @media (max-width: 246px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 225px;
+        min-width: 225px;
     }
 }
 
 @media (max-width: 245px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 224px;
@@ -8301,13 +8952,15 @@
 }
 
 @media (max-width: 244px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 223px;
+        min-width: 223px;
     }
 }
 
 @media (max-width: 243px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 222px;
@@ -8315,13 +8968,15 @@
 }
 
 @media (max-width: 242px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 221px;
+        min-width: 221px;
     }
 }
 
 @media (max-width: 241px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 220px;
@@ -8329,13 +8984,15 @@
 }
 
 @media (max-width: 240px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 219px;
+        min-width: 219px;
     }
 }
 
 @media (max-width: 239px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 218px;
@@ -8343,13 +9000,15 @@
 }
 
 @media (max-width: 238px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 217px;
+        min-width: 217px;
     }
 }
 
 @media (max-width: 237px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 216px;
@@ -8357,13 +9016,15 @@
 }
 
 @media (max-width: 236px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 215px;
+        min-width: 215px;
     }
 }
 
 @media (max-width: 235px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 214px;
@@ -8371,13 +9032,15 @@
 }
 
 @media (max-width: 234px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 213px;
+        min-width: 213px;
     }
 }
 
 @media (max-width: 233px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 212px;
@@ -8385,13 +9048,15 @@
 }
 
 @media (max-width: 232px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 211px;
+        min-width: 211px;
     }
 }
 
 @media (max-width: 231px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 210px;
@@ -8399,13 +9064,15 @@
 }
 
 @media (max-width: 230px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 209px;
+        min-width: 209px;
     }
 }
 
 @media (max-width: 229px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 208px;
@@ -8413,13 +9080,15 @@
 }
 
 @media (max-width: 228px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 207px;
+        min-width: 207px;
     }
 }
 
 @media (max-width: 227px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 206px;
@@ -8427,13 +9096,15 @@
 }
 
 @media (max-width: 226px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 205px;
+        min-width: 205px;
     }
 }
 
 @media (max-width: 225px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 204px;
@@ -8441,13 +9112,15 @@
 }
 
 @media (max-width: 224px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 203px;
+        min-width: 203px;
     }
 }
 
 @media (max-width: 223px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 202px;
@@ -8455,13 +9128,15 @@
 }
 
 @media (max-width: 222px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 201px;
+        min-width: 201px;
     }
 }
 
 @media (max-width: 221px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 200px;
@@ -8469,13 +9144,15 @@
 }
 
 @media (max-width: 220px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 199px;
+        min-width: 199px;
     }
 }
 
 @media (max-width: 219px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 198px;
@@ -8483,13 +9160,15 @@
 }
 
 @media (max-width: 218px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 197px;
+        min-width: 197px;
     }
 }
 
 @media (max-width: 217px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 196px;
@@ -8497,13 +9176,15 @@
 }
 
 @media (max-width: 216px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 195px;
+        min-width: 195px;
     }
 }
 
 @media (max-width: 215px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 194px;
@@ -8511,13 +9192,15 @@
 }
 
 @media (max-width: 214px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 193px;
+        min-width: 193px;
     }
 }
 
 @media (max-width: 213px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 192px;
@@ -8525,13 +9208,15 @@
 }
 
 @media (max-width: 212px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 191px;
+        min-width: 191px;
     }
 }
 
 @media (max-width: 211px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 190px;
@@ -8539,13 +9224,15 @@
 }
 
 @media (max-width: 210px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 189px;
+        min-width: 189px;
     }
 }
 
 @media (max-width: 209px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 188px;
@@ -8553,13 +9240,15 @@
 }
 
 @media (max-width: 208px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 187px;
+        min-width: 187px;
     }
 }
 
 @media (max-width: 207px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 186px;
@@ -8567,13 +9256,15 @@
 }
 
 @media (max-width: 206px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 185px;
+        min-width: 185px;
     }
 }
 
 @media (max-width: 205px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 184px;
@@ -8581,13 +9272,15 @@
 }
 
 @media (max-width: 204px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 183px;
+        min-width: 183px;
     }
 }
 
 @media (max-width: 203px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 182px;
@@ -8595,13 +9288,15 @@
 }
 
 @media (max-width: 202px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 181px;
+        min-width: 181px;
     }
 }
 
 @media (max-width: 201px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 180px;
@@ -8609,13 +9304,15 @@
 }
 
 @media (max-width: 200px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 179px;
+        min-width: 179px;
     }
 }
 
 @media (max-width: 199px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 178px;
@@ -8623,13 +9320,15 @@
 }
 
 @media (max-width: 198px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 177px;
+        min-width: 177px;
     }
 }
 
 @media (max-width: 197px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 176px;
@@ -8637,13 +9336,15 @@
 }
 
 @media (max-width: 196px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 175px;
+        min-width: 175px;
     }
 }
 
 @media (max-width: 195px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 174px;
@@ -8651,13 +9352,15 @@
 }
 
 @media (max-width: 194px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 173px;
+        min-width: 173px;
     }
 }
 
 @media (max-width: 193px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 172px;
@@ -8665,13 +9368,15 @@
 }
 
 @media (max-width: 192px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 171px;
+        min-width: 171px;
     }
 }
 
 @media (max-width: 191px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 170px;
@@ -8679,13 +9384,15 @@
 }
 
 @media (max-width: 190px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 169px;
+        min-width: 169px;
     }
 }
 
 @media (max-width: 189px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 168px;
@@ -8693,13 +9400,15 @@
 }
 
 @media (max-width: 188px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 167px;
+        min-width: 167px;
     }
 }
 
 @media (max-width: 187px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 166px;
@@ -8707,13 +9416,15 @@
 }
 
 @media (max-width: 186px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 165px;
+        min-width: 165px;
     }
 }
 
 @media (max-width: 185px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 164px;
@@ -8721,13 +9432,15 @@
 }
 
 @media (max-width: 184px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 163px;
+        min-width: 163px;
     }
 }
 
 @media (max-width: 183px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 162px;
@@ -8735,13 +9448,15 @@
 }
 
 @media (max-width: 182px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 161px;
+        min-width: 161px;
     }
 }
 
 @media (max-width: 181px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 160px;
@@ -8749,13 +9464,15 @@
 }
 
 @media (max-width: 180px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 159px;
+        min-width: 159px;
     }
 }
 
 @media (max-width: 179px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 158px;
@@ -8763,13 +9480,15 @@
 }
 
 @media (max-width: 178px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 157px;
+        min-width: 157px;
     }
 }
 
 @media (max-width: 177px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 156px;
@@ -8777,13 +9496,15 @@
 }
 
 @media (max-width: 176px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 155px;
+        min-width: 155px;
     }
 }
 
 @media (max-width: 175px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 154px;
@@ -8791,13 +9512,15 @@
 }
 
 @media (max-width: 174px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 153px;
+        min-width: 153px;
     }
 }
 
 @media (max-width: 173px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 152px;
@@ -8805,13 +9528,15 @@
 }
 
 @media (max-width: 172px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 151px;
+        min-width: 151px;
     }
 }
 
 @media (max-width: 171px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
         width: 150px;
@@ -8819,8 +9544,9 @@
 }
 
 @media (max-width: 170px) {
+
     .center_quancao_dienthoai_quan,
     .center_quancao_dienthoai_quan img {
-        width: 149px;
+        min-width: 149px;
     }
 }

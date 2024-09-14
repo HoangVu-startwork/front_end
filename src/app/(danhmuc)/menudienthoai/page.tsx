@@ -5,6 +5,8 @@ import Head from "@/components/head/Headmenu";
 import Menuphone from "@/components/menuphone/Menuphone"
 import Dienthoai from "@/components/dienthoai/Quancaothuonghieu"
 import Danhmucdienthoai from "@/components/dienthoai/Danhmucdienthoai"
+import Nhucau from "@/components/dienthoai/Nhucaudienthoai"
+import Timkiemdienthoai from "@/components/dienthoai/Timkiemdienthoai"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -20,11 +22,11 @@ function page() {
       console.error("Error fetching token info:", error);
     }
   };
-  
+
   // useEffect(() => {
   //   const token = window.localStorage.getItem("token");
   //   console.log("token - api eee 00000000 -- " + token);
-  
+
   //   if (token && token.trim() !== "") {
   //     fetchTokenInfo();
   //   }
@@ -33,15 +35,22 @@ function page() {
 
   return (
     <div>
-        <div>
-            <Menuphone/>
-        </div>
-        <div>
-            <Dienthoai/>
-        </div>
-        <div>
-          <Danhmucdienthoai />
-        </div>
+      <div>
+        <Menuphone />
+      </div>
+      <div>
+        <Dienthoai />
+      </div>
+      <div>
+        <Danhmucdienthoai />
+      </div>
+      <div>
+        <Nhucau />
+      </div>
+      <div>
+        <Timkiemdienthoai />
+      </div>
+      <div>nlkn</div>
     </div>
   )
 }
