@@ -26,7 +26,7 @@
     max-width: 50px;
     min-height: 50px;
     margin: 4px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 .Canter_sanpham_css .Canter_sanpham_css_label .slick-list .slick-track .slick-slide.slick-activess {
     font-size: 12px;
@@ -49,7 +49,7 @@
     align-items: center;
     text-align: center;
     margin: 0 auto;
-    height: 400px;
+    height: 405px;
     border-radius: 0px 0px 0 0;
 }
 
@@ -58,13 +58,15 @@
     align-items: center;
     text-align: center;
     margin: 0 auto;
-    height: 400px;
+    height: 415px;
     border-radius: 5px 5px 0 0;
 }
 
+
 .Canter_sanpham_css .Canter_sanpham_css_label {
-    margin-left: -9px;
-    margin-right: -9px;
+    margin-left: 1px;
+    margin-right: 1px;
+    width: 100%;
 }
 
 .Canter_sanpham_css .Canter_sanpham_css_label .label_css {

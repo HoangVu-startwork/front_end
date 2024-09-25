@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -63,6 +63,7 @@ const Loaidienthoai = [
 const Dungluongram = [
     { label: '2GB', value: '2' },
     { label: '4GB', value: '4' },
+    { label: '6GB', value: '6' },
     { label: '8GB', value: '8' },
     { label: '12GB', value: '12' },
     { label: '16GB', value: '16' },
@@ -129,34 +130,34 @@ const Thietbidikem = [
 function Timkiemdienthoai() {
     var img = "https://res.cloudinary.com/du6ybb3by/image/upload/v1724251968/ngvixu1bdkmncuq7dfuu.svg";
     const [selectedChipxuli, setSelectedChipxuli] = useState([]);
-    const [selectedvalueChipxuli, setvalueSelectedChipxuli] = useState([]);
+    const [selectedvalueChipxuli, setvalueSelectedChipxuli] = useState(null);
 
     const [selectLoaidienthoai, setSelectLoaidienthoai] = useState([]);
-    const [selectvalueLoaidienthoai, setSelectvalueLoaidienthoai] = useState([]);
+    const [selectvalueLoaidienthoai, setSelectvalueLoaidienthoai] = useState(null);
 
     const [selectDungluongram, setSelectDungluongram] = useState([]);
-    const [selectvalueDungluongram, setSelectvalueDungluongram] = useState([]);
+    const [selectvalueDungluongram, setSelectvalueDungluongram] = useState(null);
 
     const [selectBonhotrong, setSelectBonhotrong] = useState([]);
-    const [selectvalueBonhotrong, setSelectvalueBonhotrong] = useState([]);
+    const [selectvalueBonhotrong, setSelectvalueBonhotrong] = useState(null);
 
     const [selectTinhnangdacbiet, setSelectTinhnangdacbiet] = useState([]);
-    const [selectvalueTinhnangdacbiet, setSelectvalueTinhnangdacbiet] = useState([]);
+    const [selectvalueTinhnangdacbiet, setSelectvalueTinhnangdacbiet] = useState(null);
 
     const [selectTinhnangcamera, setSelectTinhnangcamera] = useState([]);
-    const [selectvalueTinhnangcamera, setSelectvalueTinhnangcamera] = useState([]);
+    const [selectvalueTinhnangcamera, setSelectvalueTinhnangcamera] = useState(null);
 
     const [selectTansoquet, setSelectTansoquet] = useState([]);
-    const [selectvalueTansoquet, setSelectvalueTansoquet] = useState([]);
+    const [selectvalueTansoquet, setSelectvalueTansoquet] = useState(null);
 
     const [selectKichthuocmanhinh, setSelectKichthuocmanhinh] = useState([]);
-    const [selectvalueKichthuocmanhinh, setSelectvalueKichthuocmanhinh] = useState([]);
+    const [selectvalueKichthuocmanhinh, setSelectvalueKichthuocmanhinh] = useState(null);
 
     const [selectKieumanghinh, setSelectKieumanghinh] = useState([]);
-    const [selectvalueKieumanghinh, setSelectvalueKieumanghinh] = useState([]);
+    const [selectvalueKieumanghinh, setSelectvalueKieumanghinh] = useState(null);
 
     const [selectThietbidikem, setSelectThietbidikem] = useState([]);
-    const [selectvalueThietbidikem, setSelectvalueThietbidikem] = useState([]);
+    const [selectvalueThietbidikem, setSelectvalueThietbidikem] = useState(null);
 
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
@@ -173,6 +174,8 @@ function Timkiemdienthoai() {
     const [showSearch, setShowSearch] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [data, setData] = useState([]);
+    const [giaTu, setgiamin] = useState('');
+    const [giaDen, setgiamax] = useState('');
 
     const LoaidienthoaiList = new Map(Loaidienthoai.map(loaidienthoai => [loaidienthoai.value, loaidienthoai.label]));
     const chipMap = new Map(Chipxuli.map(chip => [chip.value, chip.label]));
@@ -193,6 +196,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setvalueSelectedChipxuli(value.join(','))
+        setCurrentPage(0);
     };
 
     const handleLoaidienthoai = (event) => {
@@ -203,6 +207,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueLoaidienthoai(value.join(','))
+        setCurrentPage(0);
     };
 
     const handleRam = (event) => {
@@ -213,6 +218,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueDungluongram(value.join(','))
+        setCurrentPage(0);
     };
 
     const handleBonho = (event) => {
@@ -223,6 +229,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueBonhotrong(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleTinhnangdacbiet = (event) => {
@@ -233,6 +240,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueTinhnangdacbiet(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleTinhnangcamera = (event) => {
@@ -243,6 +251,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueTinhnangcamera(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleTansoquet = (event) => {
@@ -253,6 +262,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueTansoquet(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleKichthuocmanhinh = (event) => {
@@ -263,6 +273,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueKichthuocmanhinh(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleKieumanghinh = (event) => {
@@ -273,6 +284,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueKieumanghinh(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleThietbidikem = (event) => {
@@ -283,6 +295,7 @@ function Timkiemdienthoai() {
             typeof value === 'string' ? value.split(',') : value
         );
         setSelectvalueThietbidikem(value.join(','))
+        setCurrentPage(0);
     }
 
     const handleChange2 = (event, newValue) => {
@@ -293,16 +306,22 @@ function Timkiemdienthoai() {
 
     const handleSearchClick = () => {
         console.log(`Giá min: ${value2[0]}, Giá max: ${value2[1]}`);
+        setgiamin(`${value2[0]}`)
+        setgiamax(`${value2[1]}`)
         setShowSearch(false);
         setAnchorEl(null); // Đóng Popover sau khi nhấn tìm kiếm
+        setCurrentPage(0);
     };
 
     const handleClearClick = () => {
         const newValues = [MIN, MAX];
         setValue2(newValues);
         setSelectedOption(`${newValues[0]} - ${newValues[1]}`);
+        setgiamin(`${newValues[0]}`)
+        setgiamax(`${newValues[1]}`)
         setShowSearch(false);
         setAnchorEl(null); // Đóng Popover sau khi nhấn đóng
+        setCurrentPage(0);
     };
 
     const handleSelectOpen = (event) => {
@@ -311,15 +330,6 @@ function Timkiemdienthoai() {
 
     const handleSelectClose = () => {
         setAnchorEl(null);
-    };
-
-    const fetchdienthoai = async () => {
-        try {
-            const data = await ServiceDienthoai.getDienthoai();
-            setData(data)
-        } catch (error) {
-            console.error("Error fetching token info:", error);
-        }
     };
 
     const getDanhgia = async () => {
@@ -413,6 +423,34 @@ function Timkiemdienthoai() {
         setLoadingDangnhap(false);
     };
 
+    const filters = useMemo(() => ({
+        ram: selectvalueDungluongram,
+        giaTu: giaTu,
+        giaDen: giaDen,
+        hedieuhanh: selectvalueLoaidienthoai,
+        boNho: selectvalueBonhotrong,
+        tinhnangdacbiet: selectvalueTinhnangdacbiet,
+        kichthuocmanhinh: selectvalueKichthuocmanhinh,
+        tinhnagcamera: selectvalueTinhnangcamera,
+        tansoquet: selectvalueTansoquet,
+        kieumanhinh: selectvalueKieumanghinh,
+        thietbidikem: selectvalueThietbidikem,
+        chipset: selectedvalueChipxuli,
+        // Các tham số khác cũng có thể được thêm vào đây
+    }), [selectvalueDungluongram, giaTu, giaDen, selectvalueLoaidienthoai, selectvalueBonhotrong, selectvalueTinhnangdacbiet,
+        selectvalueKichthuocmanhinh, selectvalueTinhnangcamera, selectvalueTansoquet, selectvalueKieumanghinh, selectvalueThietbidikem, selectedvalueChipxuli
+    ]);
+    
+
+    const fetchdienthoai = async (filters) => {
+        try {
+            const data = await ServiceDienthoai.getTimkiemdienthoai(filters);
+            setData(data)
+        } catch (error) {
+            console.error("Error fetching token info:", error);
+        }
+    };
+
     useEffect(() => {
         const timestampStr = window.localStorage.getItem("exp");
         const token = window.localStorage.getItem("token");
@@ -443,17 +481,17 @@ function Timkiemdienthoai() {
             fetchYeuthich();
         }
         getDanhgia();
-        fetchdienthoai();
+        fetchdienthoai(filters);
         setIsMounted(true);
-    }, [datacode]);
-
-    useEffect(() => {
-        console.log(selectvalueLoaidienthoai);
-    }, [selectvalueLoaidienthoai, chipMap]);
+        // console.log(giamin);
+        // console.log(giamax);
+        // console.log(selectedvalueChipxuli);
+    }, [datacode, filters]);
 
 
     return (
         <div>
+            {successMessage && <div className="success-message">{successMessage}</div>}
             {isLoading && <div className="loading-overlay"><Loading /></div>}
             {isLoadingDangnhap && <div className="loading-overlay"><Dangnhap nurfelse={handleCloseDangnhap} /></div>}
             <div className='tieuchi'>Chọn theo tiêu chí</div>
@@ -834,9 +872,9 @@ function Timkiemdienthoai() {
                 })}
             </div>
             <div className="pagination-controls flex pl-0 list-none rounded my-2 mt-3">
-                <button className='relative block py-2 px-3 leading-tight bg-white border border-gray-300 text-blue-700 rounded-r hover:bg-gray-200' onClick={handlePrevPage} disabled={currentPage === 0}>Previous</button>
-                <span className='ml-1 mr-1 relative block py-2 px-3 leading-tight'><span className=''>Page</span> {currentPage + 1} <span>of</span> {totalPages}</span>
-                <button className='relative block py-2 px-3 leading-tight bg-white border border-gray-300 text-blue-700 rounded-r hover:bg-gray-200' onClick={handleNextPage} disabled={currentPage === totalPages - 1}>Next</button>
+                <button className='pagination-controls-pre relative block py-2 px-3 leading-tight bg-white border border-gray-300 text-blue-700 rounded-r hover:bg-gray-200' onClick={handlePrevPage} disabled={currentPage === 0}>Sau</button>
+                <span className='pagination-controls-text ml-1 mr-1 relative block py-2 px-3 leading-tight'><span className=''>Trang</span> {currentPage + 1} <span>tổng</span> {totalPages}</span>
+                <button className='pagination-controls-nex relative block py-2 px-3 leading-tight bg-white border border-gray-300 text-blue-700 rounded-r hover:bg-gray-200' onClick={handleNextPage} disabled={currentPage === totalPages - 1}>Tiếp</button>
             </div>
         </div>
     );

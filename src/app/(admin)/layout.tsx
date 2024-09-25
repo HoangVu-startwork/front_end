@@ -1,10 +1,13 @@
-import React from 'react'
-import Navbar from "@/components/navbar/Navbar";
+import React, { ReactNode } from 'react';
 
-export default function AuthenticateLayout({ children,}: Readonly<{ children: React.ReactNode; }>) {
-  return (
-    <div>
-        {children}
-    </div>
-  )
+interface AuthenticateLayoutProps {
+  children: ReactNode;
 }
+
+const AuthenticateLayout: React.FC<AuthenticateLayoutProps> = ({ children }) => {
+  return (
+    <div>{children}</div>
+  );
+}
+
+export default AuthenticateLayout;

@@ -159,27 +159,6 @@ export default function Dienthoai() {
                 window.localStorage.removeItem("token");
                 window.localStorage.removeItem("exp");
             }
-
-            // Định dạng ngày giờ
-            // const formattedDate = date.toLocaleString("vi-VN", {
-            //     timeZone: "Asia/Ho_Chi_Minh",
-            //     year: "numeric",
-            //     month: "2-digit",
-            //     day: "2-digit",
-            //     hour: "2-digit",
-            //     minute: "2-digit",
-            //     second: "2-digit",
-            // });
-            // // Định dạng ngày giờ theo giờ Việt Nam
-            // const formattedDatet = currentDate.toLocaleString("vi-VN", {
-            //     timeZone: "Asia/Ho_Chi_Minh",
-            //     year: "numeric",
-            //     month: "2-digit",
-            //     day: "2-digit",
-            //     hour: "2-digit",
-            //     minute: "2-digit",
-            //     second: "2-digit",
-            // });
         } else {
             window.localStorage.removeItem("token");
             window.localStorage.removeItem("exp");
@@ -338,7 +317,7 @@ function YeuThichItem({ isFavorite, onClickAdd, onClickRemove, isLoading }) {
             onClick={isLoading ? null : (isFavorite ? onClickRemove : onClickAdd)} // Vô hiệu hóa click khi đang loading
         >
             <p>
-                {isLoading ? 'Đang xử lý...' : 'Yêu thích'}
+                {isLoading ? 'Đang xử lý...' : ''}
                 {hover
                     ? <FavoriteRoundedIcon className="fa-heart-o" />
                     : (isFavorite ? <FavoriteRoundedIcon className="fa-heart-o" /> : <FavoriteBorderRoundedIcon className="fa-heart-o" />)
