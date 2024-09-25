@@ -429,3 +429,74 @@
         margin-left: 70px;
     }
 }
+
+@media (max-width: 280px) {
+    .sanpham-featured-product {
+        height: 310px;
+    }
+
+    .sanpham-featured-product .img_sanpham {
+        width: 80%;
+        height: 90%;
+    }
+
+    .yeuthich-sanpham {
+        height: 25px;
+        position: absolute;
+        bottom: 1px;
+        /* Cách đáy khung 1px */
+        right: 1px;
+        margin-left: auto;
+        display: block;
+        width: 105px;
+    }
+
+    .yeuthich-sanpham p span {
+        display: none;
+    }
+
+    .yeuthich-sanpham p {
+        display: flex;
+        padding-top: 2px;
+        font-weight: 600;
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 284px) {
+    .pagination-controls-pre{
+        height: 30px;
+        line-height: 15px;
+        font-size: 12px;
+    }
+    .pagination-controls-text{
+        font-size: 12px;
+    }
+    .pagination-controls-nex {
+        height: 30px;
+        line-height: 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 240px) {
+    .pagination-controls-pre{
+        height: 20px;
+        line-height: 5px;
+        font-size: 10px;
+    }
+    .pagination-controls-text{
+        font-size: 10px;
+        margin-top: -4px;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .pagination-controls-nex {
+        height: 20px;
+        line-height: 5px;
+        font-size: 10px;
+    }
+    .sanpham-featured-product {
+        height: 290px;
+    }
+}

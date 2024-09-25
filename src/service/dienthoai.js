@@ -51,9 +51,17 @@ const Dienthoai = {
     }
   },
 
-  getTimkiemdienthoai: async () => {
+  getTimkiemdienthoai: async (filters) => {
     try {
-      const response = await api.get(`dienthoai/${id}/mausac/${mausacId}`);
+      const params = new URLSearchParams();
+      Object.keys(filters).forEach(key => {
+        if (filters[key] !== null && filters[key] !== undefined) {
+          params.append(key, filters[key]);
+        } else {
+          params.append(key, '');
+        }
+      });
+      const response = await api.get(`dienthoai/filter?${params.toString()}`);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -63,6 +71,20 @@ const Dienthoai = {
       }
     }
   },
+
+  getThongtinphanloai: async (id) => {
+    try {
+      const response = await api.get(`dienthoai/thongtinphanloai/${id}`);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
+
 }
 
 export default Dienthoai;

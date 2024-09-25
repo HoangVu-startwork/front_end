@@ -1,6 +1,16 @@
 import axios from "axios";
 
 // Create initial axios instance without Authorization header
+const apiHost = process.env.NEXT_PUBLIC_API_HOST.replace(/^https?:\/\//, '');
+
+// Create initial axios instance without Authorization header
+// const api = axios.create({
+//   baseURL: `https://${apiHost}`, // Ensure the protocol is included
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
+
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_HOST.replace('https', 'http'),
   headers: {
@@ -9,13 +19,13 @@ const api = axios.create({
 });
 
 api.interceptors.response.use(
-  response => response, // Trả về response nếu không có lỗi
+  response => response, // Return response if no error
   error => {
-    if (error.response.status === 401) {
-      // Xóa token khỏi localStorage
+    if (error.response && error.response.status === 401) {
+      // Remove token from localStorage
       window.localStorage.removeItem("token");
-      // Có thể điều hướng người dùng đến trang đăng nhập
-      console.log("Token")
+      // Optionally redirect to the login page
+      console.log("Token expired. Redirecting to login."); // Adjust the path as needed
     }
     return Promise.reject(error);
   }

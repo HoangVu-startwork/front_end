@@ -243,13 +243,13 @@
     position: relative;
 }
 .yeuthich{
-    height: 25px;
+    height: 29px;
     position: absolute;
     bottom: 1px; /* Cách đáy khung 1px */
     right: 1px;
     margin-left: auto; 
     display: block;
-    width: 105px;
+    width: 35px;
 }
 .yeuthich p{
     display: flex;

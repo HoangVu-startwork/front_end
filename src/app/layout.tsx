@@ -28,32 +28,64 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const isSingupPage = pathname === '/singup' || pathname === '/signin';;
+  const isSingupPage = pathname === '/singup' || pathname === '/signin' || pathname === '/admin';
 
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
-        <div className='Home'>
+        {/* <div className='Home'>
           {!isSingupPage && <Navbar />}
           <section className="content">
+            <div id="page_loader">
+              <div id="left" style={{ height: 800, width: 140 }}>
+                {!isSingupPage && <Image className="image" src={image} alt="Left Image" layout="responsive" width={180} height={800} />}
+              </div>
+            </div>
+
+            {pathname === '/admin' ? (
+              <div id="center-admin">
+                {children}
+              </div>
+            ) : (
+              <div id="center">
+                {children}
+              </div>
+            )}
+
+            <div id="page_loader">
+              <div id="right" style={{ height: 800, width: 140 }}>
+                {!isSingupPage && <Image className="img" src={img} alt="Right Image" layout="responsive" width={180} height={800} />}
+              </div>
+            </div>
+          </section>
+        </div> */}
+        {pathname === '/admin' ? (
+          <div id="center-admin">
+            {children}
+          </div>
+        ) : (
+          <div className='Home'>
+            {!isSingupPage && <Navbar />}
+            <section className="content">
               <div id="page_loader">
                 <div id="left" style={{ height: 800, width: 140 }}>
-                {!isSingupPage &&<Image className="image" src={image} alt="Left Image" layout="responsive" width={180} height={800} />}
+                  {!isSingupPage && <Image className="image" src={image} alt="Left Image" layout="responsive" width={180} height={800} />}
                 </div>
               </div>
-         
-            <div id="center" >
-              {children}
-            </div>
-        
+
+
+                <div id="center">
+                  {children}
+                </div>
+
               <div id="page_loader">
                 <div id="right" style={{ height: 800, width: 140 }}>
-                {!isSingupPage && <Image className="img" src={img} alt="Right Image" layout="responsive" width={180} height={800} />}
+                  {!isSingupPage && <Image className="img" src={img} alt="Right Image" layout="responsive" width={180} height={800} />}
                 </div>
               </div>
-        
-          </section>
-        </div>
+            </section>
+          </div>
+        )}
       </body>
     </html>
   );

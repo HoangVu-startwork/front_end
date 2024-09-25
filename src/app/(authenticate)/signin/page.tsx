@@ -109,8 +109,15 @@ export default function page() {
       const response = await Auth.signin(email, password);
       if (response) {
         window.localStorage.setItem("token", response.result?.token);
-        window.localStorage.setItem("exp", response.result?.exp); 
-        window.location.href = "/";
+        window.localStorage.setItem("exp", response.result?.exp);
+        if (response.result?.scope === 'ROLE_ADMIN') {
+          window.localStorage.setItem("tokenadmin", response.result?.token);
+          window.location.href = "/admin";
+        } else {
+          window.location.href = "/";
+        }
+
+        console.log(response)
       } else {
         console.error("Failed to create user");
       }
