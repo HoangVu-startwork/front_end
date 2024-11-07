@@ -4,14 +4,17 @@ import Head from 'next/head';
 import { CIcon } from '@coreui/icons-react';
 import { cilAppsSettings, cilStorage, cilBank, cilSpreadsheet, cilShieldAlt, cilApple, cilBurn, cilAperture, cilArrowThickFromBottom, cilTruck, cilMemory } from '@coreui/icons';
 import { Helmet } from 'react-helmet';
-import ThemDt from './components/ThemDt'
+import ThemDt from './components/Dienthoai/Datadienthoai'
 import Danhmuc from './components/Mucluc/Danhuc'
 import khuyenmai from './components/Khuyenmai'
 import Tongdl from './components/Tongdl'
 import Themmucluc from './components/Mucluc/Themmucluc'
 import Hedieuhanh from './components/Mucluc/Hedieuhanh'
 import LoaisanphamDt from './components/Mucluc/Loaisanphamdt'
+import Thongtinphanloai from './components/Mucluc/Thongtinphanloai'
 import Auth from '@/service/auth'
+
+import Themdienthoai from './components/Dienthoai/Themdienthoai'
 import Link from 'next/link'
 
 const Page = () => {
@@ -99,7 +102,6 @@ const Page = () => {
                   className="mb-3 p-1 rounded-md flex items-center justify-center bg-blue-400 cursor-pointer"
                   onClick={() => {
                     setOpenMenu(openMenu !== 4 ? 4 : null);
-                    setActiveSection('themhedieuhanh');
                   }}
                 >
                   <CIcon className='text-white' icon={cilStorage} size="xl" />
@@ -108,7 +110,6 @@ const Page = () => {
                   className="mb-3 p-1 rounded-md flex items-center justify-center bg-blue-400 cursor-pointer"
                   onClick={() => {
                     setOpenMenu(openMenu !== 1 ? 1 : null);
-                    setActiveSection('dashboard');
                   }}
                 >
                   <CIcon className='text-white' icon={cilApple} size="xl" />
@@ -144,10 +145,10 @@ const Page = () => {
                   }`}
                 onClick={() => setActiveSection('dashboard')}
               >
-                <CIcon className='text-indigo-600 size-6' icon={cilAppsSettings} size="xl" />
+                <CIcon className='text-indigo-600 size-6' icon={cilAppsSettings} size="xl" onClick={() => setActiveSection('dashboard')}/>
                 <p className="text-xs mt-1 text-center font-semibold">Dashboard</p>
               </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themdulieu')}>
+              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themdulieudienthoai')}>
                 <CIcon className='text-indigo-600 size-6' icon={cilArrowThickFromBottom} size="xl" />
                 <p className="text-xs mt-1 text-center font-semibold">Thêm ĐT</p>
               </div>
@@ -231,16 +232,12 @@ const Page = () => {
                 <p className="text-xs mt-1 text-center font-semibold">Thêm danh muc</p>
               </div>
               <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themloaisanpham')}>
-                <CIcon className='text-indigo-600 size-6' icon={cilTruck} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Thêm loại ĐT</p>
+                <CIcon className='text-indigo-600 size-6' icon={cilArrowThickFromBottom} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Thêm loại sản phẩm</p>
               </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilMemory} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Thông số kỹ thuật</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilShieldAlt} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Tình trang máy</p>
+              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themthongtinphanloai')}>
+                <CIcon className='text-indigo-600 size-6' icon={cilArrowThickFromBottom} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Thông tin phân loại</p>
               </div>
             </div>
           </div>
@@ -249,13 +246,14 @@ const Page = () => {
           <main className="relative z-0 flex-1 pb-8 px-6 bg-white">
             {activeSection === 'tongso' && <Tongdl />}
             {activeSection === 'dashboard' && <ThemDt />}
-            {activeSection === 'themdulieu' && <ThemDt />}
+            {activeSection === 'themdulieudienthoai' && <Themdienthoai />}
 
             {/* Mục lục */}
             {activeSection === 'themhedieuhanh' && <Hedieuhanh />}
             {activeSection === 'themmucluc' && <Themmucluc />}
             {activeSection === 'themdanhmuc' && <Danhmuc />}
             {activeSection === 'themloaisanpham' && <LoaisanphamDt/>}
+            {activeSection === 'themthongtinphanloai' && <Thongtinphanloai />}
           </main>
         </div>
       </div>

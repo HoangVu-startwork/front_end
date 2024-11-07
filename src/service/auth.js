@@ -44,7 +44,7 @@ const Auth = {
       if (error.response && error.response.status === 401) {
         console.log("Unauthorized access. Please login again.");
       }
-      if (error.response && error.response.data) {
+      if (error.response && error.response.data && error.response == 404) {
         // throw error.response.data;
       } else {
         throw new Error("Error during signin");

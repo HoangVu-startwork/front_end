@@ -32,7 +32,6 @@ function Themmucluc() {
     try {
       const datamucluc = await Mucluc.getMucluc();
       setshowMucluc(datamucluc);
-      console.log(datamucluc);
       setLoading(false); // Tắt loading ngay khi dữ liệu được trả về
     } catch {
       setSuccessMessage('Không truy vấn được dữ liệu');

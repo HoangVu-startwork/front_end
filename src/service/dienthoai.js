@@ -85,6 +85,58 @@ const Dienthoai = {
     }
   },
 
+  postdienthoai: async (tendienthoai, giaban, selectram, thongtinphanloai, selectbonhotrong, hinhanhdienthoais, hinhdanhduyet, tinhtrangs) => {
+    try {
+      const token = window.localStorage.getItem("tokenadmin");
+      const config = {};
+      if (token) {
+        config.headers = { 'Authorization': `Bearer ${token}` }
+      }
+      const response = await api.post(`/dienthoai`, {
+        tensanpham: tendienthoai,
+        hinhanh: hinhanhdienthoais,
+        hinhanhduyet: hinhdanhduyet,
+        ram: selectram,
+        bonho: selectbonhotrong,
+        giaban: giaban,
+        tenphanloai: thongtinphanloai,
+        tinhtrang: tinhtrangs,
+      }, config);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log(error.response.data);
+        throw error.response.data;
+      }
+      if (error.response && error.response.data && error.response == 404) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
+  // chỉnh sửa admin
+  getadmindienthoai: async (filters) => {
+    try {
+      const params = new URLSearchParams();
+      Object.keys(filters).forEach(key => {
+        if (filters[key] !== null && filters[key] !== undefined) {
+          params.append(key, filters[key]);
+        } else {
+          params.append(key, '');
+        }
+      });
+      const response = await api.get(`dienthoai/dienthoai-filter?${params.toString()}`);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
+
 }
 
 export default Dienthoai;

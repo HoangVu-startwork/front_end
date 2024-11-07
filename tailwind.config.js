@@ -1,6 +1,4 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -25,13 +23,12 @@ const config: Config = {
         'max-800': { 'max': '850px' },
         'custom-900': '900px',
         lg: '1180px',
-        '980': '980px',  // Kích thước màn hình dưới 980px
-        '900': '900px',  // Kích thước màn hình dưới 900px
-        '700': '700px',  // Kích thước màn hình dưới 700px
+        '980': '980px',
+        '900': '900px',
+        '700': '700px',
         '1040': '1040px'
       },
       gridTemplateColumns: {
-        // Tùy chỉnh số cột theo breakpoint
         '2': 'repeat(2, minmax(0, 1fr))',
         '3': 'repeat(3, minmax(0, 1fr))',
         '4': 'repeat(4, minmax(0, 1fr))',
@@ -44,4 +41,3 @@ const config: Config = {
     require('flowbite/plugin')
   ],
 };
-export default config;

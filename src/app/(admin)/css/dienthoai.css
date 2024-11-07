@@ -1,0 +1,325 @@
+.success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 999999;
+}
+
+.loading-anh {
+    position: fixed;
+    top: 5%;
+    left: 30%;
+    width: auto;
+    max-width: 50%;
+    height: auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+
+}
+
+.xemanh {
+    margin-left: 2px;
+}
+
+.img-dienthoai {
+    float: left;
+    width: 70px;
+    margin: 1px;
+}
+
+.img-danhmuc {
+    float: left;
+    max-width: 20%;
+    margin: 2px;
+}
+
+.mausac-an {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    font-size: 1.5rem;
+}
+
+.khuenmai-data {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    font-size: 1.5rem;
+}
+
+.loading-khuenmai {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    font-size: 1.5rem;
+}
+
+.loading-mausac {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: auto;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    font-size: 1.5rem;
+}
+
+.themmausac {
+    margin-top: 5px;
+}
+
+.loading-themmausac {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+}
+
+.textthemmausac {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 800;
+    color: #05f6de;
+}
+
+.button-themmausac {
+    margin-top: 5px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.trangthaitinhtrang {
+    margin-left: 15px;
+}
+
+.khuyenmai-p {
+    margin: 5px;
+}
+
+.ngaybatdau {
+    margin-left: 15px;
+}
+
+.ngayketthuc {
+    margin-top: 2rem;
+    margin-left: 15px;
+}
+
+.clo-p {
+    color: #f10808;
+    font-weight: 700;
+}
+
+.noidung {
+    margin-top: 1.3rem;
+    margin-left: 15px;
+    word-wrap: break-word;
+    /* Allows long text to wrap within the container */
+    overflow-wrap: break-word;
+    white-space: normal;
+    /* Ensures text wraps to the next line if needed */
+}
+
+.clo-noidung {
+    line-height: 1.3em;
+    /* Adjust line-height for spacing between lines */
+}
+
+.khuyenmai-button {
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-chinhsuakhuenmai {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #3e4040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.loading-chinhsuakhuenmais {
+    width: 70%;
+    margin-left: 50px;
+}
+
+.loading-thongsokythuat {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #3e4040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.loading-thongsokythuats {
+    width: 70%;
+    margin-left: 50px;
+}
+
+.loading-themthongsokythuat {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #3e4040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.loading-themthongsokythuats {
+    width: 70%;
+    margin-left: 50px;
+}
+
+.loading-overlay-khuyenmai {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #9fa2a1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-size: 1.5rem;
+}
+
+.loader {
+    border-top-color: #3498db;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-suathongsokythuat {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #2e40a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-size: 1.5rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.loading-suathongsokythuats {
+    width: 70%;
+    margin-left: 50px;
+}

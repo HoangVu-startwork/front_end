@@ -21,6 +21,26 @@ const hedieuhanh = {
         }
     },
 
+    putHedieuhanh: async (id, datahedieuhanh) => {
+        try {
+            const token = window.localStorage.getItem("tokenadmin");
+            const config = {};
+            if (token) {
+                config.headers = { 'Authorization': `Bearer ${token}` };
+            }
+            const response = await api.put(`/hedieuhanh/${id}`, {
+                tenhedieuhanh: datahedieuhanh
+            }, config);
+            return response.data.result;
+        } catch (error) {
+            if (error.response && error.response.data) {
+                throw error.response.data;
+            } else {
+                throw new Error("Error during signin");
+            }
+        }
+    },
+
 
     getHedieuhanh: async () => {
         try {
