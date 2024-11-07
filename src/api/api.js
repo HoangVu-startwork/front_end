@@ -26,6 +26,7 @@ api.interceptors.response.use(
       window.localStorage.removeItem("token");
       // Optionally redirect to the login page
       console.log("Token expired. Redirecting to login."); // Adjust the path as needed
+      
     }
     return Promise.reject(error);
   }

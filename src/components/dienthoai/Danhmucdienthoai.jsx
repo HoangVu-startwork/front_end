@@ -10,7 +10,7 @@ function Danhmucdienthoai() {
 
     const getdanhmuc = async () => {
         try {
-            const response = await Danhmuc.getAlldanhmuc();
+            const response = await Danhmuc.getAlldanhmucdienthoai();
             setDanhmuc(response.result)
         } catch (error) {
             console.error("Error fetching token info:", error);

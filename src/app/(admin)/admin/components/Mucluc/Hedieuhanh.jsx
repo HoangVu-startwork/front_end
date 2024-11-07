@@ -10,17 +10,23 @@ function Hedieuhanh() {
   const [getMessage, setgetMessage] = useState('');
   const [showHedieuhanh, setshowHedieuhanh] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [hetdieuhanh, sethedieuhanh] = useState(false);
+  const [datahedieuhanh, setdatahedieuhanh] = useState("")
 
   const themHedieuhanh = async () => {
     try {
-      const data = await apiHedieuhanh.postHedieuhanh(tenhedieuhanh)
-      setSuccessMessage('Thêm vào mục lục thành công')
-      setHedieuhanh('')
+      if (!tenhedieuhanh) {
+        setSuccessMessage("Không thể để trống");
+      } else {
+        const data = await apiHedieuhanh.postHedieuhanh(tenhedieuhanh)
+        setSuccessMessage('Thêm hệ điều hành thành công')
+        setHedieuhanh('')
         setLoading(false);
         setSuccessMessage('');
         getHedieuhanh();
+      }
     } catch {
-      setSuccessMessage('Thêm vào mục lục không thành công')
+      setSuccessMessage('Thêm hệ điều hành không thành công')
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000)
@@ -32,16 +38,15 @@ function Hedieuhanh() {
     try {
       const datahedieuhanh = await apiHedieuhanh.getHedieuhanh();
       setshowHedieuhanh(datahedieuhanh);
-      console.log(datahedieuhanh);
       setLoading(false); // Tắt loading ngay khi dữ liệu được trả về
     } catch {
       setSuccessMessage('Không truy vấn được dữ liệu');
       setTimeout(() => {
+        setSuccessMessage("")
         setLoading(false); // Tắt loading sau 5 giây nếu có lỗi
       }, 5000);
     }
   };
-  
 
   const deleteHedieuhanh = async (id) => {
     try {
@@ -60,6 +65,42 @@ function Hedieuhanh() {
   useEffect(() => {
     getHedieuhanh()
   }, [])
+
+
+  const handMohethong = async (id) => {
+    const hedieuhanh = showHedieuhanh.find(data => data.id === id);
+    setdatahedieuhanh(hedieuhanh.tenhedieuhanh)
+    sethedieuhanh(prev => ({ ...prev, [id]: true }));
+  }
+
+  const hanhdCapnhahethong = async (e) => {
+    setdatahedieuhanh(e.target.value)
+  }
+
+  const handTachethong = async () => {
+    sethedieuhanh(false)
+  }
+
+  const handCapnhat = async (id) => {
+    setLoading(true);
+    try {
+      const datahedieu = await apiHedieuhanh.putHedieuhanh(id, datahedieuhanh);
+      setSuccessMessage('Cập nhật dữ liệu thành công');
+      getHedieuhanh()
+      setTimeout(() => {
+        setSuccessMessage("")
+        setLoading(false); // Tắt loading sau 5 giây nếu có lỗi
+      }, 5000);
+    } catch {
+      setSuccessMessage('Không truy vấn được dữ liệu');
+      setTimeout(() => {
+        setSuccessMessage("")
+        setLoading(false); // Tắt loading sau 5 giây nếu có lỗi
+      }, 5000);
+    }
+  }
+
+
 
 
   return (
@@ -90,7 +131,7 @@ function Hedieuhanh() {
           </div>
 
           <div className="block w-full overflow-x-auto">
-          {loading && <div className="loading-overlay">Loading...</div>}
+            {loading && <div className="loading-overlay">Loading...</div>}
             <table className="items-center bg-transparent w-full border-collapse ">
               <thead>
                 <tr>
@@ -105,21 +146,53 @@ function Hedieuhanh() {
                   </th>
                 </tr>
               </thead>
-
               <tbody>
                 {showHedieuhanh.map((hedieuhanh) => {
                   return (
-                      <tr key={hedieuhanh.id}>
-                        <th className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                          {hedieuhanh.id}
-                        </th>
-                        <td className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                          {hedieuhanh.tenhedieuhanh}
-                        </td>
-                        <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                          <button onClick={() => deleteHedieuhanh(hedieuhanh.id)} className="px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Xoá</button>
-                        </td>
-                      </tr>
+                    <tr key={hedieuhanh.id}>
+                      <th className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                        {hedieuhanh.id}
+                      </th>
+                      <td className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                        {hedieuhanh.tenhedieuhanh}
+                      </td>
+                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {hetdieuhanh[hedieuhanh.id] && (
+                          <div className="loading-hethong">
+                            <div className='!z-5 relative loading-hethongs flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                              <div className='ml-auto'>
+                                <div className='relative flex'>
+                                  <div className="mb-3 text-right">
+                                    <button onClick={handTachethong} className="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                      </svg>
+                                    </button>
+                                  </div>
+                                  <div className='absolute top-11 right-0 z-10 w-max origin-top-right scale-0 transition-all duration-300 ease-in-out'>
+                                    <img className="aspect-[2/2] w-16" src="https://img.icons8.com/fluency/48/null/mac-os.png" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className='mb-auto flex-col items-center justify-center'>
+                                <h2 className='textthemmausac'>Chỉnh sửa thông tin hệ điều hành</h2>
+                                <div className="grid grid-cols-1 gap-6 mt-4">
+                                  <div>
+                                    <label className="text-white dark:text-gray-200">Tên hệ điều hành</label>
+                                    <input onChange={hanhdCapnhahethong} value={datahedieuhanh} type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                  </div>
+                                </div>
+                                <div className='mt-9'>
+                                  <button onClick={() => handCapnhat(hedieuhanh.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông tin hệ điều hành</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        <button onClick={() => handMohethong(hedieuhanh.id)} className="px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-yellow-700 focus:outline-none focus:bg-gray-600">Cập nhập</button>
+                        <button onClick={() => deleteHedieuhanh(hedieuhanh.id)} className="ml-5 px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Xoá</button>
+                      </td>
+                    </tr>
                   )
                 })}
               </tbody>
