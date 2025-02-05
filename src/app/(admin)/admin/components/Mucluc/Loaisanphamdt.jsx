@@ -229,47 +229,49 @@ function Loaisanphamdt() {
           <button onClick={postloaisanpham} className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
         </div>
       </section>
-      <table className="items-center bg-transparent w-full border-collapse ">
-        <thead>
-          <tr>
-            <th className="px-6 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-              ID
-            </th>
-            <th className="px-6 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-              Tên Loại Sản Phẩm
-            </th>
-            <th className="px-6 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-              Tên Danh Mục
-            </th>
-            <th className="px-6 text-red-600 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-              Xoá
-            </th>
-          </tr>
-        </thead>
+      <div className='block w-full overflow-x-auto'>
+        <table className="items-center bg-transparent w-full border-collapse ">
+          <thead>
+            <tr>
+              <th className="px-6 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                ID
+              </th>
+              <th className="px-6 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Tên Loại Sản Phẩm
+              </th>
+              <th className="px-6 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Tên Danh Mục
+              </th>
+              <th className="px-6 text-red-600 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Xoá
+              </th>
+            </tr>
+          </thead>
 
-        {datatendanhmuc && <tbody>
-          {datatendanhmuc.map((danhmucdata) => {
-            return (
-              <tr key={danhmucdata.id}>
-                <th className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                  {danhmucdata.id}
-                </th>
-                <td className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                  {danhmucdata.tenloaisanpham}
-                </td>
-                <td className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                  {danhmucdata.danhmucName}
-                </td>
-                <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <button onClick={() => onGetIdloaisanpham(danhmucdata.id)} className="px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-lime-500 rounded-md hover:bg-lime-800 focus:outline-none focus:bg-gray-600">Cập nhật</button>
-                  <button onClick={() => deleteloaisanpham(danhmucdata.id)} className="ml-2 px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Xoá</button>
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>}
+          {datatendanhmuc && <tbody>
+            {datatendanhmuc.map((danhmucdata) => {
+              return (
+                <tr key={danhmucdata.id}>
+                  <th className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                    {danhmucdata.id}
+                  </th>
+                  <td className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                    {danhmucdata.tenloaisanpham}
+                  </td>
+                  <td className="border-t-0 text-black px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                    {danhmucdata.danhmucName}
+                  </td>
+                  <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <button onClick={() => onGetIdloaisanpham(danhmucdata.id)} className="px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-lime-500 rounded-md hover:bg-lime-800 focus:outline-none focus:bg-gray-600">Cập nhật</button>
+                    <button onClick={() => deleteloaisanpham(danhmucdata.id)} className="ml-2 px-1 py-1 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Xoá</button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>}
 
-      </table>
+        </table>
+      </div>
     </div>
   );
 }

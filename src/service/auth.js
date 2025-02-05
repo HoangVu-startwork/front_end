@@ -39,6 +39,7 @@ const Auth = {
       }
       const response = await api.get(`/users/myInfo`, config);
       window.localStorage.setItem("userId", response.data.result?.id);
+      window.localStorage.setItem("email", response.data.result?.email);
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -51,6 +52,27 @@ const Auth = {
       }
     }
   },
+
+  getKhodienthoai: async () => {
+    try {
+        const token = window.localStorage.getItem("tokenadmin");
+        const config = {};
+        if (token) {
+            config.headers = { 'Authorization': `Bearer ${token}` }
+        }
+        const response = await api.get(`/khodienthoai`, config);
+        return response.data.result;
+    } catch (error) {
+        if (error.response && error.response.status === 400) {
+            throw error.response.data;
+        }
+        if (error.response && error.response.data && error.response == 404) {
+            throw error.response.data;
+        } else {
+            throw new Error("Error during signin");
+        }
+    }
+},
 
 }
 

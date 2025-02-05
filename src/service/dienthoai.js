@@ -115,6 +115,60 @@ const Dienthoai = {
       }
     }
   },
+
+  putdienthoai: async (id, ram, giabanra, hinhdanhduyetdienthoai, hinhanhdienthoai, bonho, tensanpham, tinhtrang, thongtinphanloaiid) => {
+    try {
+      const token = window.localStorage.getItem("tokenadmin");
+      const config = {};
+      if (token) {
+        config.headers = { 'Authorization': `Bearer ${token}` }
+      }
+      const response = await api.put(`/dienthoai/${id}`, {
+        hinhanh: hinhanhdienthoai,
+        hinhanhduyet: hinhdanhduyetdienthoai,
+        ram: ram,
+        bonho: bonho,
+        giaban: giabanra,
+        tenphanloai: thongtinphanloaiid,
+        tinhtrang: tinhtrang,
+        tensanpham: tensanpham,
+      }, config);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        console.log(error.response.data);
+        throw error.response.data;
+      }
+      if (error.response && error.response.data && error.response == 404) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
+
+  getIddienthoai: async (id) => {
+    try {
+      const token = window.localStorage.getItem("tokenadmin");
+      const config = {};
+      if (token) {
+        config.headers = { 'Authorization': `Bearer ${token}` }
+      }
+      const response = await api.get(`/dienthoai/${id}`, config);
+      return response.data.result;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        throw error.response.data;
+      }
+      if (error.response && error.response.data && error.response == 404) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
+
+
   // chỉnh sửa admin
   getadmindienthoai: async (filters) => {
     try {
@@ -137,6 +191,39 @@ const Dienthoai = {
     }
   },
 
+  getAlldienthoai: async (id) => {
+    try {
+      const token = window.localStorage.getItem("tokenadmin");
+      const config = {};
+      if (token) {
+        config.headers = { 'Authorization': `Bearer ${token}` }
+      }
+      const response = await api.get(`/dienthoai`, config);
+      return response.data.result;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        throw error.response.data;
+      }
+      if (error.response && error.response.data && error.response == 404) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
+
+  getKiemtradienthoai: async (id, mausacId) => {
+    try {
+      const response = await api.get(`dienthoai/kiemtra/${id}/mausac/${mausacId}`);
+      return response.data.result;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        throw error.response.data;
+      } else {
+        throw new Error("Error during signin");
+      }
+    }
+  },
 }
 
 export default Dienthoai;

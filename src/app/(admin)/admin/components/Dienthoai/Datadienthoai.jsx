@@ -12,6 +12,7 @@ import Apihinhanh from "@/service/hinhanh"
 import Apimausac from "@/service/mausac"
 import Apikhuyenmai from '@/service/khuyenmai'
 import Apithongtin from '@/service/thongtinvsthongsokythuat'
+import Apithongtinphanloai from '@/service/thongtinphanloai'
 
 function Datadienthoai() {
     const [soLuongData, setsoLuongData] = useState("")
@@ -54,7 +55,6 @@ function Datadienthoai() {
 
     const filtertinhtrang = useMemo(() => ({
         tinhtrang: "Ẩn"
-        // Các tham số khác cũng có thể được thêm vào đây
     }), []);
 
     const fetchdienthoaiTinhtrang = async (filtertinhtrang) => {
@@ -68,7 +68,6 @@ function Datadienthoai() {
 
     const filtertinhtrangmo = useMemo(() => ({
         tinhtrang: "Mở"
-        // Các tham số khác cũng có thể được thêm vào đây
     }), []);
 
     const fetchdienthoaiTinhtrangmo = async (filtertinhtrangmo) => {
@@ -82,7 +81,6 @@ function Datadienthoai() {
 
     const filteriphone = useMemo(() => ({
         hedieuhanh: "iPhone"
-        // Các tham số khác cũng có thể được thêm vào đây
     }), []);
 
     const fetchdienthoaiiphone = async (filteriphone) => {
@@ -96,7 +94,6 @@ function Datadienthoai() {
 
     const filteriandroid = useMemo(() => ({
         hedieuhanh: "Android"
-        // Các tham số khác cũng có thể được thêm vào đây
     }), []);
 
     const fetchdienthoaiandroid = async (filteriandroid) => {
@@ -119,16 +116,15 @@ function Datadienthoai() {
     const filteridata = useMemo(() => ({
         tensanpham: timkiemtendienthoai,
         tinhtrang: tinhtrangdienthoai
-        // Các tham số khác cũng có thể được thêm vào đây
     }), [timkiemtendienthoai, tinhtrangdienthoai]);
 
     const fetchdatadienthoai = async (filteridata) => {
         setLoading(true)
         try {
             const data = await Apidienthoai.getadmindienthoai(filteridata);
-            console.log(data)
             setLoading(false)
             setdata(data)
+            console.log(data)
         } catch (error) {
             console.error("Error fetching token info:", error);
         }
@@ -183,16 +179,14 @@ function Datadienthoai() {
     const formatCurrency = (value) => {
         // Ép kiểu thành số nếu giá trị không phải là số
         const numericValue = typeof value === 'number' ? value : parseFloat(value);
-
         // Xử lý trường hợp không phải là số
         if (isNaN(numericValue)) return '0 đ';
-
         // Định dạng số với dấu phân cách hàng nghìn và thêm đơn vị tiền tệ
         const formattedValue = numericValue.toLocaleString('vi-VN');
         return `${formattedValue} đ`;
     };
+
     const [image, setimage] = useState(null);
-    const [imageUrl, settaihinhanhs] = useState("")
 
     const handleFileChange1s = (event) => {
         setimage(event.target.files[0]);
@@ -269,10 +263,19 @@ function Datadienthoai() {
             setsuangaybatdau(datakhuyenmai.ngaybatdau)
             setsuanoidung(datakhuyenmai.noidungkhuyenmai)
             setsuaphantram(datakhuyenmai.phantramkhuyenmai)
-            console.log(datakhuyenmai);
             setLoading(false)
         } catch {
-
+        }
+    }
+    
+    const handXemkhuyenmai = async (id) => {
+        setLoading(true)
+        try {
+            const datalichsukhuyenmai = await Apikhuyenmai.getKhuyenmaidienthoai(id)
+            setLoading(false)
+            console.log(datalichsukhuyenmai)
+        } catch {
+            setLoading(false);
         }
     }
 
@@ -286,6 +289,7 @@ function Datadienthoai() {
         try {
             if (!suangaybatdau || !suadatakhuyenmai || !suanoidung || !suaphantram) {
                 setMessage('Không thể có dữ liệu trống')
+                setLoading(false)
                 setTimeout(() => {
                     setMessage('')
                 }, 5000);
@@ -359,22 +363,12 @@ function Datadienthoai() {
             }, 5000);
         }
     }
-
-
-
-
-    // Thông số kỹ thuật
     const [dataThongsokythuat, setdataThongsokythuat] = useState(false);
     const [Themthongsokythuat, setThemthongsokythuat] = useState(false);
 
     const handThongsokythuat = async (id) => {
         setdataThongsokythuat(prev => ({ ...prev, [id]: true }));
         handlegetThongsokythuat(id)
-        // if (id != 0) {
-        //     getKhuyemmai(id);
-        // } else {
-        //     setdatakhuyenmai(null)
-        // }
     }
 
     const handTatThemthongsokythuat = async (id) => {
@@ -393,11 +387,7 @@ function Datadienthoai() {
         setdacdiennoibat(newDacdiem)
     }
 
-
-
-    const [images, setimages] = useState(null);
     const [editorContent, setEditorContent] = useState('');
-
     const [kichthuocmanhinh, setkichthuocmanhinh] = useState("");
     const [congnghemanghinh, setcongnghemanghinh] = useState("");
     const [tinhnangmanghinh, settinhnangmanghinh] = useState("");
@@ -516,16 +506,10 @@ function Datadienthoai() {
             }, 5000);
         }
     }
-
-
     // data thông số kỹ thuật
     const [dataThongsokythuatid, setdataThongsokythuatid] = useState("");
 
     const [chinhsuaThongsokythuat, setchinhsuaThongsokythuat] = useState(false);
-
-    const onchankichthuocmanhinh = async () => {
-
-    }
 
     const handchinhsuaThongsokythuat = async (id) => {
         setchinhsuaThongsokythuat(prev => ({ ...prev, [id]: true }));
@@ -584,13 +568,12 @@ function Datadienthoai() {
 
         }
     }
-
     const handleputThongsokythuat = async (id) => {
         setLoading(true)
         try {
             const response = await Apithongtin.putThongsolythuat(id, kichthuocmanhinh, congnghemanghinh, tinhnangmanghinh, tansoquet, camerasau, quayvideo, tinhnagcamera, cameratruoc, quayvideotruoc, loaicpu, dophangiai, chipset, gpu, khecamthenho, pin, congnghesac, congsac, thesim, hedieuhang, hongngoai, jacktainghe, congghenfc, hotromang, wifi, bluetooth, gps, kichthuoc, trongluong, chatlieumatlung, tuongthich, chatlieukhungvien, chisokhangnuocbui, kieumanhinh, cambienvantai, cacloaicambien, tinhnangdacbiet, dacdiennoibat, editorContent);
             if (response) {
-                setMessage('Thêm thành công kỹ thuật điện thoại')
+                setMessage('Cập nhật thành công kỹ thuật điện thoại')
                 fetchdatadienthoai(filteridata)
                 setLoading(false)
                 setTimeout(() => {
@@ -598,13 +581,315 @@ function Datadienthoai() {
                 }, 5000);
             }
         } catch {
-            setMessage('Thêm thành công kỹ thuật điện thoại')
+            setMessage('Cập nhật thành công kỹ thuật điện thoại')
             setTimeout(() => {
                 setMessage('')
                 setLoading(false)
             }, 5000);
         }
     }
+    // Cập nhật điện thoại
+    const [getcapnhatdienthoai, setgetcapnhatdienthoai] = useState(false);
+    const [ram, setram] = useState("");
+    const [giabanra, setgiabanra] = useState("");
+    const [hinhanh, sethinhanh] = useState("");
+    const [hinhanhduyet, sethinhanhduyet] = useState("");
+    const [hinhanhduyets, sethinhanhduyets] = useState([]);
+    const [bonho, setbonho] = useState("");
+    const [tensanpham, settensanpham] = useState("");
+    const [tinhtrang, settinhtrang] = useState("");
+    const [thongtinphanloaiid, setthongtinphanloai] = useState("");
+    const [datathongttinphanloai, setdatathongttinphanloai] = useState([]);
+    const [datacapnhatdienthoai, setdatacapnhatdienthoai] = useState([]);
+
+    const handTatgetdienthoai = async () => {
+        setgetcapnhatdienthoai(false)
+    }
+
+    const handlecapnhatFileChange1s = (event) => {
+        sethinhanh(event.target.files[0]);
+    };
+
+    const handleduyetFileChange = (event) => {
+        sethinhanhduyet(event.target.files);
+    };
+
+    const getdienthoai = async (id) => {
+        setLoading(true)
+        setgetcapnhatdienthoai(prev => ({ ...prev, [id]: true }));
+        try {
+            const responseget = await Apidienthoai.getIddienthoai(id)
+            setram(responseget.ram)
+            setgiabanra(responseget.giaban)
+            sethinhanh(responseget.hinhanh)
+            sethinhanhduyet(responseget.hinhanhduyet)
+            sethinhanhduyets(Array.isArray(responseget.hinhanhduyet)
+                ? responseget.hinhanhduyet
+                : responseget.hinhanhduyet.split(","));
+            setbonho(responseget.bonho)
+            settensanpham(responseget.tensanpham)
+            settinhtrang(responseget.tinhtrang)
+            setthongtinphanloai(responseget.thongtinphanloaiId)
+            setdatacapnhatdienthoai(responseget)
+            setLoading(false)
+        } catch {
+        }
+    }
+
+    const getThongtinphanloai = async () => {
+
+        try {
+            const getThongtinphanloai = await Apithongtinphanloai.getThongtinphanloai();
+            setdatathongttinphanloai(getThongtinphanloai.result)
+
+        } catch {
+            setSuccessMessage('Không có thông tin');
+            setTimeout(() => {
+                setSuccessMessage('')
+            }, 5000);
+        }
+    }
+
+    const capnhatDienthoai = async (id) => {
+        setLoading(true)
+        let hinhanhdienthoai = null;
+        let hinhdanhduyetdienthoai = null;
+        try {
+            if (hinhanh === datacapnhatdienthoai.hinhanh && hinhanhduyet === datacapnhatdienthoai.hinhanhduyet) {
+                hinhanhdienthoai = datacapnhatdienthoai.hinhanh;
+                hinhdanhduyetdienthoai = datacapnhatdienthoai.hinhanhduyet;
+                const response = await Apidienthoai.putdienthoai(id, ram, giabanra, hinhdanhduyetdienthoai, hinhanhdienthoai, bonho, tensanpham, tinhtrang, thongtinphanloaiid)
+                setMessage('Cập nhật thành điện thoại')
+                fetchdatadienthoai(filteridata)
+                setLoading(false)
+                setTimeout(() => {
+                    setMessage('')
+                }, 5000);
+            }
+            if (hinhanh !== datacapnhatdienthoai.hinhanh && hinhanhduyet === datacapnhatdienthoai.hinhanhduyet) {
+                const deletelhinhanh = await Apihinhanh.deleteanh(datacapnhatdienthoai.hinhanh);
+                if (deletelhinhanh.data) {
+                    const hinhanhdienthoais = await Apihinhanh.postanhdienthoai(hinhanh);
+                    hinhanhdienthoai = hinhanhdienthoais.data;
+                    hinhdanhduyetdienthoai = datacapnhatdienthoai.hinhanhduyet;
+                    if (hinhanhdienthoai.data) {
+                        const response = await Apidienthoai.putdienthoai(id, ram, giabanra, hinhdanhduyetdienthoai, hinhanhdienthoai, bonho, tensanpham, tinhtrang, thongtinphanloaiid)
+                        setMessage('Cập nhật thành điện thoại')
+                        fetchdatadienthoai(filteridata)
+                        setLoading(false)
+                        setTimeout(() => {
+                            setMessage('')
+                        }, 5000);
+                    }
+                }
+            }
+            if (hinhanh === datacapnhatdienthoai.hinhanh && hinhanhduyet !== datacapnhatdienthoai.hinhanhduyet) {
+                const deletelhinhanhduyet = await Apihinhanh.deletehinhanhduyet(datacapnhatdienthoai.hinhanhduyet);
+                if (deletelhinhanhduyet.data) {
+                    const formData = new FormData();
+                    for (let i = 0; i < hinhanhduyet.length; i++) {
+                        formData.append("images", hinhanhduyet[i]);
+                    }
+                    const hinhanhduyetdienthoai = await Apihinhanh.posthinhanhduyet(formData);
+                    hinhanhdienthoai = datacapnhatdienthoai.hinhanh;
+                    hinhdanhduyetdienthoai = hinhanhduyetdienthoai.data
+                    if (hinhanhduyetdienthoai.data) {
+                        const response = await Apidienthoai.putdienthoai(id, ram, giabanra, hinhdanhduyetdienthoai, hinhanhdienthoai, bonho, tensanpham, tinhtrang, thongtinphanloaiid)
+                        setMessage('Cập nhật thành điện thoại')
+                        fetchdatadienthoai(filteridata)
+                        setLoading(false)
+                        setTimeout(() => {
+                            setMessage('')
+                        }, 5000);
+                    }
+                }
+            }
+            if (hinhanh !== datacapnhatdienthoai.hinhanh && hinhanhduyet !== datacapnhatdienthoai.hinhanhduyet) {
+                const imageUrl = datacapnhatdienthoai.hinhanh
+                const deletelhinhanh = await Apihinhanh.deleteanh(imageUrl);
+                if (deletelhinhanh.data) {
+                    const datahinhanhdienthoai = await Apihinhanh.postanhdienthoai(hinhanh);
+                    hinhanhdienthoai = datahinhanhdienthoai.data
+                    if (datahinhanhdienthoai.data) {
+                        const imageUrl = datacapnhatdienthoai.hinhanhduyet;
+                        const deletelhinhanhduyet = await Apihinhanh.deletehinhanhduyet(imageUrl);
+                        if (deletelhinhanhduyet.data) {
+                            const formData = new FormData();
+                            for (let i = 0; i < hinhanhduyet.length; i++) {
+                                formData.append("images", hinhanhduyet[i]);
+                            }
+                            const hinhanhduyetdienthoai = await Apihinhanh.posthinhanhduyet(formData);
+                            hinhdanhduyetdienthoai = hinhanhduyetdienthoai.data
+                            if (hinhanhduyetdienthoai.data) {
+                                const response = await Apidienthoai.putdienthoai(id, ram, giabanra, hinhdanhduyetdienthoai, hinhanhdienthoai, bonho, tensanpham, tinhtrang)
+                                setMessage('Cập nhật thành điện thoại')
+                                fetchdatadienthoai(filteridata)
+                                setLoading(false)
+                                setTimeout(() => {
+                                    setMessage('')
+                                }, 5000);
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch {
+            try {
+                const datahinhanhdienthoai = await Apihinhanh.postanhdienthoai(hinhanh);
+                hinhanhdienthoai = datahinhanhdienthoai.data
+                if (datahinhanhdienthoai.data) {
+                    const formData = new FormData();
+                    for (let i = 0; i < hinhanhduyet.length; i++) {
+                        formData.append("images", hinhanhduyet[i]);
+                    }
+                    const hinhanhduyetdienthoai = await Apihinhanh.posthinhanhduyet(formData);
+                    hinhdanhduyetdienthoai = hinhanhduyetdienthoai.data
+                    if (hinhanhduyetdienthoai.data) {
+                        const response = await Apidienthoai.putdienthoai(id, ram, giabanra, hinhdanhduyetdienthoai, hinhanhdienthoai, bonho, tensanpham, tinhtrang, thongtinphanloaiid)
+                        setMessage('Cập nhật thành điện thoại')
+                        fetchdatadienthoai(filteridata)
+                        setLoading(false)
+                        setTimeout(() => {
+                            setMessage('')
+                        }, 5000);
+                    }
+
+                }
+            } catch {
+                console.log("test")
+            }
+        }
+    }
+
+    useEffect(() => {
+        getThongtinphanloai()
+        handgetdienthoai()
+        console.log('Hoang');
+        console.log(data);
+    }, [])
+
+    const [thongtindienthoai, setthongtindienthoai] = useState(false);
+    const [datathongtindienthoai, setdatathongtindienthoai] = useState([]);
+    const [baohanh, setbaohanh] = useState('');
+    const [thietbidikem, setthietbidikem] = useState('');
+    const [tinhtrangmay, settinhtrangmay] = useState('');
+    const [iddienthoai, setiddienthoai] = useState('');
+    const [datadienthoai, setdatadienthoai] = useState([]);
+    const [capnhatthongtindienthoai, setcapnhatthongtindienthoai] = useState(false);
+    const [themthongtindienthoai, setthemthongtindienthoai] = useState(false);
+
+    const handgetthongtin = async (id) => {
+        setthongtindienthoai(prev => ({ ...prev, [id]: true }));
+        getThongtin(id)
+    }
+
+    const handleCapnhatThongso = async (id) => {
+        setcapnhatthongtindienthoai(prev => ({ ...prev, [id]: true }))
+    }
+
+    const handleTatCapnhatThongso = async () => {
+        setcapnhatthongtindienthoai(false)
+    }
+
+    const handTatgetThongtin = async () => {
+        setthongtindienthoai(false)
+    }
+
+    const handgetdienthoai = async () => {
+        try {
+            const datadienthoais = await Apidienthoai.getAlldienthoai()
+            setdatadienthoai(datadienthoais)
+        } catch {
+            console.error("Lỗi :", error)
+        }
+    }
+
+    const getThongtin = async (id) => {
+        setLoading(true)
+        try {
+            const getThongtin = await Apithongtin.getThongtindienthoai(id);
+            // const datadienthoais = await Apidienthoai.getAlldienthoai()
+            // const Phone = datadienthoais.find(
+            //     (phone) => phone.id === getThongtin.dienthoaiId
+            // );
+            setbaohanh(getThongtin.baohanh)
+            setthietbidikem(getThongtin.thietbidikem)
+            settinhtrangmay(getThongtin.tinhtrangmay)
+            setiddienthoai(getThongtin.dienthoaiId)
+            setdatathongtindienthoai(getThongtin)
+            setLoading(false)
+        } catch {
+            setMessage('Không có thông tin');
+            setTimeout(() => {
+                setMessage('')
+            }, 5000);
+        }
+    }
+
+    const handleCapnhatThongsodienthoai = async (id) => {
+        setLoading(true)
+        try {
+            const putcapnhatthongso = await Apithongtin.putThongtindienthoai(id, baohanh, iddienthoai, tinhtrangmay, thietbidikem)
+            setMessage('Cập nhật thành công');
+            fetchdatadienthoai(filteridata)
+            setTimeout(() => {
+                setMessage('')
+            }, 5000);
+        } catch {
+            setMessage('Cập nhật không thành công');
+            setTimeout(() => {
+                setMessage('')
+            }, 5000);
+        }
+    }
+
+
+    const handThemthongtindienthoai = async () => {
+        setbaohanh('')
+        setthietbidikem('')
+        settinhtrangmay('')
+        setiddienthoai('')
+        setthemthongtindienthoai(true)
+    }
+
+    const handTatThemthongtindienthoai = async () => {
+        setthemthongtindienthoai(false)
+    }
+
+    const handThemthongtindienthoais = async (id) => {
+        setLoading(true)
+        try {
+            const datathemdienthoai = await Apithongtin.postThongtindienthoai(id, baohanh, tinhtrangmay, thietbidikem)
+            setMessage('Thêm thành công');
+            fetchdatadienthoai(filteridata)
+            setLoading(false)
+            setTimeout(() => {
+                setMessage('')
+            }, 5000);
+        } catch {
+            setMessage('Thêm không thành công');
+            setLoading(false)
+            setTimeout(() => {
+                setMessage('')
+            }, 5000);
+        }
+    }
+
+    const handXoathongtindienthoai = async (id) => {
+        try {
+            setLoading(true)
+            const dataXoa = await Apithongtin.deletethongtin(id)
+        } catch {
+            setMessage('Xoá không thành công');
+            setLoading(false)
+            setTimeout(() => {
+                setMessage('')
+            }, 5000);
+        }
+    }
+
+   
 
     return (
         <div>
@@ -656,7 +941,7 @@ function Datadienthoai() {
                         </select>
                     </div>
                 </div>
-                <div className='mt-1'>
+                <div className='block w-full overflow-x-auto'>
                     <table className="items-center bg-transparent w-full border-collapse ">
                         <thead>
                             <tr>
@@ -691,7 +976,7 @@ function Datadienthoai() {
                                     Thông số kỹ thuật
                                 </th>
                                 <th className="px-1 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                    Thông tin điện thoại
+                                    Thông tin
                                 </th>
                                 <th className="px-1 text-black bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                     Tình trạng
@@ -819,8 +1104,8 @@ function Datadienthoai() {
                                                                     </thead>
                                                                     {MausacId && (
                                                                         <tbody>
-                                                                            {MausacId.mausacs && MausacId.mausacs.length > 0 ? (
-                                                                                MausacId.mausacs.map((color, index) => (
+                                                                            {MausacId.mausac_list && MausacId.mausac_list.length > 0 ? (
+                                                                                MausacId.mausac_list.map((color, index) => (
                                                                                     <tr key={`${color.id}-${index}`} className="hover:bg-slate-300">
                                                                                         <td className="border-b px-6 text-black align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700">
                                                                                             {color.id}
@@ -1080,9 +1365,15 @@ function Datadienthoai() {
                                                     <button onClick={() => handThemkhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
                                                         Thêm
                                                     </button>
+                                                    <button onClick={() => handXemkhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
+                                                        Lịch sử
+                                                    </button>
                                                 </> : <>
                                                     <button onClick={() => handKhuyenmai(dienthoai.khuyenmai_id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
                                                         Xem
+                                                    </button>
+                                                    <button onClick={() => handXemkhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
+                                                        Lịch sử tất cả
                                                     </button>
                                                 </>}
                                             </div>
@@ -1106,12 +1397,123 @@ function Datadienthoai() {
                                                             </div>
                                                         </div>
                                                         <div className='mb-auto flex-col items-center justify-center'>
-                                                            <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+                                                            <h2 className='textthemmausac'>Thông tin kỹ thuật điện thoại</h2>
 
-
-                                                            <div className='mt-9'>
-                                                                <label className="text-xl text-white dark:text-gray-200" htmlFor="username">Nội dung khuyến mãi</label>
-                                                                <textarea id="username" type="tel" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Kích thước màng hình:</span> {kichthuocmanhinh} inches</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Công nghệ màng hình:</span> {congnghemanghinh}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tính năng màng hình:</span> {tinhnangmanghinh}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tần số quét:</span> {tansoquet} Hz</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Camera sau:</span> {camerasau}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Camera trước:</span> {cameratruoc}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tính năng camera:</span> {tinhnagcamera}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Quay video trước:</span> {quayvideotruoc}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Quay video sau:</span> {quayvideo}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Loại CPU:</span> {loaicpu}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Độ phân giải:</span> {dophangiai}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Chip set:</span> {chipset}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- GPU:</span> {gpu}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Khe cấm thẻ nhớ:</span> {khecamthenho}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Pin:</span> {pin} mAh</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Công nghệ sạc:</span> {congnghesac}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Cổng sạc:</span> {congsac}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Thẻ sim:</span> {thesim}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Hệ điều hành:</span> {hedieuhang}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Hồng ngoại:</span> {hongngoai}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Jack tai nghe:</span> {jacktainghe}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Công nghệ fc:</span> {congghenfc}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Hỗ trợ mạng:</span> {hotromang}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Wifi:</span> {wifi}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Bluetooth:</span> {bluetooth}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- GPS:</span> {gps}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Kích thước:</span> {kichthuoc}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Trọng lượng:</span> {trongluong}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Chất liệu mặt lưng:</span> {chatlieumatlung}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tương thích:</span> {tuongthich}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Chất liệu khung viền:</span> {chatlieukhungvien}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Chỉ số kháng nước và bụi:</span> {chisokhangnuocbui}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Cảm biến vân tay:</span> {cambienvantai}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Kiểu màng hình:</span> {kieumanhinh}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Các loại cảm biến:</span> {cacloaicambien}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tính năng đặc biệt:</span> {tinhnangdacbiet}</label>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>Đặc điểm nổi bật</span></label>
+                                                                <div className="back-text mt-5 p-2" dangerouslySetInnerHTML={{ __html: (dacdiennoibat) }} />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>Chi tiết sản phẩm</span></label>
+                                                                <div className="back-text mt-5 p-2" dangerouslySetInnerHTML={{ __html: (editorContent) }} />
                                                             </div>
                                                             <div className='mt-9'>
                                                                 <button onClick={() => handchinhsuaThongsokythuat(dienthoai.thongsokythuat_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông tin khuyến mãi</button>
@@ -1156,7 +1558,7 @@ function Datadienthoai() {
                                                                 <input value={tansoquet || ""} onChange={(e) => settansoquet(e.target.value)} type="text" placeholder="Tần số quét" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
-                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Camera sao</label>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Camera sau</label>
                                                                 <textarea value={camerasau || ""} onChange={(e) => setcamerasau(e.target.value)} type="text" placeholder="Camerasau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
@@ -1337,7 +1739,7 @@ function Datadienthoai() {
                                                                 <input onChange={(e) => settansoquet(e.target.value)} type="text" placeholder="Tần số quét" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
-                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Camera sao</label>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Camera sau</label>
                                                                 <input onChange={(e) => setcamerasau(e.target.value)} type="text" placeholder="Camerasau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
@@ -1496,9 +1898,132 @@ function Datadienthoai() {
                                             </div>
                                         </td>
                                         <td className="border-t-0 text-black px-1 align-middle border-b border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700 ">
-                                            <button onClick={() => handlehinhdienthoai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-600 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
-                                                {dienthoai.thongtindienthoai_id === 0 ? <>Thêm</> : <>Xem thông tin</>}
-                                            </button>
+                                            {thongtindienthoai[dienthoai.id] && (
+                                                <div className="loading-themthongsokythuat">
+                                                    <div className='!z-5 relative loading-themthongsokythuats flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                                                        <div className='ml-auto'>
+                                                            <div className='relative flex'>
+                                                                <div className="mb-3 text-right">
+                                                                    <button onClick={handTatgetThongtin} className="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div className='absolute top-11 right-0 z-10 w-max origin-top-right scale-0 transition-all duration-300 ease-in-out'>
+                                                                    <img className="aspect-[2/2] w-16" src="https://img.icons8.com/fluency/48/null/mac-os.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-auto flex-col items-center justify-center'>
+                                                            <h2 className='textthemmausac'>Xem thông tin điện thoại</h2>
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Bảo hành:</span> {baohanh}</label>
+                                                            </div>
+
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Thiết bị đi kèm:</span> {thietbidikem}</label>
+                                                            </div>
+
+                                                            <div className='mt-5'>
+                                                                <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tình trạng máy:</span> {tinhtrangmay}</label>
+                                                            </div>
+                                                            <div className='mt-9'>
+                                                                <button onClick={() => handleCapnhatThongso(dienthoai.thongtindienthoai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số điện thoại</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {capnhatthongtindienthoai[dienthoai.thongtindienthoai_id] && (
+                                                <div className="loading-themthongsokythuat">
+                                                    <div className='!z-5 relative loading-themthongsokythuats flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                                                        <div className='ml-auto'>
+                                                            <div className='relative flex'>
+                                                                <div className="mb-3 text-right">
+                                                                    <button onClick={handleTatCapnhatThongso} className="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div className='absolute top-11 right-0 z-10 w-max origin-top-right scale-0 transition-all duration-300 ease-in-out'>
+                                                                    <img className="aspect-[2/2] w-16" src="https://img.icons8.com/fluency/48/null/mac-os.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-auto flex-col items-center justify-center'>
+                                                            <h2 className='textthemmausac'>Xem thông tin điện thoại</h2>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Bảo hành</label>
+                                                                <textarea value={baohanh || ""} onChange={(e) => setbaohanh(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Thiết bị đi kèm</label>
+                                                                <textarea value={thietbidikem || ""} onChange={(e) => setthietbidikem(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Tình trạng máy</label>
+                                                                <textarea value={tinhtrangmay || ""} onChange={(e) => settinhtrangmay(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-9'>
+                                                                <button onClick={() => handleCapnhatThongsodienthoai(dienthoai.thongtindienthoai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số điện thoại</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {themthongtindienthoai && (
+                                                <div className="loading-themthongsokythuat">
+                                                    <div className='!z-5 relative loading-themthongsokythuats flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                                                        <div className='ml-auto'>
+                                                            <div className='relative flex'>
+                                                                <div className="mb-3 text-right">
+                                                                    <button onClick={handTatThemthongtindienthoai} className="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div className='absolute top-11 right-0 z-10 w-max origin-top-right scale-0 transition-all duration-300 ease-in-out'>
+                                                                    <img className="aspect-[2/2] w-16" src="https://img.icons8.com/fluency/48/null/mac-os.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-auto flex-col items-center justify-center'>
+                                                            <h2 className='textthemmausac'>Xem thông tin điện thoại</h2>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Bảo hành</label>
+                                                                <textarea onChange={(e) => setbaohanh(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Thiết bị đi kèm</label>
+                                                                <textarea onChange={(e) => setthietbidikem(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Tình trạng máy</label>
+                                                                <textarea onChange={(e) => settinhtrangmay(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-9'>
+                                                                <button onClick={() => handThemthongtindienthoais(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số điện thoại</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <div>
+                                                {dienthoai.thongtindienthoai_id === 0 ? <>
+                                                    <button onClick={handThemthongtindienthoai} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-red-600 rounded-md hover:bg-red-950 focus:outline-none focus:bg-gray-100">
+                                                        Thêm thông tin
+                                                    </button>
+                                                </> : <>
+                                                    <button onClick={() => handgetthongtin(dienthoai.thongtindienthoai_id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-emerald-300 rounded-md hover:bg-green-300 focus:outline-none focus:bg-gray-300">
+                                                        Xem thông tin
+                                                    </button>
+                                                </>}
+                                            </div>
                                         </td>
                                         <td
                                             className={`trangthaitinhtrang border-t-0 text-base font-bold text-black px-1 align-middle border-b border-r-0 whitespace-nowrap p-3 text-left text-blueGray-700 ${dienthoai.tinhtrang === 'Mở' ? 'text-emerald-500' : 'text-red-500'
@@ -1508,7 +2033,106 @@ function Datadienthoai() {
                                         </td>
 
                                         <td className="border-t-0 text-black px-1 align-middle border-b border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700 ">
-                                            <button onClick={() => handlehinhdienthoai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-emerald-950 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Sửa</button>
+                                            {getcapnhatdienthoai[dienthoai.id] && (
+                                                <div className="loading-themthongsokythuat">
+                                                    <div className='!z-5 relative loading-themthongsokythuats flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                                                        <div className='ml-auto'>
+                                                            <div className='relative flex'>
+                                                                <div className="mb-3 text-right">
+                                                                    <button onClick={handTatgetdienthoai} className="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div className='absolute top-11 right-0 z-10 w-max origin-top-right scale-0 transition-all duration-300 ease-in-out'>
+                                                                    <img className="aspect-[2/2] w-16" src="https://img.icons8.com/fluency/48/null/mac-os.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-auto flex-col items-center justify-center'>
+                                                            <h2 className='textthemmausac'>Cập nhật điện thoại</h2>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Tên điện thoại</label>
+                                                                <input value={tensanpham || ""} onChange={(e) => settensanpham(e.target.value)} type="text" placeholder="Tên điện thoại" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Giá bán</label>
+                                                                <input value={giabanra || ""} onChange={(e) => setgiabanra(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Ram</label>
+                                                                <select value={ram} onChange={(e) => setbonho(e.target.value)} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                                                                    <option hidden>Chọn ram</option>
+                                                                    <option value={2}>2GB</option>
+                                                                    <option value={4}>4GB</option>
+                                                                    <option value={6}>6GB</option>
+                                                                    <option value={8}>8GB</option>
+                                                                    <option value={12}>12GB</option>
+                                                                    <option value={16}>16GB</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Bộ nhớ trong</label>
+                                                                <select value={bonho} onChange={(e) => setram(e.target.value)} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                                                                    <option hidden>Chọn bộ nhớ trong</option>
+                                                                    <option value={64}>64GB</option>
+                                                                    <option value={128}>128GB</option>
+                                                                    <option value={256}>256GB</option>
+                                                                    <option value={512}>512GB</option>
+                                                                    <option value={1}>1TB</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className='w-full mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Loại sản phẩm</label>
+                                                                <select value={thongtinphanloaiid} onChange={(e) => setthongtinphanloai(e.target.value)} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                                                                    <option hidden>Chọn loại sản phẩm</option>
+                                                                    {datathongttinphanloai.map((thongtinphanloai) => {
+                                                                        return (
+                                                                            <option key={thongtinphanloai.id} value={thongtinphanloai.id} >{thongtinphanloai.tenphanloai}</option>
+                                                                        )
+                                                                    })}
+                                                                </select>
+                                                            </div>
+
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Chọn hình ảnh điện thoại</label>
+                                                                <div className='mt-1'>
+                                                                    <img className="img-dienthoai" src={datacapnhatdienthoai.hinhanh} />
+                                                                </div>
+
+                                                                <input onChange={handlecapnhatFileChange1s} type="file" className="block text-lg w-full px-1 mt-4 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="username">Chọn hình ảnh trình bày điện thoại</label>
+                                                                <div className='mt-2 mb-3'>
+                                                                    {hinhanhduyets.map((url, index) => (
+                                                                        <img
+                                                                            key={index}
+                                                                            className="img-dienthoai"
+                                                                            alt={`Dien thoai ${index + 1}`}
+                                                                            src={url}
+                                                                        />
+                                                                    ))}
+                                                                </div>
+                                                                <input multiple onChange={handleduyetFileChange} type="file" className="block text-lg w-full px-1 mt-4 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                            </div>
+                                                            <div className='mt-5'>
+                                                                <label className="text-white dark:text-gray-200" htmlFor="passwordConfirmation">Trạng khái hiện thị điện thoại</label>
+                                                                <select value={tinhtrang || ""} onChange={(e) => settinhtrang(e.target.value)} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                                                                    <option hidden>Chọn tình trạng hiện thị máy</option>
+                                                                    <option value="Mở">Mở</option>
+                                                                    <option value="Ẩn">Ẩn</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className='mt-9'>
+                                                                <button onClick={() => capnhatDienthoai(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số kỹ thuật</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <button onClick={() => getdienthoai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-emerald-950 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Sửa</button>
                                             <button onClick={() => handlehinhdienthoai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Xoá</button>
                                         </td>
 

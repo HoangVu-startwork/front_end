@@ -92,7 +92,7 @@ export default function Dienthoai() {
                     setSuccessMessage('Đã thêm vào danh sách yêu thích thành công!'); // Hiển thị thông báo
                     setIsLoading(false); // Kết thúc hiệu ứng loading sau 1 phút
                     fetchYeuthich()
-                }, 5000);
+                }, 2500);
             }
         } catch (error) {
             console.error("Error fetching token info:", error);
@@ -109,7 +109,7 @@ export default function Dienthoai() {
                 setSuccessMessage('Đã xoá khỏi danh sách yêu thích thành công!'); // Hiển thị thông báo
                 setIsLoading(false); // Kết thúc hiệu ứng loading sau 1 phút
                 fetchYeuthich()
-            }, 5000);
+            },);
         } catch (error) {
             console.error("Error fetching token info:", error);
         }
@@ -122,7 +122,7 @@ export default function Dienthoai() {
             setYeuthich(yeuthich);
             setTimeout(() => {
                 setSuccessMessage(''); // Tắt thông báo sau 5 giây
-            }, 5000);
+            }, 2500);
             // yeuthich.forEach(item => {
             //     console.log(item.id);
             // });
@@ -317,7 +317,7 @@ function YeuThichItem({ isFavorite, onClickAdd, onClickRemove, isLoading }) {
             onClick={isLoading ? null : (isFavorite ? onClickRemove : onClickAdd)} // Vô hiệu hóa click khi đang loading
         >
             <p>
-                {isLoading ? 'Đang xử lý...' : ''}
+                {isLoading ? '' : ''}
                 {hover
                     ? <FavoriteRoundedIcon className="fa-heart-o" />
                     : (isFavorite ? <FavoriteRoundedIcon className="fa-heart-o" /> : <FavoriteBorderRoundedIcon className="fa-heart-o" />)

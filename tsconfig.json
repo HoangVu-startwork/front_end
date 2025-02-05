@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/sanpham/Silesanpham.jsx", "src/app/(authenticate)/layout.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/sanpham/Silesanpham.jsx", "src/app/(authenticate)/layout.js", "middleware.js"],
   "exclude": ["node_modules"]
 }

@@ -332,6 +332,7 @@ function Danhuc() {
                     </div>
                 </div>
             </section>
+            <div className='block w-full overflow-x-auto'>
             <table className="items-center bg-transparent w-full border-collapse ">
                 <thead>
                     <tr>
@@ -385,6 +386,7 @@ function Danhuc() {
                 </tbody>
 
             </table>
+            </div>
         </div>
     )
 }

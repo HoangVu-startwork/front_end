@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { CIcon } from '@coreui/icons-react';
-import { cilAppsSettings, cilStorage, cilBank, cilSpreadsheet, cilShieldAlt, cilApple, cilBurn, cilAperture, cilArrowThickFromBottom, cilTruck, cilMemory } from '@coreui/icons';
+import { cilAppsSettings, cilStorage, cilBank, cilSpreadsheet, cilShieldAlt, cilApple, cilBurn, cilAperture, cilArrowThickFromBottom, cilTruck, cilMemory, cilMoney, cilMobile } from '@coreui/icons';
 import { Helmet } from 'react-helmet';
 import ThemDt from './components/Dienthoai/Datadienthoai'
 import Danhmuc from './components/Mucluc/Danhuc'
@@ -12,6 +12,11 @@ import Themmucluc from './components/Mucluc/Themmucluc'
 import Hedieuhanh from './components/Mucluc/Hedieuhanh'
 import LoaisanphamDt from './components/Mucluc/Loaisanphamdt'
 import Thongtinphanloai from './components/Mucluc/Thongtinphanloai'
+import Quancao from './components/Quancao/Quancao'
+import Quancaodienthoai from './components/Quancao/Quancaodienthoai'
+import Nhapkho from './components/Dienthoai/Nhapkho'
+import User from './components/User/Quanlyuser'
+import Khohang from './components/Dienthoai/Khohang'
 import Auth from '@/service/auth'
 
 import Themdienthoai from './components/Dienthoai/Themdienthoai'
@@ -24,38 +29,38 @@ const Page = () => {
 
   const fetchTokenInfo = async () => {
     try {
-        const data = await Auth.gettoken();
+      const data = await Auth.gettoken();
     } catch (error) {
-        console.error("Error fetching token info:", error);
+      console.error("Error fetching token info:", error);
     }
-};
+  };
 
   useEffect(() => {
     const timestampStr = window.localStorage.getItem("exp");
     const token = window.localStorage.getItem("tokenadmin");
     if (timestampStr) {
-        const timestamp = parseInt(timestampStr, 10);
-        const date = new Date(timestamp * 1000);
-        const currentDate = new Date();
-        if (date >= currentDate) {
-            if (token && token.trim() !== "") {
-                fetchTokenInfo();
-            } else{
-                window.localStorage.removeItem("tokenadmin");
-                window.localStorage.removeItem("exp");
-                window.location.href = "/signin";
-            }
+      const timestamp = parseInt(timestampStr, 10);
+      const date = new Date(timestamp * 1000);
+      const currentDate = new Date();
+      if (date >= currentDate) {
+        if (token && token.trim() !== "") {
+          fetchTokenInfo();
         } else {
-            window.localStorage.removeItem("tokenadmin");
-            window.localStorage.removeItem("exp");
-            window.location.href = "/signin";
+          window.localStorage.removeItem("tokenadmin");
+          window.localStorage.removeItem("exp");
+          window.location.href = "/signin";
         }
-    } else {
+      } else {
         window.localStorage.removeItem("tokenadmin");
         window.localStorage.removeItem("exp");
         window.location.href = "/signin";
+      }
+    } else {
+      window.localStorage.removeItem("tokenadmin");
+      window.localStorage.removeItem("exp");
+      window.location.href = "/signin";
     }
-}, []);
+  }, []);
 
   return (
     <>
@@ -117,11 +122,14 @@ const Page = () => {
                 <li className='mb-3 p-2 rounded-md flex items-center justify-center bg-yellow-400 cursor-pointer'
                   onClick={() => {
                     setOpenMenu(openMenu !== 2 ? 2 : null);
-                    setActiveSection('calculator')
+
                   }}>
                   <CIcon className='text-white' icon={cilBank} size="xl" />
                 </li>
-                <li className="mb-3 p-2 rounded-md flex items-center justify-center bg-yellow-400 cursor-pointer">
+                <li className="mb-3 p-2 rounded-md flex items-center justify-center bg-yellow-400 cursor-pointer" onClick={() => {
+                    setOpenMenu(openMenu !== 5 ? 5 : null);
+                    setActiveSection('user');
+                  }}>
                   <CIcon className='text-white' icon={cilAperture} size="xl" />
                 </li>
                 <li className="mb-3 p-2 rounded-md flex items-center justify-center bg-yellow-400 cursor-pointer">
@@ -145,28 +153,20 @@ const Page = () => {
                   }`}
                 onClick={() => setActiveSection('dashboard')}
               >
-                <CIcon className='text-indigo-600 size-6' icon={cilAppsSettings} size="xl" onClick={() => setActiveSection('dashboard')}/>
+                <CIcon className='text-indigo-600 size-6' icon={cilAppsSettings} size="xl" onClick={() => setActiveSection('dashboard')} />
                 <p className="text-xs mt-1 text-center font-semibold">Dashboard</p>
               </div>
               <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themdulieudienthoai')}>
                 <CIcon className='text-indigo-600 size-6' icon={cilArrowThickFromBottom} size="xl" />
                 <p className="text-xs mt-1 text-center font-semibold">Thêm ĐT</p>
               </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilBurn} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Màu sắc</p>
+              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('khohang')}>
+                <CIcon className='text-indigo-600 size-6' icon={cilMemory} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Kho điện thoại</p>
               </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
+              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('nhapkho')}>
                 <CIcon className='text-indigo-600 size-6' icon={cilTruck} size="xl" />
                 <p className="text-xs mt-1 text-center font-semibold">Nhập kho</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilMemory} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Thông số kỹ thuật</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilShieldAlt} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Tình trang máy</p>
               </div>
             </div>
           </div>
@@ -178,33 +178,17 @@ const Page = () => {
           <div className="mb-6">
             <div className="grid grid-cols-1 gap-4 grid-cols-2 mt-6">
               <div
-                className={`p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer ${activeSection === 'dashboard' ? 'bg-gray-100' : ''
+                className={`p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer ${activeSection === 'quancao' ? 'bg-gray-100' : ''
                   }`}
-                onClick={() => setActiveSection('dashboard')}
+                onClick={() => setActiveSection('quancao')}
               >
-                <CIcon className='text-indigo-600 size-6' icon={cilAppsSettings} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Dashboard 44</p>
+                <CIcon className='text-indigo-600 size-6' icon={cilMoney} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Quản cáo menu</p>
               </div>
               <div
-                className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themdulieu')}>
-                <CIcon className='text-indigo-600 size-6' icon={cilArrowThickFromBottom} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Thêm ĐT</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilBurn} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Màu sắc</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilTruck} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Nhập kho</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilMemory} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Thông số kỹ thuật</p>
-              </div>
-              <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
-                <CIcon className='text-indigo-600 size-6' icon={cilShieldAlt} size="xl" />
-                <p className="text-xs mt-1 text-center font-semibold">Tình trang máy</p>
+                className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('quancaodienthoai')}>
+                <CIcon className='text-indigo-600 size-6' icon={cilMobile} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Quản cáo điện thoại</p>
               </div>
             </div>
           </div>
@@ -245,14 +229,19 @@ const Page = () => {
         <div className="flex flex-col flex-1 w-full overflow-y-auto">
           <main className="relative z-0 flex-1 pb-8 px-6 bg-white">
             {activeSection === 'tongso' && <Tongdl />}
+            {activeSection === 'user' && <User/>}
             {activeSection === 'dashboard' && <ThemDt />}
             {activeSection === 'themdulieudienthoai' && <Themdienthoai />}
-
+            {activeSection === 'nhapkho' && <Nhapkho />}
+            {activeSection === 'khohang' && <Khohang/>}
+            {/* Quan cáo */}
+            {activeSection === 'quancao' && <Quancao />}
+            {activeSection === 'quancaodienthoai' && <Quancaodienthoai />}
             {/* Mục lục */}
             {activeSection === 'themhedieuhanh' && <Hedieuhanh />}
             {activeSection === 'themmucluc' && <Themmucluc />}
             {activeSection === 'themdanhmuc' && <Danhmuc />}
-            {activeSection === 'themloaisanpham' && <LoaisanphamDt/>}
+            {activeSection === 'themloaisanpham' && <LoaisanphamDt />}
             {activeSection === 'themthongtinphanloai' && <Thongtinphanloai />}
           </main>
         </div>
