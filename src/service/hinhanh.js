@@ -60,6 +60,26 @@ const hinhanh = {
     }
   },
 
+  postthuonghieu: async (image) => {
+    try {
+      const token = window.localStorage.getItem("tokenadmin");
+      const formData = new FormData();
+      formData.append('image', image);
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          ...(token && { 'Authorization': `Bearer ${token}` })
+        }
+      };
+      const response = await api.post(`/anh/image-thuonghieu`, formData, config);
+      return response;
+    } catch (error) {
+      // Trả về thông báo chi tiết từ response nếu có
+      const errorMsg = error.response?.data?.message || "Error uploading image";
+      throw new Error(errorMsg);
+    }
+  },
+
   deleteanh: async (imageUrl) => {
     try {
       const token = window.localStorage.getItem("token");
@@ -93,7 +113,7 @@ const hinhanh = {
       const response = await api.delete(`/anh/images`, {
         ...config,
         params: {
-          imageUrl: imageUrl
+          imageUrls: imageUrl
         }
       });
       return response.data;

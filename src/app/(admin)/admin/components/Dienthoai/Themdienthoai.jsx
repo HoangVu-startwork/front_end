@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from "axios";
 import Image from "next/image";
 import Apithongtinphanloai from '@/service/thongtinphanloai'
@@ -45,17 +45,6 @@ function Themdienthoai() {
         setselecbonhotrong(e.target.value)
     }
 
-    const themdienthoai = () => {
-        if (!selectram) {
-            setErrorram("")
-        }
-
-        if (selectram || selectbonhotrong) {
-            console.log("test")
-        }
-    }
-
-
     const getThongtinphanloai = async () => {
         try {
             const getThongtinphanloai = await Apithongtinphanloai.getThongtinphanloai();
@@ -74,7 +63,6 @@ function Themdienthoai() {
     };
 
     const handleFileChange = (event) => {
-        console.log(event.target.files); // In ra các file để kiểm tra
         setSelectedFiles(event.target.files);
     };
 
@@ -143,9 +131,12 @@ function Themdienthoai() {
     }, [])
 
 
+
     return (
         <div>
-            {loading && <div className="loading-overlay">Loading...</div>}
+            {loading && <div className="loading-overlay-khuyenmai">
+                <div className='loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-56 w-56'></div>
+            </div>}
             {Message && <div className="success-message">{Message}</div>}
             <section className=" p-6 bg-indigo-600 rounded-md shadow-md dark:bg-gray-800">
                 <h1 className="text-xl font-bold text-white capitalize dark:text-white">THÊM SẢN PHẨM ĐIỆN THOẠI</h1>

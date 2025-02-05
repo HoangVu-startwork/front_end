@@ -228,9 +228,10 @@ function Thongtinphanloai() {
                     </div>
                 </div>
                 <div className="flex justify-end mt-6">
-                    <button onClick={onChanpotsThongtinphanloai} className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
+                    <button onClick={() => onChanpotsThongtinphanloai} className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
                 </div>
             </section>
+            <div className='block w-full overflow-x-auto'>
             <table className="items-center bg-transparent w-full border-collapse ">
                 <thead>
                     <tr>
@@ -273,6 +274,7 @@ function Thongtinphanloai() {
                 </tbody>
 
             </table>
+            </div>
         </div>
     )
 }

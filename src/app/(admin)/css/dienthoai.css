@@ -323,3 +323,19 @@
     width: 70%;
     margin-left: 50px;
 }
+
+.text-whiteSpace{
+    word-wrap: break-word;
+    white-space: normal;
+    line-height: 1.5;
+    font-size: 18px;
+}
+
+.text-span{
+    color: #e09797;
+    font-weight: 800;
+}
+
+.back-text{
+    background: #9fa2a1;
+}

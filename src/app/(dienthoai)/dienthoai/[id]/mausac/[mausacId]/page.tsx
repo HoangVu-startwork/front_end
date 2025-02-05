@@ -55,6 +55,17 @@ function page() {
     return `${formattedValue} đ`;
   };
 
+  const getkiemdienthoai = async () => {
+    try {
+      const datadienthoai = await  ServiceDienthoai.getKiemtradienthoai(params.id, params.mausacId)
+      if (datadienthoai == "Không") {
+        window.location.href = "/error";
+      }
+    } catch {
+
+    }
+  }
+
 
   const fetchdienthoai = async () => {
     try {
@@ -217,12 +228,12 @@ function page() {
   }, []);
 
   useEffect(() => {
+    getkiemdienthoai()
     window.scrollTo(0, 0);
     if (datacode === 1000) {
       fetchYeuthich();
     }
   }, [datacode]);
-
 
   const isFavorite = yeuthich.some(item => {
 
