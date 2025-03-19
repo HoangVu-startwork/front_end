@@ -15,7 +15,7 @@ function YeuThichItem({ isFavorite, onClickAdd, onClickRemove, isLoading }) {
                 onClick={isLoading ? null : (isFavorite ? onClickRemove : onClickAdd)} // Vô hiệu hóa click khi đang loading
             >
                 <p>
-                    {isLoading ? 'Đang xử lý...' : ''}
+                    {isLoading ? '' : ''}
                     {hover
                         ? <FavoriteRoundedIcon className="fa-heart-o" />
                         : (isFavorite ? <FavoriteRoundedIcon className="fa-heart-o" /> : <FavoriteBorderRoundedIcon className="fa-heart-o" />)

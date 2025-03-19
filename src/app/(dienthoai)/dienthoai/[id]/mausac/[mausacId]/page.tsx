@@ -34,18 +34,73 @@ interface Thongtindienthoai {
   tinhtrangmay: string;
 }
 
+interface Thongtinkythuatso {
+  bluetooth: string;
+  cacloaicambien: string;
+  cambienvantai: string;
+  camerasau: string;
+  cameratruoc: string;
+  chatlieukhungvien: string;
+  chatlieumatlung: string;
+  chipset: string;
+  chisokhangnuocbui: string;
+  chitiet: string;
+  congghenfc: string;
+  congnghemanghinh: string;
+  congnghesa: string;
+  congsac: string;
+  dacdiennoibat: string;
+  dophangiai: string;
+  gps: string;
+  gpu: string;
+  hedieuhang: string;
+  hongngoai: string;
+  hotromang: string;
+  jacktainghe: string;
+  khecamthenho: string;
+  kichthuoc: string;
+  kichthuocmanhinh: string;
+  kieumanhinh: string;
+  loaicpu: string;
+  pin: string;
+  quayvideo: string;
+  quayvideotruoc: string;
+  tansoquet: string;
+  thesim: string;
+  tinhnagcamera: string;
+  tinhnangdacbiet: string;
+  tinhnangmanghinh: string;
+  trongluong: string;
+  wifi: string;
+}
+
+interface Dienthoai {
+  tensanpham: string;
+  bonho: string;
+  ram: string;
+  thongtindienthoai: Thongtindienthoai;
+  thongsokythuats: Thongtinkythuatso;
+  baohanh: string;
+  thietbidikem: string;
+  tinhtrangmay: string;
+  // Các thuộc tính khác...
+}
+
 function page() {
 
 
   const params = useParams() as Params;
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState('');
+  const [data, setData] = useState<Dienthoai | null>(null);
   const [tensanpham, setTensanpham] = useState('');
+  const [loadings, setloadings] = useState('');
   const [giasanpham, setgiasanpham] = useState('');
   const [giasanphamgiam, setgiasanphamgiam] = useState('');
   const [thongtinphanloai, setThongtinphanloai] = useState([]);
   const [thongtinphanloaiid, setThongtinphanloaiid] = useState('');
   const [khuyenmai, setkhuyenmai] = useState('');
   const [idmausac, setidmausac] = useState([]);
+  const [thongsokythuats, setThongsokythuats] = useState(false);
   const [thongtindienthoai, setThongtindienthoai] = useState<Thongtindienthoai | null>(null);
 
   const formatCurrency = (value: number): string => {
@@ -57,7 +112,7 @@ function page() {
 
   const getkiemdienthoai = async () => {
     try {
-      const datadienthoai = await  ServiceDienthoai.getKiemtradienthoai(params.id, params.mausacId)
+      const datadienthoai = await ServiceDienthoai.getKiemtradienthoai(params.id, params.mausacId)
       if (datadienthoai == "Không") {
         window.location.href = "/error";
       }
@@ -67,56 +122,38 @@ function page() {
   }
 
 
+
   const fetchdienthoai = async () => {
+    setIsLoading(true);
     try {
       const data = await ServiceDienthoai.getChitietdienthoai(params.id, params.mausacId);
+      // Tìm màu sắc phù hợp
+      const selectedColor = data.mausacs.find((mausac: { id: number; }) => mausac.id === parseInt(params.mausacId));
+      const formattedPrice = formatCurrency(selectedColor.giaban);
+      // Kiểm tra xem data.khuyenmais có tồn tại và không null
+      if (data.khuyenmais) {
+        const giadagiamgia = selectedColor.giaban - (selectedColor.giaban * (data.khuyenmais.phantramkhuyenmai / 100));
+        const formattedgiamgai = formatCurrency(giadagiamgia);
+        setkhuyenmai(data.khuyenmais.phantramkhuyenmai);
+        setgiasanphamgiam(formattedgiamgai);
+      }
+
       setData(data);
-      setTensanpham(data.tensanpham);
-      console.log(data);
-
+      setgiasanpham(formattedPrice);
       // Kiểm tra xem data.mausacs có tồn tại và không rỗng
-      if (data.mausacs && data.mausacs.length > 0) {
-        setidmausac(data.mausacs)
-        // Tìm màu sắc phù hợp
-        const selectedColor = data.mausacs.find((mausac: { id: number; }) => mausac.id === parseInt(params.mausacId));
-
-        if (selectedColor) {
-          // Kiểm tra xem selectedColor có thuộc tính giaban không
-          if (selectedColor.giaban) {
-            const formattedPrice = formatCurrency(selectedColor.giaban);
-            setgiasanpham(formattedPrice);
-
-            // Kiểm tra xem data.khuyenmais có tồn tại và không null
-            if (data.khuyenmais) {
-              const giadagiamgia = selectedColor.giaban - (selectedColor.giaban * (data.khuyenmais.phantramkhuyenmai / 100));
-              const formattedgiamgai = formatCurrency(giadagiamgia);
-              console.log(data.khuyenmais.phantramkhuyenmai);
-              setkhuyenmai(data.khuyenmais.phantramkhuyenmai);
-              setgiasanphamgiam(formattedgiamgai);
-            }
-          } else {
-          }
-        } else {
-        }
-      } else {
-        console.error("mausacs is undefined or empty.");
-      }
-      if (data.thongtindienthoai) {
-        setThongtindienthoai(data.thongtindienthoai);
-      }
-
-      // Kiểm tra xem data.thongtinphanloai có tồn tại
-      if (data.thongtinphanloai && data.thongtinphanloai.id) {
-        setThongtinphanloaiid(data.thongtinphanloai.id);
-      } else {
-        console.error("Thongtinphanloai or its id is undefined.");
-      }
-
+      setidmausac(data.mausacs)
+      setThongtindienthoai(data.thongtindienthoai);
+      setThongtinphanloaiid(data.thongtinphanloai.id);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setIsLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchdienthoai()
+    window.scrollTo(0, 0);
+  }, [params.id, params.mausacId]);
 
   const fetachgetthongtinphanloai = async () => {
     if (!thongtinphanloaiid) {
@@ -125,8 +162,8 @@ function page() {
     }
     try {
       const data = await ServiceDienthoai.getThongtinphanloai(thongtinphanloaiid);
-      console.log(data)
       setThongtinphanloai(data.result)
+      setIsLoading(false);
       // Lấy ID của màu sắc đầu tiên từ mảng mausacs của sản phẩm đầu tiên
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -153,7 +190,6 @@ function page() {
     try {
       const yeuthich = await Yeuthich.getYeuthich();
       setYeuthich(yeuthich);
-      console.log(yeuthich)
       setTimeout(() => {
         setSuccessMessage(''); // Tắt thông báo sau 5 giây
       }, 5000);
@@ -242,7 +278,6 @@ function page() {
 
 
   useEffect(() => {
-    fetchdienthoai()
     if (thongtinphanloaiid) {
       fetachgetthongtinphanloai();
     }
@@ -252,17 +287,25 @@ function page() {
     setLoadingDangnhap(false);
   };
 
+  const handleThongsokythuat = () => {
+    setThongsokythuats(true)
+  }
+
+  const handleThongsokythuattat = () => {
+    setThongsokythuats(false)
+  }
+
   return (
     <div className=''>
       {isLoading && <div className="loading-overlay-from"><Loading /></div>}
       {isLoadingDangnhap && <div className="loading-overlay"><Dangnhap nurfelse={handleCloseDangnhap} /></div>}
       {successMessage && <div className="success-message">{successMessage}</div>}
       <div className='mt-2'>
-        <h2 className='text-black text-2xl font-bold ml-2'>{tensanpham}</h2>
+        <h2 className='text-black text-2xl font-bold ml-2'>{data?.tensanpham}</h2>
       </div>
       <div id="content" className="container_menu">
         <div className="siledienthoai"><Sile />
-          {thongtindienthoai && (
+          {data && (
             <>
               <div className='shadow-lg rounded-lg notification-box p-2'>
                 <h3 className='text-gray-700 text-xl font-bold ml-2'>Thông tin sản phẩm</h3>
@@ -281,7 +324,7 @@ function page() {
                   </div>
                   <div>
                     <div className="text-baohanh text-sm pb-2">
-                      <p>{thongtindienthoai.baohanh}</p>
+                      <p>{data?.thongtindienthoai.baohanh}</p>
                     </div>
                   </div>
                 </div>
@@ -300,7 +343,7 @@ function page() {
                   </div>
                   <div>
                     <div className="text-thietbidikem text-sm pb-2">
-                      <p>{thongtindienthoai.thietbidikem}</p>
+                      <p>{data?.thongtindienthoai.thietbidikem}</p>
                     </div>
                   </div>
                 </div>
@@ -319,7 +362,7 @@ function page() {
                   </div>
                   <div>
                     <div className="text-thietbidikem text-sm pb-2">
-                      <p>{thongtindienthoai.tinhtrangmay}</p>
+                      <p>{data?.thongtindienthoai.tinhtrangmay}</p>
                     </div>
                   </div>
                 </div>
@@ -330,7 +373,7 @@ function page() {
         <div className="thongtingia">
           <h2 className='text-black text-2xl font-bold ml-2'>{khuyenmai == '' && (<span className='giadagiam'>{giasanpham}</span>)} {khuyenmai != '' && (<><span className='giadagiam'>{giasanphamgiam}</span> <span className='giachinh'>{giasanpham}</span></>)}</h2>
           <div className=" text-white py-1">
-            <div className="container mx-auto p-1">
+            <div className="container mx-auto padimg-to-bttom">
               <div className="grid grid-cols-3 gap-2">
                 {thongtinphanloai.map((product: any, index: number) => {
                   const formattedPrice = formatCurrency(product.giaban);
@@ -350,7 +393,7 @@ function page() {
           </div>
           <div className=" text-black py-1">
             <h3 className='text-1xl font-bold ml-2'>Chọn màu để xem giá</h3>
-            <div className="container mx-auto p-1">
+            <div className="container mx-auto padimg-to-bttom">
               <div className="grid grid-cols-3 gap-2">
                 {idmausac.map((product: any, index: number) => {
                   const formattedPrice = formatCurrency(product.giaban);
@@ -388,7 +431,255 @@ function page() {
           </div>
         </div>
       </div>
-    </div>
+      <div className='thongtinchitiet'>
+        <div className='chitietsanpham'>
+          <div className='chitietsanpham-mota'>text</div>
+        </div>
+        <div className='thongsodienthoai'>
+          <div className='thongsodienthoai-kythuat m-3'>
+            <div className='text-lg text-black font-semibold'>Thông số kỹ thuật</div>
+            <table className="min-w-full mt-2 thongsodienthoai-kythuat-chitiet">
+              <thead className="">
+              </thead>
+              <tbody className="">
+                <tr className="bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  {data?.thongsokythuats.kichthuocmanhinh &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Kích thước màn hình</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.kichthuocmanhinh} inches</td>
+                    </>
+                  }
+                </tr>
+                <tr className="bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  {data?.thongsokythuats.congnghemanghinh &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Công nghệ màn hình</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.congnghemanghinh}</td>
+                    </>
+                  }
+                </tr>
+                <tr className="bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  {data?.thongsokythuats.camerasau &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Camera sau</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.camerasau}</td>
+                    </>
+                  }
+                </tr>
+                <tr className="bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  {data?.thongsokythuats.cameratruoc &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Camera trước</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.cameratruoc}</td>
+                    </>
+                  }
+                </tr>
+                <tr className="bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  {data?.thongsokythuats.tinhnagcamera &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Tính năng Camera</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.tinhnagcamera}</td>
+                    </>
+                  }
+                </tr>
+                <tr className="bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  {data?.thongsokythuats.chipset &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Chipset</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.chipset}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.congghenfc &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Công nghệ NFC</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.congghenfc}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.bonho && (
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Bộ nhớ trong</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">
+                        {/* {data?.bonho === 1 || data?.bonho === 2 || data?.bonho === 1.5 ? `${data.bonho} TB` : `${data.bonho} GB`} */}
+                        {[1, 2, 1.5].includes(parseFloat(data.bonho)) ? `${data.bonho} TB` : `${data.bonho} GB`}
+                      </td>
+                    </>
+                  )}
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.thesim &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Thẻ SIM</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.thesim}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.hedieuhang &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Hệ điều hành</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.hedieuhang}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.dophangiai &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Độ phân giải màn hình</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.dophangiai}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.tinhnangmanghinh &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Tính năng màn hình</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.tinhnangmanghinh}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.loaicpu &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Loại CPU</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.loaicpu}</td>
+                    </>
+                  }
+                </tr>
+                <tr className='bg-gray-100 px-6 py-4 whitespace-no-wrap border-b border-gray-300'>
+                  {data?.thongsokythuats.tinhnangdacbiet &&
+                    <>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Tính năng đặc biệt</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.tinhnangdacbiet}</td>
+                    </>
+                  }
+                </tr>
+
+              </tbody>
+            </table>
+            <div>
+              {thongsokythuats && (
+                <div className='loading-thongsokythuatdienthoai'>
+                  <div className='!z-5 relative loading-thongsokythuatdienthoai flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                    <div className='mb-auto flex-col items-center justify-center text-thongsokythuat-dilay'>
+                      <h2 className='textthemmausac'>THÔNG SỐ KỸ THUẬT</h2>
+                      <div className="mb-3 text-right">
+                        <button onClick={handleThongsokythuattat} className="text-slate-950 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div className='mb-auto flex-col items-center justify-center text-thongsokythuat-dilay-thongso'>
+                      <div className='manghinh'>
+                        <div className='manghinhp'>Màng hình</div>
+                        <div className='thongtinkt'>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Kích thước màn hình</div>
+                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.kichthuocmanhinh}</div>
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Công nghệ màn hình</div>
+                            <div
+                              className="with-dt text-slate-900 break-words"
+                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.congnghemanghinh || "" }}
+                            />
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Độ phân giải màn hình</div>
+                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.dophangiai}</div>
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Tính năng màn hình</div>
+                            <div
+                              className="with-dt text-slate-900 break-words"
+                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnangmanghinh || "" }}
+                            />
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Tần số quét</div>
+                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.tansoquet}</div>
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Kiểu màn hình</div>
+                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.kieumanhinh}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='manghinh'>
+                        <div className='manghinhp'>Camera sau</div>
+                        <div className='thongtinkt'>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Camera sau</div>
+                            <div
+                              className="with-dt text-slate-900 break-words"
+                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.camerasau || "" }}
+                            />
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Quay video</div>
+                            <div
+                              className="with-dt text-slate-900 break-words"
+                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.quayvideo || "" }}
+                            />
+                          </div>
+                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
+                            <div className="with-kt text-slate-900">Tính năng camera</div>
+                            <div
+                              className="with-dt text-slate-900 break-words"
+                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnagcamera || "" }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+
+
+                    </div>
+                  </div>
+                  {/* <div className='!z-5 relative loading-thongsokythuatdienthoai flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                    <div className='mb-auto flex-col items-center justify-center text-thongsokythuat-dilay'>
+                      <h2 className='textthemmausac'>THÔNG SỐ KỸ THUẬT</h2>
+                      <div className="mb-3 text-right">
+                          <button onClick={handleThongsokythuattat} className="text-slate-950 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </button>
+                       </div>
+                    </div>   
+                    <div className='mt-9'>
+                        <label className="text-xl text-white dark:text-gray-200" htmlFor="username">Ngày bắt đầu khuyến mãi</label>
+                       
+                      </div>
+                      <div className='mt-9'>
+                        <label className="text-xl text-white dark:text-gray-200" htmlFor="username">Ngày kết thúc khuyến mãi</label>
+                        
+                      </div>    
+                  </div> */}
+                </div>
+              )}
+              <button className='button-thongtinkythuat' onClick={handleThongsokythuat}>
+                <div className="svg-wrapper-1">
+                  <div className="svg-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" /></svg>
+                  </div>
+                </div>
+                <span>Xem cấu hình chi tiết</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div >
   )
 }
 

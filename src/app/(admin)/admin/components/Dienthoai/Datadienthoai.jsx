@@ -42,6 +42,8 @@ function Datadienthoai() {
     const [suanoidung, setsuanoidung] = useState("");
     const [suaphantram, setsuaphantram] = useState("");
 
+    const [datakhuyenmaidienthoai, setdatakhuyenmaidienthoai] = useState([])
+
     const filters = useMemo(() => ({
     }), []);
     const fetchdienthoai = async (filters) => {
@@ -267,17 +269,29 @@ function Datadienthoai() {
         } catch {
         }
     }
-    
+
+    const [datakuyenmai, setdatakuyenmai] = useState(false);
+
+    const handdatakhuyenmai = async (id) => {
+        setdatakuyenmai(prev => ({ ...prev, [id]: true }));
+        handXemkhuyenmai(id)
+    }
+
+    const handTatdatakhuyenmai = async () => {
+        setdatakuyenmai(false)
+    }
+    // 
     const handXemkhuyenmai = async (id) => {
         setLoading(true)
         try {
             const datalichsukhuyenmai = await Apikhuyenmai.getKhuyenmaidienthoai(id)
+            setdatakhuyenmaidienthoai(datalichsukhuyenmai)
             setLoading(false)
-            console.log(datalichsukhuyenmai)
         } catch {
-            setLoading(false);
+            setLoading(false)
         }
     }
+    // 
 
     const formatDateTime = (dateString) => {
         const date = new Date(dateString);
@@ -351,6 +365,7 @@ function Datadienthoai() {
                 setMessage('Cập nhật thành công')
                 getKhuyemmai(id);
                 setLoading(false)
+                setdatakuyenmai(false)
                 setTimeout(() => {
                     setMessage('')
                 }, 5000);
@@ -889,8 +904,6 @@ function Datadienthoai() {
         }
     }
 
-   
-
     return (
         <div>
             {loading && <div className="loading-overlay-khuyenmai">
@@ -1284,7 +1297,7 @@ function Datadienthoai() {
                                                                 <textarea value={suanoidung} onChange={handleNoidung} id="username" type="tel" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => putCapnhatkhiuenmai(dienthoai.khuyenmai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông tin khuyến mãi</button>
+                                                                <button onClick={() => putCapnhatkhiuenmai(dienthoai.khuyenmai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1354,8 +1367,86 @@ function Datadienthoai() {
                                                                 <textarea value={suanoidung} onChange={handleNoidung} id="username" type="tel" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => postKhuyenmai(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông tin khuyến mãi</button>
+                                                                <button onClick={() => postKhuyenmai(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Thêm khuyến mãi</button>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {datakuyenmai[dienthoai.id] && (
+                                                <div className="loading-tatcakhuenmai">
+                                                    <div className='!z-5 relative loading-tatcakhuenmais flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
+                                                        <div className='ml-auto'>
+                                                            <div className='relative flex'>
+                                                                <div className="mb-3 text-right">
+                                                                    <button onClick={handTatdatakhuyenmai} className="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div className='absolute top-11 right-0 z-10 w-max origin-top-right scale-0 transition-all duration-300 ease-in-out'>
+                                                                    <img className="aspect-[2/2] w-16" src="https://img.icons8.com/fluency/48/null/mac-os.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className='mb-auto flex-col items-center justify-center'>
+                                                            <h2 className='textthemmausac'>Danh sách khuyến mãi</h2>
+                                                            <table className="items-center bg-transparent w-full border-collapse mt-5">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th className="px-1 text-teal-50 bg-blueGray-50 text-blueGray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                            STT
+                                                                        </th>
+                                                                        <th className="px-1 text-teal-50 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                            Ngày khuyến mãi
+                                                                        </th>
+                                                                        <th className="px-1 text-teal-50 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                            Ngày kết khúc
+                                                                        </th>
+                                                                        <th className="px-1 text-teal-50 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                            Phần trăm khuyến mãi
+                                                                        </th>
+                                                                        <th className="px-1 text-teal-50 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                            Nội dung khuyến mãi
+                                                                        </th>
+                                                                        <th className="px-1 text-teal-50 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                            Quản lý
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {datakhuyenmaidienthoai.map((datakhuyenmai, index) => {
+                                                                        const ngayBatDau = new Date(datakhuyenmai.ngaybatdau);
+                                                                        const ngayHienTai = new Date();
+                                                                        return (
+                                                                            <tr key={index}>
+                                                                                <td className="border-b text-teal-50 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700">{index}</td>
+                                                                                <td className="border-b text-teal-50 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700">{datakhuyenmai.ngaybatdau}</td>
+                                                                                <td className="border-b text-teal-50 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700">{datakhuyenmai.ngayketkhuc}</td>
+                                                                                {/* <td className="border-b text-teal-50 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700">{datakhuyenmai.noidungkhuyenmai}</td> */}
+                                                                                <td className="border-b text-teal-50 px-2 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left text-blueGray-700">{datakhuyenmai.phantramkhuyenmai}</td>
+                                                                                <td className="border-b text-teal-50 px-2 align-middle border-l-0 border-r-0 text-xs p-3 text-left text-blueGray-700 max-w-[400px] break-words whitespace-normal">
+                                                                                    {datakhuyenmai.noidungkhuyenmai}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {ngayBatDau > ngayHienTai && (
+                                                                          
+                                                                                            <button
+                                                                                                onClick={() => handKhuyenmai(datakhuyenmai.id)}
+                                                                                                className="khuyenmai-button px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-lime-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600"
+                                                                                            >
+                                                                                                Chỉnh sửa khuyến mãi
+                                                                                            </button>
+                                                                          
+                                                                                    )}
+                                                                                </td>
+                                                                            </tr>
+                                                                        )
+                                                                    })}
+
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1365,15 +1456,15 @@ function Datadienthoai() {
                                                     <button onClick={() => handThemkhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
                                                         Thêm
                                                     </button>
-                                                    <button onClick={() => handXemkhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
+                                                    <button onClick={() => handdatakhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
                                                         Lịch sử
                                                     </button>
                                                 </> : <>
                                                     <button onClick={() => handKhuyenmai(dienthoai.khuyenmai_id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
                                                         Xem
                                                     </button>
-                                                    <button onClick={() => handXemkhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
-                                                        Lịch sử tất cả
+                                                    <button onClick={() => handdatakhuyenmai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-yellow-400 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">
+                                                        Lịch sử
                                                     </button>
                                                 </>}
                                             </div>
@@ -1509,14 +1600,14 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>Đặc điểm nổi bật</span></label>
-                                                                <div className="back-text mt-5 p-2" dangerouslySetInnerHTML={{ __html: (dacdiennoibat) }} />
+                                                                <div className="back-text back-text-html mt-5 p-2" dangerouslySetInnerHTML={{ __html: (dacdiennoibat) }} />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>Chi tiết sản phẩm</span></label>
-                                                                <div className="back-text mt-5 p-2" dangerouslySetInnerHTML={{ __html: (editorContent) }} />
+                                                                <div className="back-text back-text-html mt-5 p-2" dangerouslySetInnerHTML={{ __html: (editorContent) }} />
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => handchinhsuaThongsokythuat(dienthoai.thongsokythuat_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông tin khuyến mãi</button>
+                                                                <button onClick={() => handchinhsuaThongsokythuat(dienthoai.thongsokythuat_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1547,11 +1638,20 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Công nghệ màng hình</label>
-                                                                <input value={congnghemanghinh || ""} onChange={(e) => setcongnghemanghinh(e.target.value)} type="text" placeholder="Công nghệ màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor value={congnghemanghinh || ""}
+                                                                config={editorConfig} 
+                                                                onChange={(content) => setcongnghemanghinh(content)}
+                                                                //onChange={(e) => setcongnghemanghinh(e.target.value)} 
+                                                                type="text" placeholder="Công nghệ màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tính năng màng hình</label>
-                                                                <input value={tinhnangmanghinh || ""} onChange={(e) => settinhnangmanghinh(e.target.value)} type="text" placeholder="Tính năng màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor 
+                                                                config={editorConfig} 
+                                                                value={tinhnangmanghinh || ""} 
+                                                                onChange={(content) => settinhnangmanghinh(content)}
+                                                                // onChange={(e) => settinhnangmanghinh(e.target.value)}
+                                                                 type="text" placeholder="Tính năng màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tần số quét</label>
@@ -1559,23 +1659,42 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Camera sau</label>
-                                                                <textarea value={camerasau || ""} onChange={(e) => setcamerasau(e.target.value)} type="text" placeholder="Camerasau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor 
+                                                                value={camerasau || ""} 
+                                                                config={editorConfig} 
+                                                                onChange={(content) => setcamerasau(content)}
+                                                                //onChange={(e) => setcamerasau(e.target.value)} 
+                                                                type="text" placeholder="Camerasau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Camera trước</label>
-                                                                <input value={cameratruoc || ""} onChange={(e) => setcameratruoc(e.target.value)} type="text" placeholder="Camera trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <input value={cameratruoc || ""} 
+                                                                config={editorConfig}
+                                                                onChange={(content) => setcameratruoc(content)}
+                                                                // onChange={(e) => setcameratruoc(e.target.value)}
+                                                                 type="text" placeholder="Camera trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tính năng camera</label>
-                                                                <input value={tinhnagcamera || ""} onChange={(e) => settinhnagcamera(e.target.value)} type="text" placeholder="Tính năng camera" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor value={tinhnagcamera || ""} config={editorConfig} 
+                                                                onChange={(content) => settinhnagcamera(content)}
+                                                                // onChange={(e) => settinhnagcamera(e.target.value)}
+                                                                 type="text" placeholder="Tính năng camera" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Quay video trước</label>
-                                                                <textarea value={quayvideotruoc || ""} onChange={(e) => setquayvideotruoc(e.target.value)} type="text" placeholder="Quay video trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor value={quayvideotruoc || ""} config={editorConfig} 
+                                                                onChange={(content) => setquayvideotruoc(content)}
+                                                                // onChange={(e) => setquayvideotruoc(e.target.value)} 
+                                                                type="text" placeholder="Quay video trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Quay video sau</label>
-                                                                <textarea value={quayvideo || ""} onChange={(e) => setquayvideo(e.target.value)} type="text" placeholder="Quay video sau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} 
+                                                                value={quayvideo || ""} 
+                                                                onChange={(content) => setquayvideo(content)}
+                                                                // onChange={(e) => setquayvideo(e.target.value)} 
+                                                                type="text" placeholder="Quay video sau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Loại CPU</label>
@@ -1603,7 +1722,7 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Công nghệ sạc</label>
-                                                                <input value={congnghesac || ""} onChange={(e) => setcongnghesac(e.target.value)} type="text" placeholder="Cổng sạc" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} value={congnghesac || ""} onChange={(content) => setcongnghesac(content)} type="text" placeholder="Cổng sạc" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Cổng sạc</label>
@@ -1659,7 +1778,12 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tương thích</label>
-                                                                <input value={tuongthich || ""} onChange={(e) => settuongthich(e.target.value)} type="text" placeholder="Tương thích" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor 
+                                                                config={editorConfig}
+                                                                value={tuongthich || ""} 
+                                                                onChange={(content) => settuongthich(content)} 
+                                                                // onChange={(e) => settuongthich(e.target.value)} 
+                                                                type="text" placeholder="Tương thích" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Chất liệu khung viền</label>
@@ -1667,7 +1791,11 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Chỉ số kháng nước và bụi</label>
-                                                                <input value={chisokhangnuocbui || ""} onChange={(e) => setchisokhangnuocbui(e.target.value)} type="text" placeholder="Chỉ số kháng nước và bụi" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor 
+                                                                value={chisokhangnuocbui || ""}
+                                                                config={editorConfig}
+                                                                onChange={(content) => setchisokhangnuocbui(content)}
+                                                                type="text" placeholder="Chỉ số kháng nước và bụi" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Cảm biến vân tay</label>
@@ -1675,15 +1803,27 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Kiểu màng hình</label>
-                                                                <input value={kieumanhinh || ""} onChange={(e) => setkieumanhinh(e.target.value)} type="text" placeholder="Kiểu màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor value={kieumanhinh || ""} config={editorConfig}
+                                                                onChange={(content) => setkieumanhinh(content)} 
+                                                                // onChange={(e) => setkieumanhinh(e.target.value)}
+                                                                 type="text" placeholder="Kiểu màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Các loại cảm biến</label>
-                                                                <input value={cacloaicambien || ""} onChange={(e) => setcacloaicambien(e.target.value)} type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor 
+                                                                config={editorConfig}
+                                                                value={cacloaicambien || ""} 
+                                                                onChange={(content) => setcacloaicambien(content)} 
+                                                                type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tính năng đặc biệt</label>
-                                                                <input value={tinhnangdacbiet || ""} onChange={(e) => settinhnangdacbiet(e.target.value)} type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-5 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor 
+                                                                value={tinhnangdacbiet || ""} 
+                                                                config={editorConfig}
+                                                                onChange={(content) => settinhnangdacbiet(content)}
+                                                                // onChange={(e) => settinhnangdacbiet(e.target.value)} 
+                                                                type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-5 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Đặc điểm nổi bật</label>
@@ -1697,7 +1837,7 @@ function Datadienthoai() {
                                                                 <JoditEditor value={editorContent || ""} config={editorConfig} onChange={handleEditorChange} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => handleputThongsokythuat(dienthoai.thongsokythuat_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông tin kỹ thuật</button>
+                                                                <button onClick={() => handleputThongsokythuat(dienthoai.thongsokythuat_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1721,18 +1861,20 @@ function Datadienthoai() {
                                                             </div>
                                                         </div>
                                                         <div className='mb-auto flex-col items-center justify-center'>
-                                                            <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
+                                                            <h2 className='textthemmausac'>Thêm thông số kỹ thuật điện thoại</h2>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Kích thước màng hình</label>
                                                                 <input onChange={(e) => setkichthuocmanhinh(e.target.value)} type="text" placeholder="Kích thước màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
+                                                            {/* <JoditEditor value={kieumanhinh || ""} config={editorConfig}
+                                                                onChange={(content) => setkieumanhinh(content)}  */}
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Công nghệ màng hình</label>
-                                                                <input onChange={(e) => setcongnghemanghinh(e.target.value)} type="text" placeholder="Công nghệ màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setcongnghemanghinh(content)} type="text" placeholder="Công nghệ màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tính năng màng hình</label>
-                                                                <input onChange={(e) => settinhnangmanghinh(e.target.value)} type="text" placeholder="Tính năng màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => settinhnangmanghinh(content)} type="text" placeholder="Tính năng màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tần số quét</label>
@@ -1740,23 +1882,23 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Camera sau</label>
-                                                                <input onChange={(e) => setcamerasau(e.target.value)} type="text" placeholder="Camerasau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setcamerasau(content)} type="text" placeholder="Camerasau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Camera trước</label>
-                                                                <input onChange={(e) => setcameratruoc(e.target.value)} type="text" placeholder="Camera trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setcameratruoc(content)} type="text" placeholder="Camera trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tính năng camera</label>
-                                                                <input onChange={(e) => settinhnagcamera(e.target.value)} type="text" placeholder="Tính năng camera" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => settinhnagcamera(content)} type="text" placeholder="Tính năng camera" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Quay video trước</label>
-                                                                <input onChange={(e) => setquayvideotruoc(e.target.value)} type="text" placeholder="Quay video trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setquayvideotruoc(content)} type="text" placeholder="Quay video trước" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Quay video sau</label>
-                                                                <input onChange={(e) => setquayvideo(e.target.value)} type="text" placeholder="Quay video sau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setquayvideo(content)} type="text" placeholder="Quay video sau" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Loại CPU</label>
@@ -1788,7 +1930,7 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Công nghệ sạc</label>
-                                                                <input onChange={(e) => setcongnghesac(e.target.value)} type="text" placeholder="Công nghệ sạc" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setcongnghesac(content)} type="text" placeholder="Công nghệ sạc" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Thẻ sim</label>
@@ -1812,7 +1954,7 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Hỗ trợ mạng</label>
-                                                                <input onChange={(e) => sethotromang(e.target.value)} type="text" placeholder="Hỗ trợ mạng" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <textarea onChange={(e) => sethotromang(e.target.value)} type="text" placeholder="Hỗ trợ mạng" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Wifi</label>
@@ -1840,7 +1982,7 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tương thích</label>
-                                                                <input onChange={(e) => settuongthich(e.target.value)} type="text" placeholder="Tương thích" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => settuongthich(content)} type="text" placeholder="Tương thích" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Chất liệu khung viền</label>
@@ -1848,7 +1990,7 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Chỉ số kháng nước và bụi</label>
-                                                                <input onChange={(e) => setchisokhangnuocbui(e.target.value)} type="text" placeholder="Chỉ số kháng nước và bụi" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setchisokhangnuocbui(content)} type="text" placeholder="Chỉ số kháng nước và bụi" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Cảm biến vân tay</label>
@@ -1856,15 +1998,15 @@ function Datadienthoai() {
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Kiểu màng hình</label>
-                                                                <input onChange={(e) => setkieumanhinh(e.target.value)} type="text" placeholder="Kiểu màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setkieumanhinh(content)} type="text" placeholder="Kiểu màng hình" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Các loại cảm biến</label>
-                                                                <input onChange={(e) => setcacloaicambien(e.target.value)} type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => setcacloaicambien(content)} type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Tính năng đặc biệt</label>
-                                                                <input onChange={(e) => settinhnangdacbiet(e.target.value)} type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-5 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
+                                                                <JoditEditor config={editorConfig} onChange={(content) => settinhnangdacbiet(content)} type="text" placeholder="Các loại cảm biến" className="block w-full px-4 py-2 mt-5 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-5'>
                                                                 <label className="text-white dark:text-gray-200" htmlFor="username">Đặc điểm nổi bật</label>
@@ -1929,7 +2071,7 @@ function Datadienthoai() {
                                                                 <label className="text-whiteSpace text-white dark:text-gray-200" htmlFor="username"><span className='text-span'>- Tình trạng máy:</span> {tinhtrangmay}</label>
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => handleCapnhatThongso(dienthoai.thongtindienthoai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số điện thoại</button>
+                                                                <button onClick={() => handleCapnhatThongso(dienthoai.thongtindienthoai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1968,7 +2110,7 @@ function Datadienthoai() {
                                                                 <textarea value={tinhtrangmay || ""} onChange={(e) => settinhtrangmay(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => handleCapnhatThongsodienthoai(dienthoai.thongtindienthoai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số điện thoại</button>
+                                                                <button onClick={() => handleCapnhatThongsodienthoai(dienthoai.thongtindienthoai_id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2007,7 +2149,7 @@ function Datadienthoai() {
                                                                 <textarea onChange={(e) => settinhtrangmay(e.target.value)} type="text" placeholder="Giá bán" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" />
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => handThemthongtindienthoais(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số điện thoại</button>
+                                                                <button onClick={() => handThemthongtindienthoais(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2126,29 +2268,20 @@ function Datadienthoai() {
                                                                 </select>
                                                             </div>
                                                             <div className='mt-9'>
-                                                                <button onClick={() => capnhatDienthoai(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật thông số kỹ thuật</button>
+                                                                <button onClick={() => capnhatDienthoai(dienthoai.id)} className="button-themmausac px-6 py-4 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Cập nhật</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             )}
                                             <button onClick={() => getdienthoai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-emerald-950 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Sửa</button>
-                                            <button onClick={() => handlehinhdienthoai(dienthoai.id)} className="xemanh px-2 py-2 leading-5 text-white transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Xoá</button>
                                         </td>
 
                                     </tr>
                                 )
                             })}
                         </tbody>
-
                     </table>
-                    {/* {data.map((dienthoai) => {
-                        return (
-                            <>
-                                {dienthoai.id}
-                            </>
-                        )
-                    })} */}
                 </div>
             </div>
         </div>

@@ -122,7 +122,6 @@ const Page = () => {
                 <li className='mb-3 p-2 rounded-md flex items-center justify-center bg-yellow-400 cursor-pointer'
                   onClick={() => {
                     setOpenMenu(openMenu !== 2 ? 2 : null);
-
                   }}>
                   <CIcon className='text-white' icon={cilBank} size="xl" />
                 </li>
@@ -222,6 +221,28 @@ const Page = () => {
               <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('themthongtinphanloai')}>
                 <CIcon className='text-indigo-600 size-6' icon={cilArrowThickFromBottom} size="xl" />
                 <p className="text-xs mt-1 text-center font-semibold">Thông tin phân loại</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <aside
+          className="animate__animated animate__fadeInLeft w-52 relative z-0 flex-shrink-0 hidden px-4 overflow-y-auto bg-gray-100 sm:block"
+          style={{ display: openMenu === 5 ? 'block' : 'none' }}
+        >
+          <div className="mb-6">
+            <div className="grid grid-cols-1 gap-4 grid-cols-2 mt-6">
+              <div
+                className={`p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer ${activeSection === 'quancao' ? 'bg-gray-100' : ''
+                  }`}
+                onClick={() => setActiveSection('quancao')}
+              >
+                <CIcon className='text-indigo-600 size-6' icon={cilMoney} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Quản cáo menu</p>
+              </div>
+              <div
+                className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('quancaodienthoai')}>
+                <CIcon className='text-indigo-600 size-6' icon={cilMobile} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Quản cáo điện thoại</p>
               </div>
             </div>
           </div>
