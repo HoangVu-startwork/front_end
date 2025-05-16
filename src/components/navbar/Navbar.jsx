@@ -26,10 +26,10 @@ export default function Navbar() {
             </div>
             <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 absolute right-0">
               <li>
-                <a className="justify-between">
+                <Link href="/giohang" className="justify-between">
                   Giỏ hàng
                   <span className="badge">0</span>
-                </a>
+                </Link>
               </li>
               <li><a>Tài khoản</a></li>
               <li><Link href="/signin">Đăng nhập</Link></li>

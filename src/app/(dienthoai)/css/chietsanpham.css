@@ -129,13 +129,41 @@
 
 
 .chitietsanpham {
-    width: 59%;
-    height: 350px;
+    width: 100%;
     border: 1px solid #000;
+    background: #5e5d5d;
+}
+
+.chitietsanpham-mota {
+    height: 500px;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.chitietsanpham-mota.expanded {
+    height: auto;
+    /* Giá trị này đủ lớn để đảm bảo mở rộng hết */
+}
+
+.toggle-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
 }
 
 .thongsodienthoai {
-    width: 39.5%;
+    width: 34.5%;
     margin-right: 1px;
     height: auto;
     background: #e2dddd8e;
@@ -303,13 +331,14 @@ button.button-thongtinkythuat {
     z-index: 1;
 }
 
-.thongtinktmh{
+.thongtinktmh {
     display: flex;
     align-items: center;
     width: 100%;
     padding: 10px 5px 10px 5px;
     border-radius: 10px;
 }
+
 .manghinh {
     display: flex;
     padding: 0px;
@@ -335,4 +364,45 @@ button.button-thongtinkythuat {
     font-size: 18px;
     color: #000;
     font-weight: 700;
+}
+
+/*  */
+
+.toggle-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
+}
+
+.textdacdiemnoibat{
+    text-align: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+.noidungdiemnoibat{
+    padding: 5px 10px 10px 10px;
+    background: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.textchitiet{
+    color: #000;
+    line-height: 1.9rem;
+}
+
+.chitietsanpham_data{
+    width: 65%;
 }
