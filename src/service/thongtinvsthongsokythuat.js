@@ -47,6 +47,7 @@ const thongtinvsthongsokythuat = {
         tinhnangdacbiet: tinhnangdacbiet,
         dacdiennoibat: dacdiennoibat,
         chitiet: editorContent,
+        tuongthich: tuongthich,
       }, config);
       return response.data.result;
     } catch (error) {
@@ -103,6 +104,7 @@ const thongtinvsthongsokythuat = {
         tinhnangdacbiet: tinhnangdacbiet,
         dacdiennoibat: dacdiennoibat,
         chitiet: editorContent,
+        tuongthich: tuongthich,
       }, config);
       return response.data.result;
     } catch (error) {

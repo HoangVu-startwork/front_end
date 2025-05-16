@@ -233,6 +233,7 @@ a{
 }
 
 @media (max-width: 1209px) {
+  
   body{
     width: 100%;
   }

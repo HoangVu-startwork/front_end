@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Menu from "@/components/menu/Menu"
 import Head from "@/components/head/Headmenu";
 import Menuphone from "@/components/menuphone/Menuphone"
@@ -22,6 +22,10 @@ import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded
 import Yeuthichfrom from './components/yeuthich';
 import Loading from '@/components/loading/loading';
 import Dangnhap from '@/components/loading/kiemtradn';
+import Thongsokythuat from './components/ThongSoKyThuat';
+import Chitiet from './components/ChiTiet';
+import Giohang from '@/service/giohang';
+import Dacdiemnoibat from './components/Dacdiemnoibat';
 
 type Params = {
   id: string;
@@ -47,7 +51,7 @@ interface Thongtinkythuatso {
   chitiet: string;
   congghenfc: string;
   congnghemanghinh: string;
-  congnghesa: string;
+  congnghesac: string;
   congsac: string;
   dacdiennoibat: string;
   dophangiai: string;
@@ -72,6 +76,9 @@ interface Thongtinkythuatso {
   tinhnangmanghinh: string;
   trongluong: string;
   wifi: string;
+  bonho: string;
+  tuongthich: string;
+  ram: string;
 }
 
 interface Dienthoai {
@@ -121,12 +128,33 @@ function page() {
     }
   }
 
+   const [generalError, setGeneralError] = useState("");
+
+  const postGiohang = async () => {
+    try {
+      const datagiohang = await Giohang.postGiohang(params.id, params.mausacId)
+      console.log(datagiohang)
+    } catch(error) {
+      if (typeof error === "object" && error !== null) {
+        if ('code' in error && 'message' in error) {
+          setGeneralError(`${error.message}`); // Hiển thị thông báo lỗi cho người dùng
+        } else if (error instanceof Error) {
+          setGeneralError(error.message);
+        }
+      } else {
+        console.error("An unknown error occurred.");
+        setGeneralError("An unknown error occurred.");
+      }
+    }
+  }
+
 
 
   const fetchdienthoai = async () => {
     setIsLoading(true);
     try {
       const data = await ServiceDienthoai.getChitietdienthoai(params.id, params.mausacId);
+      console.log(data)
       // Tìm màu sắc phù hợp
       const selectedColor = data.mausacs.find((mausac: { id: number; }) => mausac.id === parseInt(params.mausacId));
       const formattedPrice = formatCurrency(selectedColor.giaban);
@@ -295,6 +323,9 @@ function page() {
     setThongsokythuats(false)
   }
 
+  const [expanded, setExpanded] = useState(false);
+  const contentRef = useRef(null);
+
   return (
     <div className=''>
       {isLoading && <div className="loading-overlay-from"><Loading /></div>}
@@ -410,8 +441,9 @@ function page() {
               </div>
             </div>
           </div>
+          {generalError && <p className="text-red-500 text-center font-bold leading-9 tracking-tight text-sm max-w-md mx-auto">{generalError}</p>}
           <div className='flex'>
-            <button className="text-button text-white font-bold h-14 ml-2 rounded border-b-2 bg-red-600 hover:bg-red-700 shadow-md items-center justify-center">
+            <button onClick={postGiohang} className="text-button text-white font-bold h-14 ml-2 rounded border-b-2 bg-red-600 hover:bg-red-700 shadow-md items-center justify-center">
               <span className="mr-2 text-1xl">Thêm vào giỏ hàng</span>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
@@ -432,8 +464,26 @@ function page() {
         </div>
       </div>
       <div className='thongtinchitiet'>
-        <div className='chitietsanpham'>
-          <div className='chitietsanpham-mota'>text</div>
+        <div className='chitietsanpham_data'>
+          <div className="chitietsanpham" style={{
+            height: expanded ? "auto" : "550px",
+            overflow: "hidden",
+            transition: "height 0.3s ease-in-out"
+          }}>
+            <div className={`chitietsanpham-mota ${expanded ? "expanded" : ""}`}>
+              <div className='noidungdiemnoibat'>
+                <div className='textdacdiemnoibat'>
+                  Đặc điểm nổi bật của {data?.tensanpham}
+                </div>
+                <Dacdiemnoibat data={data} />
+              </div>
+              <Chitiet data={data} />
+            </div>
+            <button className='button-thongtinkythuat' onClick={() => setExpanded(!expanded)}>
+              <span>{expanded ? "Thu gọn" : "Xem thêm"}</span>
+            </button>
+          </div>
+          <div>text</div>
         </div>
         <div className='thongsodienthoai'>
           <div className='thongsodienthoai-kythuat m-3'>
@@ -454,7 +504,7 @@ function page() {
                   {data?.thongsokythuats.congnghemanghinh &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Công nghệ màn hình</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.congnghemanghinh}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.congnghemanghinh || "" }}></td>
                     </>
                   }
                 </tr>
@@ -462,7 +512,7 @@ function page() {
                   {data?.thongsokythuats.camerasau &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Camera sau</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.camerasau}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.camerasau || "" }}></td>
                     </>
                   }
                 </tr>
@@ -470,7 +520,7 @@ function page() {
                   {data?.thongsokythuats.cameratruoc &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Camera trước</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.cameratruoc}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.cameratruoc || "" }}></td>
                     </>
                   }
                 </tr>
@@ -478,7 +528,7 @@ function page() {
                   {data?.thongsokythuats.tinhnagcamera &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Tính năng Camera</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.tinhnagcamera}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnagcamera || "" }}></td>
                     </>
                   }
                 </tr>
@@ -494,7 +544,7 @@ function page() {
                   {data?.thongsokythuats.congghenfc &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Công nghệ NFC</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.congghenfc}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.congghenfc || "" }}></td>
                     </>
                   }
                 </tr>
@@ -537,7 +587,7 @@ function page() {
                   {data?.thongsokythuats.tinhnangmanghinh &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Tính năng màn hình</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.tinhnangmanghinh}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnangmanghinh || "" }}></td>
                     </>
                   }
                 </tr>
@@ -553,7 +603,7 @@ function page() {
                   {data?.thongsokythuats.tinhnangdacbiet &&
                     <>
                       <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4">Tính năng đặc biệt</td>
-                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words">{data?.thongsokythuats.tinhnangdacbiet}</td>
+                      <td className="w-1/3 text-left text-sm text-slate-900 py-3 px-4 break-words" dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnangdacbiet || "" }}></td>
                     </>
                   }
                 </tr>
@@ -574,97 +624,8 @@ function page() {
                         </button>
                       </div>
                     </div>
-                    <div className='mb-auto flex-col items-center justify-center text-thongsokythuat-dilay-thongso'>
-                      <div className='manghinh'>
-                        <div className='manghinhp'>Màng hình</div>
-                        <div className='thongtinkt'>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Kích thước màn hình</div>
-                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.kichthuocmanhinh}</div>
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Công nghệ màn hình</div>
-                            <div
-                              className="with-dt text-slate-900 break-words"
-                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.congnghemanghinh || "" }}
-                            />
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Độ phân giải màn hình</div>
-                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.dophangiai}</div>
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Tính năng màn hình</div>
-                            <div
-                              className="with-dt text-slate-900 break-words"
-                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnangmanghinh || "" }}
-                            />
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Tần số quét</div>
-                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.tansoquet}</div>
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Kiểu màn hình</div>
-                            <div className="with-dt text-slate-900 break-words">{data?.thongsokythuats.kieumanhinh}</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className='manghinh'>
-                        <div className='manghinhp'>Camera sau</div>
-                        <div className='thongtinkt'>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Camera sau</div>
-                            <div
-                              className="with-dt text-slate-900 break-words"
-                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.camerasau || "" }}
-                            />
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Quay video</div>
-                            <div
-                              className="with-dt text-slate-900 break-words"
-                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.quayvideo || "" }}
-                            />
-                          </div>
-                          <div className="thongtinktmh w-full bg-gray-100 whitespace-no-wrap border-b border-gray-300">
-                            <div className="with-kt text-slate-900">Tính năng camera</div>
-                            <div
-                              className="with-dt text-slate-900 break-words"
-                              dangerouslySetInnerHTML={{ __html: data?.thongsokythuats?.tinhnagcamera || "" }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
-                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
-                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
-                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
-                      <h2 className='textthemmausac'>Thêm khuyến mãi điện thoại</h2>
-
-
-                    </div>
+                    <Thongsokythuat data={data} />
                   </div>
-                  {/* <div className='!z-5 relative loading-thongsokythuatdienthoai flex h-full w-full flex-col rounded-[20px] bg-clip-border p-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:shadow-none'>
-                    <div className='mb-auto flex-col items-center justify-center text-thongsokythuat-dilay'>
-                      <h2 className='textthemmausac'>THÔNG SỐ KỸ THUẬT</h2>
-                      <div className="mb-3 text-right">
-                          <button onClick={handleThongsokythuattat} className="text-slate-950 transition-all duration-300 hover:scale-110 hover:text-red-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                          </button>
-                       </div>
-                    </div>   
-                    <div className='mt-9'>
-                        <label className="text-xl text-white dark:text-gray-200" htmlFor="username">Ngày bắt đầu khuyến mãi</label>
-                       
-                      </div>
-                      <div className='mt-9'>
-                        <label className="text-xl text-white dark:text-gray-200" htmlFor="username">Ngày kết thúc khuyến mãi</label>
-                        
-                      </div>    
-                  </div> */}
                 </div>
               )}
               <button className='button-thongtinkythuat' onClick={handleThongsokythuat}>
