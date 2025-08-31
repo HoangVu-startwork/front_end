@@ -1,0 +1,119 @@
+.hethang {
+    position: absolute;        /* cần để nó phủ toàn bộ */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;             /* dùng flex để căn giữa */
+    align-items: center;       /* căn giữa theo trục dọc */
+    justify-content: center;   /* căn giữa theo trục ngang */
+
+
+    font-size: 20px;           /* tuỳ chỉnh */
+    font-weight: bold;
+    color: red;
+}
+
+
+.giohang-item {
+    display: flex;
+    align-items: flex-start !important;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.tranggiohang-components.w-svh {
+    min-width: 100%;
+    padding: 0px 3em;
+    position: relative;
+    padding-bottom: 110px;
+}
+
+.giatinhtonghopsanphamdachon {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    z-index: 999;
+    padding: 5px 20px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, a{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#center {
+    bottom: -10px;
+    height: auto;
+    top: -50px;
+    min-height: 10vh;
+}
+
+button.xoagiohang-button {
+    float: right;
+}
+
+.thongtinthongso-giohang {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0px;
+}
+
+/* CSS custom cho checkbox */
+.custom-checkbox {
+    appearance: none;         /* ẩn kiểu mặc định */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;       /* bo tròn */
+    border: 2px solid #ccc;   /* viền khi chưa chọn */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .custom-checkbox:checked {
+    background-color: #d60000; /* nền đỏ */
+    border-color: #d60000;     /* viền đỏ */
+    box-shadow: 0 0 6px rgba(214, 0, 0, 0.5); /* hiệu ứng mờ */
+  }
+  
+  /* dấu check bên trong */
+  .custom-checkbox:checked::after {
+    content: "✓";
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .Home{
+    background: #fff;
+  }
+
+  .nut-h3-muangay{
+    background: #d60000;
+    color: #ffffff;
+    padding: 8px 24px;
+    border-radius: 10px;
+  }
+
+  .thongtinmuagiasanpham{
+    width: 35%;
+  }

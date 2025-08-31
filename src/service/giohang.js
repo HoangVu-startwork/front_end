@@ -59,6 +59,28 @@ const giohang = {
           throw new Error("Error during signin");
         }
       } 
+    },
+
+
+    updateQuantity: async (giohangId, quantity) => {
+      try {
+        const token = window.localStorage.getItem("token");
+        const config = {};
+        if (token) {
+          config.headers = { 'Authorization': `Bearer ${token}` };
+        }
+        const response = await api.patch(`/giohang/quantity`, {
+          giohangId: giohangId.giohangId,
+          quantity: giohangId.quantity
+        }, config);
+        return response.data;
+      } catch (error) {
+        if (error.response && error.response.data) {
+          // throw error.response.data;
+        } else {
+          throw new Error("Error during signin");
+        }
+      } 
     }
 }
 

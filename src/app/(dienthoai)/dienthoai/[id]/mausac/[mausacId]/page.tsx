@@ -133,7 +133,7 @@ function page() {
   const postGiohang = async () => {
     try {
       const datagiohang = await Giohang.postGiohang(params.id, params.mausacId)
-      console.log(datagiohang)
+      setGeneralError("Thêm vào giỏ hàng thành công");
     } catch(error) {
       if (typeof error === "object" && error !== null) {
         if ('code' in error && 'message' in error) {

@@ -1,18 +1,22 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Menu from "@/components/menu/Menu"
 import Head from "@/components/head/Headmenu";
 import Menuphone from "@/components/menuphone/Menuphone"
 import Dienthoai from "@/components/dienthoai/Quancaothuonghieu"
 import Danhmucdienthoai from "@/components/dienthoai/Danhmucdienthoai"
 import Nhucau from "@/components/dienthoai/Nhucaudienthoai"
-import Timkiemdienthoai from "@/components/dienthoai/Timkiemdienthoai"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import Auth from "../../../service/auth"
+import Danhmuctimkiemdienthoai from "@/components/dienthoai/Timkiemdienthoaidanhmuc"
+import Danhmucloaisanpham from "@/components/danhmuc/Danhmucloaisanpham"
+import { useParams } from "next/navigation";
+
+type Params = {
+    id: string;
+};
 
 function page() {
+
+  const params = useParams() as Params;
 
   return (
     <div>
@@ -23,15 +27,14 @@ function page() {
         <Dienthoai />
       </div>
       <div>
-        <Danhmucdienthoai />
+        <Danhmucloaisanpham id={params.id}  />
       </div>
       <div>
         <Nhucau />
       </div>
       <div>
-        <Timkiemdienthoai />
+        <Danhmuctimkiemdienthoai id={params.id}/>
       </div>
-      <div>nlkn</div>
     </div>
   )
 }

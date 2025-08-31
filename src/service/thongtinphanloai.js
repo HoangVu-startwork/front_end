@@ -76,6 +76,19 @@ const thongtinphanloai = {
         }
     },
 
+    getThongtinphanloaisanpham: async (id) => {
+      try {
+        const response = await api.get(`/thongtinphanloai/loaisanpham/${id}`);
+        return response.data.result;
+      } catch (error) {
+        if (error.respones && error.response.data) {
+          throw error.response.data;
+        } else {
+          throw new Error("Không có dữ liệu")
+        }
+      }
+    },
+
     putThongtinphanloaiId: async (id, tenphanloai, tenloaisanpham) => {
         try {
             const token = window.localStorage.getItem("tokenadmin");

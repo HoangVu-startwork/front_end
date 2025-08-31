@@ -10,8 +10,8 @@ function Danhmucdienthoai() {
 
     const getdanhmuc = async () => {
         try {
-            const response = await Danhmuc.getAlldanhmucdienthoai();
-            setDanhmuc(response.result)
+            const response = await Danhmuc.getAlldanhmuc();
+            setDanhmuc(response.result);
         } catch (error) {
             console.error("Error fetching token info:", error);
         }
@@ -22,21 +22,19 @@ function Danhmucdienthoai() {
         getdanhmuc()
     }, [])
     return (
-        <div className='container_menu'>
-            <section className=" relative bg-white">
-                <div className=" text-center">
-                    <div className="section">
-                        {danhmuc.map((item) => (
-                            <div key={item.id} className="logo-item">
-                                <Link href={'home'}>
-                                    <img className="object-contain" src={`${item.hinhanh}`} alt="" />
+            <section className="relative bg-white">
+                    <div className="section-danhmuc-dienthoai">
+                        {danhmuc.map((item, index) => (
+                            <ul key={item.id} className="tendanhmuc-dienthoai">
+                                <li>
+                                <Link href={`/danhmuc/${item.id}`}>
+                                    {item.tendanhmuc}
                                 </Link>
-                            </div>
+                                </li>
+                            </ul>
                         ))}
-                    </div>
                 </div>
             </section>
-        </div>
     )
 }
 
