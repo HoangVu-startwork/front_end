@@ -1,0 +1,16 @@
+ul.tendanhmuc-loaisanpham-dienthoai {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 830px) {
+    ul.tendanhmuc-loaisanpham-dienthoai li{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 430px) {
+    ul.tendanhmuc-loaisanpham-dienthoai li{
+        font-size: 14px;
+    }
+}

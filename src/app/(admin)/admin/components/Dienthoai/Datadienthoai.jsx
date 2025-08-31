@@ -665,7 +665,7 @@ function Datadienthoai() {
         }
     }
 
-    const capnhatDienthoai = async (id) => {
+    const capnhatDienthoai1 = async (id) => {
         setLoading(true)
         let hinhanhdienthoai = null;
         let hinhdanhduyetdienthoai = null;
@@ -777,6 +777,89 @@ function Datadienthoai() {
         }
     }
 
+
+    const capnhatDienthoai = async (id) => {
+        setLoading(true);
+        let hinhanhMoi = null;           // URL/ID ảnh chính sau khi upload (nếu có)
+        let hinhanhDuyetMoi = null;      // URL/IDs ảnh duyệt sau khi upload (nếu có)
+      
+        try {
+          // XÁC ĐỊNH ĐÃ ĐỔI ẢNH CHƯA
+          // Tùy hệ thống của bạn: nếu hinhanh là File/Blob thì coi như đã đổi.
+          const changedMain = !!(hinhanh && hinhanh !== datacapnhatdienthoai?.hinhanh);
+          // Với ảnh duyệt: nếu là FileList/Array File => coi như đã đổi
+          const changedApprove = Array.isArray(hinhanhduyet) || (hinhanhduyet && hinhanhduyet !== datacapnhatdienthoai?.hinhanhduyet);
+      
+          // MẶC ĐỊNH: dùng giá trị cũ
+          hinhanhMoi = datacapnhatdienthoai?.hinhanh || null;
+          hinhanhDuyetMoi = datacapnhatdienthoai?.hinhanhduyet || null;
+      
+          // 1) XOÁ & UPLOAD ẢNH CHÍNH NẾU ĐỔI
+          if (changedMain) {
+            // Xoá ảnh cũ (nếu có)
+            if (datacapnhatdienthoai?.hinhanh) {
+              const respDelMain = await Apihinhanh.deleteanh(datacapnhatdienthoai.hinhanh);
+              const ok = respDelMain?.status === 200 || respDelMain?.status === 204 || respDelMain?.data?.success === true;
+              if (!ok) {
+                console.warn('Xoá ảnh chính không thành công nhưng tiếp tục upload ảnh mới.');
+              }
+            }
+            // Upload ảnh mới
+            const respUpMain = await Apihinhanh.postanhdienthoai(hinhanh); // hinhanh: File/URL tuỳ API
+            if (!respUpMain?.data) throw new Error('Upload ảnh chính thất bại');
+            hinhanhMoi = respUpMain.data; // tuỳ API: có thể là URL/ID
+          }
+      
+          // 2) XOÁ & UPLOAD ẢNH DUYỆT NẾU ĐỔI
+          if (changedApprove) {
+            // Xoá ảnh duyệt cũ (nếu có)
+            if (datacapnhatdienthoai?.hinhanhduyet) {
+              const respDelApprove = await Apihinhanh.deletehinhanhduyet(datacapnhatdienthoai.hinhanhduyet);
+              const ok = respDelApprove?.status === 200 || respDelApprove?.status === 204 || respDelApprove?.data?.success === true;
+              if (!ok) {
+                console.warn('Xoá ảnh duyệt không thành công nhưng tiếp tục upload ảnh duyệt mới.');
+              }
+            }
+            // Upload ảnh duyệt mới (nhiều file)
+            const formData = new FormData();
+            if (Array.isArray(hinhanhduyet)) {
+              hinhanhduyet.forEach(f => formData.append('images', f));
+            } else if (hinhanhduyet && hinhanhduyet.length) {
+              // FileList
+              for (let i = 0; i < hinhanhduyet.length; i++) formData.append('images', hinhanhduyet[i]);
+            } else {
+              console.warn('Không có ảnh duyệt mới để upload.');
+            }
+      
+            const respUpApprove = await Apihinhanh.posthinhanhduyet(formData);
+            if (!respUpApprove?.data) throw new Error('Upload ảnh duyệt thất bại');
+            hinhanhDuyetMoi = respUpApprove.data; // tuỳ API: URL/IDs
+          }
+      
+          // 3) GỌI API CẬP NHẬT ĐIỆN THOẠI (TRUYỀN ĐỦ THAM SỐ)
+          await Apidienthoai.putdienthoai(
+            id,
+            ram,
+            giabanra,
+            hinhanhDuyetMoi,
+            hinhanhMoi,
+            bonho,
+            tensanpham,
+            tinhtrang,
+            thongtinphanloaiid // đừng bỏ tham số này ở bất kỳ nhánh nào
+          );
+      
+          setMessage('Cập nhật thành công điện thoại');
+          fetchdatadienthoai(filteridata);
+        } catch (error) {
+          console.error('Lỗi cập nhật điện thoại:', error);
+          setMessage('Có lỗi xảy ra khi cập nhật. Vui lòng thử lại.');
+        } finally {
+          setLoading(false);
+          setTimeout(() => setMessage(''), 5000);
+        }
+      };
+      
     useEffect(() => {
         getThongtinphanloai()
         handgetdienthoai()

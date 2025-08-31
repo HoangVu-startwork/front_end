@@ -24,37 +24,37 @@ export default function Nhucaudienthoai() {
     }, [])
 
     const sliderSettings_linhkienmaytinh = {
-        initialSlide: 9,
-        autoplay: true,
-        centerMode: false,
-        swipeToSlide: true,
-        pauseOnDotsHover: true,
-        arrows: true,
-        rows: 1,
-        draggable: true,
-        slidesToShow: 9,
-        shift: 9,
-        dots: false,
-        infinite: true,
-        wheel: true,
-        speed: 500,
+        // initialSlide: 9,
+        // autoplay: true,
+        // centerMode: false,
+        // swipeToSlide: true,
+        // pauseOnDotsHover: true,
+        // arrows: true,
+        // rows: 1,
+        // draggable: true,
+        // slidesToShow: 9,
+        // shift: 9,
+        // dots: false,
+        // infinite: true,
+        // wheel: true,
+        // speed: 500,
     };
 
     return (
         <div className='container_menu'>
             <div className='linhkienmaytinh'>
                 <div className='linhkienmaytinh_kung'>
-                    <Slider {...sliderSettings_linhkienmaytinh}>
+                    {/* <Slider {...sliderSettings_linhkienmaytinh}> */}
                         {nhucaudienthoai.map((card) => {
                             return (
-                                <div key="{index}" className="block-phukien">
+                                <div key={card.id} className="block-phukien">
                                     <Link href={'home'}>
                                         <div className="img-linhkienmaytinh" style={{ backgroundImage: `url(${card.hinhanh})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundColor: `${card.mausac}` }}><div className="block-phukien-text">{card.tennhucau}</div></div>
                                     </Link>
                                 </div>
                             )
                         })}
-                    </Slider>
+                    {/* </Slider> */}
                 </div>
             </div>
         </div>

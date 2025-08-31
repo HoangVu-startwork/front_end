@@ -4,6 +4,7 @@ import Link from 'next/link';
 import '@/components/css/styles.css';
 import '@/components/css/Post_menu_dienthoai.css'
 import Danhmuc from "../../../service/danhmuc";
+import Danhmucdienthoai from '@/components/danhmuc/Danhmucdienthoai'
 import { ChevronRight, Smartphone, Laptop, Tablet, Headphones, Watch, Home, Unplug, PcCase, Airplay } from 'lucide-react';
 const Post_menu = () => {
 
@@ -30,7 +31,8 @@ const Post_menu = () => {
                         <li><Link href=""><Smartphone className="fa fast fa-mobile"/><span className="menu_span">Điện thoại</span><ChevronRight className="material-symbols-rounded"/></Link>
                             <ul className="sub post-auto-menu post-taille">
                                 <li className='fron-hotsp'><span className="fron-ul">Chọn theo hãng</span>
-                                    <ul className="sub-menu-tap">
+                                <Danhmucdienthoai/>
+                                    {/* <ul className="sub-menu-tap">
                                         <li><Link href="">Apple</Link></li>
                                         <li><Link href="">Samsung</Link></li>
                                         <li><Link href="">Xiaomi</Link></li>
@@ -43,7 +45,7 @@ const Post_menu = () => {
                                         <li><Link href="">Nubia</Link></li>
                                         <li><Link href="">Tecno</Link></li>
                                         <li><Link href="">Điện thoại phổ thông</Link></li>
-                                    </ul>
+                                    </ul> */}
                                 </li>
                                 <li className='fron-hotsp test'><span className="fron-ul">Chọn theo mức giá</span>
                                     <ul className="sub-menu-tap">
