@@ -1,0 +1,100 @@
+.thongtinsoluonggiasanpham {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.tongfront-payment-info {
+    width: 100%;
+}
+
+.mx-auto.w-4xl.p-4.space-y-6.payment-thongtin {
+    width: 76%;
+}
+
+html {
+    background: #ffffff !important;
+}
+
+.Home{
+    background: #ffffff;
+}
+
+.taikhoannameuser {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hangmuc_pay {
+    border: 1px solid #e02424;
+    padding: 2px 12px 2px 12px;
+    margin: 0px !important;
+    border-radius: 5px;
+}
+
+.username_hangmuc {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.fromthongtinuser {
+    border: 1px solid #bebebe92;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.fromdiachi{
+    border: 1px solid #bebebe92;
+    padding: 1px 20px 20px 20px;
+    border-radius: 10px;
+}
+
+.fromthanhtoan{
+    background-color: #fff;
+    border: 1px solid rgba(145, 158, 171, .239);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    bottom: 0;
+    box-shadow: 0 -4px 20px -1px rgba(40, 124, 234, .15);
+    padding: 10px 10px 10px;
+    position: fixed;
+    width: 55%;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 20; 
+}
+
+.thongtinuudaiuser {
+    border: 1px solid #bebebe92;
+    border-radius: 10px;
+    padding: 10px 20px 20px 20px;
+}
+
+.khungsanpham-thongtin{
+    border: 1px solid #bebebe92;
+    border-radius: 10px;
+}
+
+.thongtin-payment-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.thongtin-payment-info-link{
+    width: 30%;
+}
+
+.thongtin-payment-info-h1{
+    text-align: center;
+}
+
+.from-thomgtinuudaikhachang {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}

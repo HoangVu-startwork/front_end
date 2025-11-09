@@ -1,0 +1,4 @@
+npm init next-app my-next-app --ts
+
+
+npm init next-app messenger --ts

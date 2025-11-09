@@ -51,6 +51,7 @@
 @media (max-width: 1199px){
     .container_menu {
         width: 1179px;
+        padding: 5px;
     }
 }
 @media (max-width: 1198px){
