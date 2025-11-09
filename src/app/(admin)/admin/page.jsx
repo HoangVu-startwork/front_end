@@ -17,6 +17,8 @@ import Quancaodienthoai from './components/Quancao/Quancaodienthoai'
 import Nhapkho from './components/Dienthoai/Nhapkho'
 import User from './components/User/Quanlyuser'
 import Khohang from './components/Dienthoai/Khohang'
+import Xephanguser from "./components/Xephang/Xephanguser"
+import Uudaixephang from "./components/Uudaixephang/Uudaixephang"
 import Auth from '@/service/auth'
 
 import Themdienthoai from './components/Dienthoai/Themdienthoai'
@@ -244,6 +246,16 @@ const Page = () => {
                 <CIcon className='text-indigo-600 size-6' icon={cilMobile} size="xl" />
                 <p className="text-xs mt-1 text-center font-semibold">Quản cáo điện thoại</p>
               </div>
+              <div
+                className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('xephanguser')}>
+                <CIcon className='text-indigo-600 size-6' icon={cilMobile} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Xếp hạng user</p>
+              </div>
+              <div
+                className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer" onClick={() => setActiveSection('uudaixephang')}>
+                <CIcon className='text-indigo-600 size-6' icon={cilMobile} size="xl" />
+                <p className="text-xs mt-1 text-center font-semibold">Ưu đãi xếp hạng</p>
+              </div>
             </div>
           </div>
         </aside>
@@ -258,6 +270,8 @@ const Page = () => {
             {/* Quan cáo */}
             {activeSection === 'quancao' && <Quancao />}
             {activeSection === 'quancaodienthoai' && <Quancaodienthoai />}
+            {activeSection === 'xephanguser' && <Xephanguser/>}
+            {activeSection === 'uudaixephang' && <Uudaixephang/>}
             {/* Mục lục */}
             {activeSection === 'themhedieuhanh' && <Hedieuhanh />}
             {activeSection === 'themmucluc' && <Themmucluc />}

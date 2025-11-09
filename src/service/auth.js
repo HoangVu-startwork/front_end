@@ -41,6 +41,7 @@ const Auth = {
       window.localStorage.setItem("userId", response.data.result?.id);
       window.localStorage.setItem("email", response.data.result?.email);
       return response.data;
+      console.log(response.data)
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.log("Unauthorized access. Please login again.");

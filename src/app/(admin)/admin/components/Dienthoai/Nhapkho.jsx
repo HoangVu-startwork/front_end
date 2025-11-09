@@ -4,7 +4,12 @@ import ApiMausac from '@/service/mausac'
 import ApiKhohang from '@/service/nhapkho'
 import '@/app/(admin)/css/nhapkho.css'
 
+
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+
+
 function Nhapkho() {
+
   const [datadienthoai, setdatadienthoai] = useState([])
   const [datanhapkhohang, setdatanhapkhohang] = useState([])
   const [datamausac, setdatamausac] = useState([])
@@ -21,6 +26,8 @@ function Nhapkho() {
 
   const [capnhatnhapkho, setcapnhatnhapkho] = useState(false);
 
+
+  //
   const handChaniddienthoai = (e) => {
     setiddienthoai(e.target.value)
     handMausac(e.target.value)
@@ -261,7 +268,7 @@ function Nhapkho() {
                 <td className="border px-1 py-3 text-center text-red-700 align-middle font-semibold border-gray-200 text-xs whitespace-nowrap text-blueGray-700">{formatDateTime(nhapkho.dob)}</td>
                 <td className="border px-1 py-3 text-center text-red-700 align-middle font-semibold border-gray-200 text-xs whitespace-nowrap text-blueGray-700">{nhapkho.soluong}</td>
                 <td className="border px-1 py-3 text-center text-red-700 align-middle font-semibold border-gray-200 text-xs whitespace-nowrap text-blueGray-700">
-                <button className="px-2 py-2 text-center leading-5 text-white transition-colors duration-200 transform bg-emerald-950 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Sửa</button>
+                  <button className="px-2 py-2 text-center leading-5 text-white transition-colors duration-200 transform bg-emerald-950 rounded-md hover:bg-sky-900 focus:outline-none focus:bg-gray-600">Sửa</button>
                 </td>
               </tr>
             ))}

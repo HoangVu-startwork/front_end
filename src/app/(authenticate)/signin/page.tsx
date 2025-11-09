@@ -103,7 +103,6 @@ export default function page() {
     if (hasError) {
       return;
     }
-    
 
     try {
       const response = await Auth.signin(email, password);
@@ -112,6 +111,7 @@ export default function page() {
         window.localStorage.setItem("exp", response.result?.exp);
         if (response.result?.scope === 'ROLE_ADMIN') {
           window.localStorage.setItem("tokenadmin", response.result?.token);
+          window.localStorage.setItem("token", response.result?.token);
           window.location.href = "/admin";
         } else {
           window.location.href = "/";
@@ -135,9 +135,24 @@ export default function page() {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "Enter") return;
 
+    // Don't trigger when Enter is pressed while focused on a button (avoid double-call)
+    const target = e.target as HTMLElement | null;
+    const tag = target?.tagName?.toLowerCase() || "";
+
+    if (tag === "button") return;
+
+    // If user is in a textarea and wants newline, we should NOT submit.
+    if (tag === "textarea") return;
+
+    // prevent default behavior (if any) and call submit
+    e.preventDefault();
+    handleSubmit(e as any);
+  };
   return (
-    <div className="singup">
+    <div className="singup" onKeyDown={handleKeyDown}>
       <div className="mt-10">
         <div className="mt-10 max-w-[50%] mx-auto scroll-mx-0.5 max-800:max-w-[80%]">
           <img className="mx-auto h-20 w-auto" src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.77d4065.png" alt="Your Company" />
@@ -172,8 +187,7 @@ export default function page() {
               <span onClick={toggleShowPassword} className="absolute right-2 top-3 cursor-pointer text-gray-500 dark:text-gray-400">{showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}</span>
               {passwordError && (<p className="text-red-500 text-sm mt-2">{passwordError}</p>)}</div>
 
-
-            <button type="submit" onClick={handleSubmit} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            <button onClick={handleSubmit} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
           </div>
 
           <p className="mt-10 text-center text-sm text-gray-400">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Giohang from '@/service/giohang';
+import { useRouter } from 'next/navigation';
 import "@/app/(dienthoai)/css/giohang.css"
 import xoaGihang from '../../../../../public/img/delete_24dp_000000_FILL0_wght400_GRAD0_opsz24.png'
 import Link from 'next/link';
@@ -14,6 +15,7 @@ export default function Giohangsanpham() {
     const [updating, setUpdating] = useState<Record<string | number, boolean>>({});
     const [selected, setSelected] = useState<Set<string | number>>(new Set()); // các _uid đã chọn
 
+    const router = useRouter();
     // Helper: ép số, kẹp trong khoảng 1..99
     //Nhận một giá trị v (có thể là string, number, undefined, ...).
     //Ép kiểu sang số bằng Number(v).
@@ -180,6 +182,47 @@ export default function Giohangsanpham() {
         );
     }, [data, selected]);
 
+
+    const handleCheckout = () => {
+        const selectedItems = data.filter((it: any) => selected.has(it._uid) && toQty(it.soluong) > 0)
+            .map((it: any) => {
+                const soluong = toQty(it.soluong);
+                const giasanpham = Number(it.mausacGiaban) || 0;
+                const khuyenmai = Number(it.phantramKhuyenmai) || 0;
+                const Tonggia = khuyenmai > 0 ? giasanpham - (giasanpham * khuyenmai) / 100 : giasanpham;
+
+                return {
+                    giohangId: it.id ?? it._serverId ?? null,
+                    dienthoaiId: it.dienthoaiId,
+                    mausacId: it.mausacId,
+                    tensanpham: it.tensanpham,
+                    tenmausac: it.tenmausac,
+                    hinhanh: it.mausacHinhanh,
+                    quantity: soluong,
+                    giasanphammau: giasanpham,
+                    khuyenmaisanpham: khuyenmai,
+                    price: Tonggia,
+                    // Tổng tiền dòng để hiển thị nhanh
+                    lineTotal: Tonggia * soluong,
+                }
+            });
+
+        if (selectedItems.length === 0) {
+            alert('Vui lòng chọn ít nhất 1 sản phẩm còn hàng trước khi thanh toán.');
+            return;
+        }
+
+        try {
+            // Lưu tạm vào localStorage
+            localStorage.setItem('hn_checkout_selection', JSON.stringify(selectedItems));
+            // Điều hướng sang trang payment-info
+            router.push('/payment-info');
+        } catch (e) {
+            console.error('Không thể lưu lựa chọn thanh toán:', e);
+            alert('Có lỗi khi xử lý dữ liệu thanh toán. Vui lòng thử lại.');
+        }
+    }
+
     if (loading) return <p>Đang tải dữ liệu...</p>;
 
 
@@ -303,11 +346,11 @@ export default function Giohangsanpham() {
                     </div>
                 </div>
                 <div className='nutmuangay'>
-                    <Link href="">
-                        <h3 className="text-lg font-medium truncate text-black nut-h3-muangay">
-                            Mua ngay
-                        </h3>
-                    </Link>
+                        <button
+                            type="button"
+                            onClick={handleCheckout}
+                            className="w-full py-3 rounded-lg bg-black text-white hover:opacity-90 transition nut-h3-muangay"
+                        >Mua ngay</button>
                 </div>
             </div>
 
